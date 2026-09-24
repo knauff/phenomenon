@@ -55,7 +55,7 @@
       color: var(--text-primary);
     }
 
-    /* Top Utility Bar */
+    /* Top Bar */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -123,7 +123,7 @@
       background-color: var(--mint);
     }
 
-    /* Main Container */
+    /* View Container */
     main {
       flex: 1;
       display: flex;
@@ -151,7 +151,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Browse View */
+    /* Browse Hero View */
     .hero-content {
       text-align: center;
       display: flex;
@@ -345,9 +345,9 @@
       border-radius: 3px;
     }
 
-    /* Article & Form Views */
+    /* Content Panels */
     .view-card {
-      max-width: 680px;
+      max-width: 740px;
       margin: 0 auto;
       line-height: 1.7;
       font-size: 15px;
@@ -375,32 +375,48 @@
       margin-top: 28px;
     }
 
+    /* Comprehensive Intake Box */
     .intake-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-card);
       border-radius: 8px;
-      padding: 36px;
-      max-width: 680px;
+      padding: 40px;
+      max-width: 780px;
       margin: 0 auto;
       text-align: left;
     }
 
     .intake-box h2 {
       font-family: var(--font-serif);
-      font-size: 30px;
+      font-size: 32px;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
 
     .intake-subhead {
-      font-size: 14px;
-      margin-bottom: 24px;
+      font-size: 14.5px;
+      margin-bottom: 30px;
       color: var(--text-secondary);
+      line-height: 1.5;
     }
 
-    /* Form Styles */
+    .form-section-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--mint);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+      margin: 28px 0 18px 0;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       display: flex;
       flex-direction: column;
     }
@@ -413,7 +429,8 @@
       margin-bottom: 8px;
     }
 
-    .form-group input,
+    .form-group input[type="text"],
+    .form-group input[type="date"],
     .form-group select,
     .form-group textarea {
       width: 100%;
@@ -439,9 +456,9 @@
     }
 
     .form-group textarea {
-      height: 130px;
+      height: 120px;
       resize: vertical;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .form-group input:focus,
@@ -451,14 +468,50 @@
       box-shadow: 0 0 0 1px var(--mint);
     }
 
+    .form-group-checkbox {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 8px 10px;
+      background: rgba(7, 21, 25, 0.6);
+      border: 1px solid rgba(22, 54, 63, 0.6);
+      border-radius: 6px;
+    }
+
+    .form-group-checkbox input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      margin-top: 3px;
+      cursor: pointer;
+      accent-color: var(--mint);
+      flex-shrink: 0;
+    }
+
+    .form-group-checkbox label {
+      margin-bottom: 0;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      cursor: pointer;
+      line-height: 1.45;
+    }
+
+    .signatures-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
     /* Status Banner */
     .status-banner {
       display: none;
       padding: 14px 16px;
       border-radius: 6px;
-      margin-bottom: 20px;
-      font-size: 13.5px;
-      line-height: 1.4;
+      margin-bottom: 24px;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .status-banner.success {
@@ -554,7 +607,9 @@
       body {
         padding: 0 20px;
       }
-      .metrics-grid {
+      .metrics-grid,
+      .signatures-grid,
+      .form-row-2 {
         grid-template-columns: 1fr;
       }
       .cat-row {
@@ -728,38 +783,161 @@
       </article>
     </section>
 
-    <!-- Share Intake View -->
+    <!-- Comprehensive Share Intake View -->
     <section id="view-share" class="view-section">
       <div class="intake-box">
         <h2>Share an Experience</h2>
-        <p class="intake-subhead">Submit an account directly to the anonymous research ingestion queue.</p>
+        <p class="intake-subhead">Submit structured telemetry directly to the anonymous research database.</p>
         
         <div id="statusBanner" class="status-banner" role="alert"></div>
 
         <form id="issueForm" novalidate>
+          
+          <div class="form-section-title">1. Classification &amp; Identifiers</div>
+          
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="category">Primary Classification</label>
+              <select id="category" name="category" required>
+                <option value="UAP sighting">UAP sighting</option>
+                <option value="Psi experience">Psi experience</option>
+                <option value="Near-death experience">Near-death experience</option>
+                <option value="Entity encounter">Entity encounter</option>
+                <option value="Altered state">Altered state</option>
+                <option value="Unexplained event">Unexplained event</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="subCategory">Phenomenon Sub-Type</label>
+              <select id="subCategory" name="subCategory">
+                <option value="Luminous / Plasma Geometry">Luminous / Plasma Geometry</option>
+                <option value="Structured Craft / Aerial Vehicle">Structured Craft / Aerial Vehicle</option>
+                <option value="Telepathic / Direct Cognition">Telepathic / Direct Cognition</option>
+                <option value="Out-of-Body / Autoscopy">Out-of-Body / Autoscopy</option>
+                <option value="Entity / Non-Human Presence">Entity / Non-Human Presence</option>
+                <option value="Temporal Displacement / Missing Time">Temporal Displacement / Missing Time</option>
+                <option value="Spontaneous Synchronicity">Spontaneous Synchronicity</option>
+              </select>
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="category">Category</label>
-            <select id="category" name="category" required>
-              <option value="UAP sighting">UAP sighting</option>
-              <option value="Psi experience">Psi experience</option>
-              <option value="Near-death experience">Near-death experience</option>
-              <option value="Entity encounter">Entity encounter</option>
-              <option value="Altered state">Altered state</option>
-              <option value="Unexplained event">Unexplained event</option>
+            <label for="title">Incident Title / Summary Headline</label>
+            <input type="text" id="title" name="title" placeholder="Brief descriptive headline (e.g., Silent geometric craft hovering over tree line)" required autocomplete="off">
+          </div>
+
+          <div class="form-section-title">2. Spatiotemporal &amp; Environmental Telemetry</div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="incidentDate">Date / Approximate Timeframe</label>
+              <input type="text" id="incidentDate" name="incidentDate" placeholder="e.g. October 2023 or 2023-10-14" required>
+            </div>
+
+            <div class="form-group">
+              <label for="setting">Environmental Setting</label>
+              <select id="setting" name="setting">
+                <option value="Rural / Remote Terrestrial">Rural / Remote Terrestrial</option>
+                <option value="Suburban / Residential">Suburban / Residential</option>
+                <option value="Dense Urban">Dense Urban</option>
+                <option value="Airborne / Flight Crew">Airborne / Flight Crew</option>
+                <option value="Maritime / Coastal Waters">Maritime / Coastal Waters</option>
+                <option value="Domestic Interior">Domestic Interior</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="location">General Geographic Region</label>
+              <input type="text" id="location" name="location" placeholder="Country, State / Province (No street addresses)" required>
+            </div>
+
+            <div class="form-group">
+              <label for="witnessCount">Number of Observers</label>
+              <select id="witnessCount" name="witnessCount">
+                <option value="Solo observer (1)">Solo observer (1)</option>
+                <option value="Small group (2-3)">Small group (2-3)</option>
+                <option value="Multi-witness cohort (4-10)">Multi-witness cohort (4-10)</option>
+                <option value="Mass observation (10+)">Mass observation (10+)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="physicalTrace">Physical or Instrument Trace Corroboration</label>
+            <select id="physicalTrace" name="physicalTrace">
+              <option value="None observed / Visual observation only">None observed / Visual observation only</option>
+              <option value="Electromagnetic / Sensor anomaly recorded">Electromagnetic / Sensor anomaly recorded</option>
+              <option value="Photographic or optical video capture">Photographic or optical video capture</option>
+              <option value="Environmental disturbance (foliage, soil, burn)">Environmental disturbance (foliage, soil, burn)</option>
+              <option value="Physiological mark or somatic aftereffect">Physiological mark or somatic aftereffect</option>
             </select>
           </div>
 
+          <div class="form-section-title">3. Sensate Signatures &amp; Anomalies (Select all observed)</div>
+
+          <div class="signatures-grid">
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_acoustic" name="signatures" value="Acoustic Alteration">
+              <label for="sig_acoustic"><strong>Acoustic Alteration</strong>: High-pitch tone or sudden dead silence</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_temporal" name="signatures" value="Temporal Dilation">
+              <label for="sig_temporal"><strong>Temporal Dilation</strong>: Time slowing or unaccounted missing time</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_em" name="signatures" value="Electromagnetic Effect">
+              <label for="sig_em"><strong>Electromagnetic Interference</strong>: Electronics or compass malfunction</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_oz" name="signatures" value="Oz Effect">
+              <label for="sig_oz"><strong>The Oz Effect</strong>: Atmospheric deadening / uncanny isolation</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_telepathy" name="signatures" value="Telepathic / Somatosensory Transmission">
+              <label for="sig_telepathy"><strong>Direct Transmission</strong>: Instant somatosensory communication</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_electrostatic" name="signatures" value="Galvanic / Electrostatic Sensation">
+              <label for="sig_electrostatic"><strong>Electrostatic Sensation</strong>: Hair prickling, ozone odor</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_hypnagogic" name="signatures" value="Preceding Hypnagogic State">
+              <label for="sig_hypnagogic"><strong>Altered Precursor</strong>: Lucid or hypnagogic state preceding event</label>
+            </div>
+
+            <div class="form-group form-group-checkbox">
+              <input type="checkbox" id="sig_shock" name="signatures" value="Ontological Shock">
+              <label for="sig_shock"><strong>Ontological Shock</strong>: Irreversible disruption to reality model</label>
+            </div>
+          </div>
+
+          <div class="form-section-title">4. Narrative Telemetry</div>
+
           <div class="form-group">
-            <label for="title">Title / Headline</label>
-            <input type="text" id="title" name="title" placeholder="Brief descriptive summary" required autocomplete="off">
+            <label for="details">Detailed Chronological Account</label>
+            <textarea id="details" name="details" placeholder="Describe the chronological sequence of events: initial onset, sensory signatures, visual geometry, behavior, duration, and departure..." required></textarea>
           </div>
 
           <div class="form-group">
-            <label for="details">Detailed Account</label>
-            <textarea id="details" name="details" placeholder="Describe the sequence of events, sensate signatures, environmental context, and subsequent effects..." required></textarea>
+            <label for="aftermath">Long-term Aftereffects &amp; Psychological Impact</label>
+            <textarea id="aftermath" name="aftermath" placeholder="Describe subsequent cognitive shifts, persistent anomalies, worldview changes, or somatic effects following the experience..."></textarea>
           </div>
 
-          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%;">Dispatch to Research Ledger</button>
+          <div class="form-group form-group-checkbox" style="margin-top: 20px; background: transparent; border: none; padding: 0;">
+            <input type="checkbox" id="anonConfirm" name="anonConfirm" required>
+            <label for="anonConfirm">I verify that no identifying personal names or private street addresses are included in this transmission, and I dedicate this anonymous report to open scientific research.</label>
+          </div>
+
+          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%; margin-top: 18px;">Dispatch Report to Research Ledger</button>
         </form>
       </div>
     </section>
@@ -796,7 +974,7 @@
         <h2>Privacy &amp; Copyright Concerns</h2>
         <p>If an account contains identifying personal details or copyrighted text submitted without authorization, submit a removal request immediately.</p>
         <div class="panel-box">
-          <p>Contact the repository maintainers directly with the report headline, submission timestamp, and specific removal justification. Requests are processed within 24 hours.</p>
+          <p>Contact the repository maintainers directly with the report headline, submission timeframe, and removal justification. Requests are reviewed within 24 hours.</p>
         </div>
       </article>
     </section>
@@ -846,15 +1024,13 @@
   </footer>
 
   <script>
-    // Native Single-Page-Application Router
+    // SPA Hash Router
     const allRoutes = ['browse', 'patterns', 'about', 'share', 'privacy', 'terms', 'concerns', 'withdraw', 'owner'];
-    const navTabs = ['browse', 'patterns', 'about', 'share'];
 
     function handleRoute() {
       const hash = window.location.hash.replace('#', '').trim().toLowerCase();
       const activeTab = allRoutes.includes(hash) ? hash : 'browse';
 
-      // Switch active view section
       document.querySelectorAll('.view-section').forEach(section => {
         section.classList.remove('active-view');
       });
@@ -864,7 +1040,6 @@
         targetSection.classList.add('active-view');
       }
 
-      // Update primary navigation highlight
       document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('data-tab') === activeTab) {
           link.classList.add('active');
@@ -873,7 +1048,6 @@
         }
       });
 
-      // Close controls dropdown on navigation
       const menu = document.getElementById('controlsMenu');
       const trigger = document.getElementById('controlsTrigger');
       if (menu && trigger) {
@@ -904,17 +1078,17 @@
       }
     });
 
-    // Master Dataset Generator & Downloader
+    // Master Dataset Downloader
     const downloadBtn = document.getElementById('downloadDatasetBtn');
     if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
         const csvRows = [
-          ['Timestamp', 'Category', 'Title', 'Sensate_Signatures', 'Status'],
-          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Silent High-Altitude Torus', 'Oz Effect / Static', 'Verified'],
-          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Boundary Panorama', 'Ontological Shock', 'Verified'],
-          ['2026-09-02T03:10:00Z', 'Psi experience', 'Coincident Sensory Impression', 'Galvanic Skin / Somatosensory', 'Verified'],
-          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Crystalline Form Interaction', 'Acoustic Alteration / High Tone', 'Verified'],
-          ['2026-09-20T04:30:00Z', 'Altered state', 'Spontaneous Temporal Deceleration', 'Temporal Dilation', 'Verified']
+          ['Timestamp', 'Category', 'Sub-Type', 'Title', 'Sensate_Signatures', 'Setting', 'Status'],
+          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Structured Craft', 'Silent High-Altitude Torus', 'Oz Effect; Electromagnetic Effect', 'Rural Terrestrial', 'Logged'],
+          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Out-of-Body', 'Boundary Transition Panorama', 'Ontological Shock; Acoustic Alteration', 'Domestic Interior', 'Logged'],
+          ['2026-09-02T03:10:00Z', 'Psi experience', 'Telepathic Cognition', 'Coincident Remote Telemetry', 'Galvanic Skin; Direct Transmission', 'Suburban Residential', 'Logged'],
+          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Entity Interaction', 'Crystalline Presence Communication', 'Acoustic Alteration; Temporal Dilation', 'Domestic Interior', 'Logged'],
+          ['2026-09-20T04:30:00Z', 'Altered state', 'Temporal Displacement', 'Spontaneous Temporal Deceleration', 'Temporal Dilation; Ontological Shock', 'Wilderness', 'Logged']
         ];
         
         const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.map(row => row.map(item => `"${item}"`).join(',')).join('\n');
@@ -928,47 +1102,59 @@
       });
     }
 
-    // Production Ingestion Queue Handler
+    // Google Apps Script Pipeline Handler
     const form = document.getElementById('issueForm');
     const submitBtn = document.getElementById('submitBtn');
     const statusBanner = document.getElementById('statusBanner');
 
-    // Replace the URL string below with your active Google Apps Script Web App exec endpoint:
+    // INSERT YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL HERE:
     const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec';
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const catInput = document.getElementById('category');
       const titleInput = document.getElementById('title');
       const detailsInput = document.getElementById('details');
+      const anonConfirm = document.getElementById('anonConfirm');
 
-      const category = catInput.value.trim();
-      const title = titleInput.value.trim();
-      const details = detailsInput.value.trim();
-
-      if (!title || !details) {
+      if (!titleInput.value.trim() || !detailsInput.value.trim()) {
         statusBanner.className = 'status-banner error';
-        statusBanner.innerText = 'Please complete all required fields before dispatching.';
+        statusBanner.innerText = 'Required narrative fields are missing. Please complete Headline and Detailed Account.';
         return;
       }
 
-      // Set submission state
-      const originalText = submitBtn.innerText;
+      if (!anonConfirm.checked) {
+        statusBanner.className = 'status-banner error';
+        statusBanner.innerText = 'You must confirm that no identifying personal names or addresses are included.';
+        return;
+      }
+
+      // Collect sensate signatures
+      const checkedBoxes = Array.from(document.querySelectorAll('input[name="signatures"]:checked'));
+      const signaturesList = checkedBoxes.map(cb => cb.value).join('; ');
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        category: document.getElementById('category').value,
+        subCategory: document.getElementById('subCategory').value,
+        title: titleInput.value.trim(),
+        incidentDate: document.getElementById('incidentDate').value.trim(),
+        setting: document.getElementById('setting').value,
+        location: document.getElementById('location').value.trim(),
+        witnessCount: document.getElementById('witnessCount').value,
+        physicalTrace: document.getElementById('physicalTrace').value,
+        signatures: signaturesList || 'None specified',
+        details: detailsInput.value.trim(),
+        aftermath: document.getElementById('aftermath').value.trim()
+      };
+
+      const originalBtnText = submitBtn.innerText;
       submitBtn.innerText = 'Transmitting securely...';
       submitBtn.disabled = true;
       statusBanner.className = 'status-banner';
       statusBanner.innerText = '';
 
-      const payload = {
-        timestamp: new Date().toISOString(),
-        category: category,
-        title: title,
-        report: details
-      };
-
       try {
-        // Send as text/plain to bypass browser CORS preflight blocks with Google Apps Script
         await fetch(GOOGLE_WEB_APP_URL, {
           method: 'POST',
           mode: 'no-cors',
@@ -978,7 +1164,6 @@
           body: JSON.stringify(payload)
         });
 
-        // Feedback & clean form reset
         statusBanner.className = 'status-banner success';
         statusBanner.innerText = 'Transmission confirmed. Your report has been dispatched to the research ledger.';
         form.reset();
@@ -987,14 +1172,14 @@
           window.location.hash = 'browse';
           statusBanner.className = 'status-banner';
           statusBanner.innerText = '';
-        }, 2200);
+        }, 2400);
 
       } catch (err) {
         statusBanner.className = 'status-banner error';
-        statusBanner.innerText = 'Network transmission error. Please verify your connection and retry.';
+        statusBanner.innerText = 'Transmission failure. Please check network connection and verify endpoint URL.';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerText = originalText;
+        submitBtn.innerText = originalBtnText;
       }
     });
   </script>
