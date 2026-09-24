@@ -1,0 +1,381 @@
+---
+layout: null
+title: The Phenomenon Project | Experiences & patterns
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Phenomenon Project | Experiences & patterns</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #071216;
+      color: #9cb2ba;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      padding: 24px 48px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    /* Header Navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-item {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-item.active {
+      color: #ffffff;
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background-color: #5ce5be;
+    }
+
+    /* Hero Section */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #1c3c44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 36px;
+      background-color: rgba(14, 30, 35, 0.6);
+      box-shadow: 0 0 20px rgba(92, 229, 190, 0.05);
+    }
+
+    .hero-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #5ce5be;
+    }
+
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.25;
+      color: #f1f7f6;
+      max-width: 900px;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 620px;
+      color: #8fa6af;
+      margin-bottom: 38px;
+    }
+
+    .tag-grid {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      column-gap: 56px;
+      row-gap: 16px;
+      margin-bottom: 44px;
+      font-size: 14px;
+      color: #8fa6af;
+      justify-content: center;
+    }
+
+    .tag-item {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #7ee8c9;
+      color: #07171a;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .cta-btn:hover {
+      background-color: #6adbb9;
+      color: #051214;
+    }
+
+    .cta-caption {
+      font-size: 12.5px;
+      color: #607982;
+      letter-spacing: 0.01em;
+    }
+
+    /* Embedded Anonymous Form Setup */
+    .form-container {
+      display: none;
+      width: 100%;
+      max-width: 550px;
+      background: rgba(14, 30, 35, 0.6);
+      border: 1px solid #1c3c44;
+      padding: 32px;
+      border-radius: 8px;
+      text-align: left;
+      margin-top: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #7ee8c9;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      background: #0b1a1f;
+      border: 1px solid #1c3c44;
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #7ee8c9;
+    }
+
+    .submit-btn {
+      background-color: #7ee8c9;
+      color: #07171a;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #6adbb9;
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 13px;
+      color: #607982;
+      padding-top: 24px;
+    }
+
+    .footer-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .help-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .help-controls svg {
+      width: 9px;
+      height: 9px;
+      fill: #607982;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 16px 20px;
+      }
+      .tag-grid {
+        grid-template-columns: 1fr;
+        row-gap: 12px;
+      }
+      .nav-links {
+        display: none;
+      }
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ce5be" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+      </svg>
+      The Phenomenon Project
+    </a>
+    <nav class="nav-links">
+      <a href="#browse" class="nav-item active">Browse</a>
+      <a href="#patterns" class="nav-item">Patterns</a>
+      <a href="#about" class="nav-item">About</a>
+      <button id="navShareBtn" style="background:none; border:none; color:inherit; font-family:inherit; font-size:inherit; cursor:pointer;" class="nav-item">Share an experience</button>
+      <a href="#signin" class="nav-item">Signed in</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="heroHeaderGroup">
+      <div class="hero-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+      </div>
+
+      <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
+
+      <p class="subtitle">
+        The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
+      </p>
+
+      <div class="tag-grid">
+        <span class="tag-item">UAP sightings</span>
+        <span class="tag-item">Psi experiences</span>
+        <span class="tag-item">Near-death experiences</span>
+        <span class="tag-item">Entity encounters</span>
+        <span class="tag-item">Altered states</span>
+        <span class="tag-item">Unexplained events</span>
+      </div>
+
+      <button id="mainCtaBtn" class="cta-btn">Share an experience</button>
+      <p id="mainCtaCaption" class="cta-caption">No name or email required · Ages 18+</p>
+    </div>
+
+    <!-- Hidden form that reveals itself on CTA click -->
+    <div id="submissionFormContainer" class="form-container">
+      <form id="phenomenonForm">
+        <div class="form-group">
+          <label for="category">Phenomenon Classification</label>
+          <select id="category" required>
+            <option value="UAP">UAP Sighting</option>
+            <option value="Psi">Psi Experience</option>
+            <option value="NDE">Near-Death Experience</option>
+            <option value="Entity">Entity Encounter</option>
+            <option value="Altered">Altered State / Consciousness</option>
+            <option value="Other">Unexplained / Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timeframe">Approximate Timeframe</label>
+          <input type="text" id="timeframe" placeholder="e.g., Summer 2018, Mid-90s" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Approximate Region (State/Country)</label>
+          <input type="text" id="location" placeholder="e.g., Pennsylvania, USA" required>
+        </div>
+
+        <div class="form-group">
+          <label for="narrative">Account Details</label>
+          <textarea id="narrative" rows="5" placeholder="Describe the experience objectively, focus on patterns or details..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Construct Secure Submission Link</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <span>Curiosity with care.</span>
+    <div class="footer-links">
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a href="#controls" class="help-controls">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Help & controls
+      </a>
+    </div>
+  </footer>
+
+  <script>
