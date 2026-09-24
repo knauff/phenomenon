@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Phenomenon Project | Experiences & patterns</title>
+  <title>The Phenomenon Project | Experiences &amp; patterns</title>
+  <meta name="description" content="Bringing together experiences of the Phenomenon, compiling useful data, and building a shared resource to explore patterns and deepen understanding.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,13 +18,16 @@
     :root {
       --bg: #071317;
       --card-bg: #0d2026;
+      --card-alt: #0a191e;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-card: #16363f;
       --mint: #7ce3c3;
       --mint-hover: #67d6b3;
+      --mint-subtle: rgba(124, 227, 195, 0.12);
       --text-primary: #edf4f5;
       --text-secondary: #8fa4ab;
       --text-muted: #5a737b;
+      --danger: #e26d6d;
       --font-serif: 'Newsreader', Georgia, serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -38,6 +42,7 @@
       justify-content: space-between;
       overflow-x: hidden;
       padding: 0 44px;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -77,7 +82,8 @@
 
     .auth-status {
       font-size: 13.5px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+      user-select: none;
     }
 
     /* Navigation Bar */
@@ -117,7 +123,7 @@
       background-color: var(--mint);
     }
 
-    /* View Container */
+    /* Main Container */
     main {
       flex: 1;
       display: flex;
@@ -145,7 +151,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hero / Browse View */
+    /* Browse View */
     .hero-content {
       text-align: center;
       display: flex;
@@ -221,13 +227,19 @@
       margin-bottom: 16px;
       cursor: pointer;
       border: none;
-      transition: background-color 0.15s ease;
+      transition: background-color 0.15s ease, opacity 0.15s ease;
       text-decoration: none;
+      text-align: center;
     }
 
     .cta-submit:hover {
       background-color: var(--mint-hover);
       color: #040e10;
+    }
+
+    .cta-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .cta-note {
@@ -333,27 +345,36 @@
       border-radius: 3px;
     }
 
-    /* About View */
-    .about-article {
+    /* Article & Form Views */
+    .view-card {
       max-width: 680px;
       margin: 0 auto;
       line-height: 1.7;
       font-size: 15px;
     }
 
-    .about-article h2 {
+    .view-card h2 {
       font-family: var(--font-serif);
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 400;
       color: var(--text-primary);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      text-align: center;
     }
 
-    .about-article p {
+    .view-card p {
       margin-bottom: 18px;
+      color: var(--text-secondary);
     }
 
-    /* Share Modal View */
+    .panel-box {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 32px;
+      margin-top: 28px;
+    }
+
     .intake-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-card);
@@ -377,8 +398,11 @@
       color: var(--text-secondary);
     }
 
+    /* Form Styles */
     .form-group {
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
     }
 
     .form-group label {
@@ -386,7 +410,7 @@
       font-size: 13px;
       font-weight: 500;
       color: var(--text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .form-group input,
@@ -398,20 +422,57 @@
       color: var(--text-primary);
       font-family: var(--font-sans);
       font-size: 14px;
-      padding: 10px 12px;
+      padding: 11px 14px;
       border-radius: 6px;
       outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238fa4ab' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 14px;
+      padding-right: 36px;
     }
 
     .form-group textarea {
-      height: 120px;
+      height: 130px;
       resize: vertical;
+      line-height: 1.5;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--mint);
+      box-shadow: 0 0 0 1px var(--mint);
+    }
+
+    /* Status Banner */
+    .status-banner {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    .status-banner.success {
+      display: block;
+      background-color: rgba(124, 227, 195, 0.12);
+      border: 1px solid var(--mint);
+      color: var(--mint);
+    }
+
+    .status-banner.error {
+      display: block;
+      background-color: rgba(226, 109, 109, 0.12);
+      border: 1px solid var(--danger);
+      color: var(--danger);
     }
 
     /* Footer */
@@ -422,6 +483,7 @@
       padding: 24px 0;
       font-size: 13px;
       color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
     }
 
     .footer-right {
@@ -453,8 +515,8 @@
     }
 
     .controls-trigger svg {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       fill: currentColor;
     }
 
@@ -468,7 +530,7 @@
       border-radius: 6px;
       padding: 6px 0;
       min-width: 220px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       z-index: 50;
     }
 
@@ -513,20 +575,18 @@
 <body>
 
   <header>
-    <!-- Top Header -->
     <div class="top-bar">
       <a href="#browse" class="brand">
-        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
         </svg>
         The Phenomenon Project
       </a>
       <span class="auth-status">Signed in</span>
     </div>
 
-    <!-- Navigation Tabs -->
-    <nav class="nav-bar">
+    <nav class="nav-bar" aria-label="Main navigation">
       <a href="#browse" class="nav-link active" data-tab="browse">Browse</a>
       <a href="#patterns" class="nav-link" data-tab="patterns">Patterns</a>
       <a href="#about" class="nav-link" data-tab="about">About</a>
@@ -534,14 +594,14 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- Browse View -->
     <section id="view-browse" class="view-section active-view">
       <div class="hero-content">
         <div class="hero-badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
           </svg>
         </div>
 
@@ -551,26 +611,26 @@
           The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
         </p>
 
-        <div class="categories">
+        <div class="categories" aria-label="Experiences welcomed by the project">
           <div class="cat-row">
             <span>UAP sightings</span>
-            <span class="bullet">·</span>
+            <span class="bullet">&middot;</span>
             <span>Psi experiences</span>
-            <span class="bullet">·</span>
+            <span class="bullet">&middot;</span>
             <span>Near-death experiences</span>
           </div>
           <div class="cat-row">
             <span>Entity encounters</span>
-            <span class="bullet">·</span>
+            <span class="bullet">&middot;</span>
             <span>Altered states</span>
-            <span class="bullet">·</span>
+            <span class="bullet">&middot;</span>
             <span>Unexplained events</span>
           </div>
         </div>
 
         <a href="#share" class="cta-submit">Share an experience</a>
 
-        <p class="cta-note">No name or email required · Ages 18+</p>
+        <p class="cta-note">No name or email required &middot; Ages 18+</p>
       </div>
     </section>
 
@@ -645,38 +705,41 @@
       </div>
     </section>
 
-        <!-- About View -->
+    <!-- About View -->
     <section id="view-about" class="view-section">
-      <article class="about-article" style="text-align: center;">
+      <article class="view-card">
         <h2>About the Project</h2>
-        <p style="text-align: left; margin-bottom: 24px;">
+        <p>
           The Phenomenon Project collects, normalizes, and analyzes non-ordinary human experiences. By taking firsthand accounts seriously without dogmatic commitment, we identify cross-domain structural patterns.
         </p>
+        <p>
+          Traditional science frequently dismisses anomalous occurrences due to lack of reproducible instrumentation. Our approach treats conscious observer reporting as signal rather than noise, compiling unified datasets across distinct experiential domains.
+        </p>
         
-        <!-- Open Data Access Card -->
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-card); padding: 24px; border-radius: 8px; margin-top: 32px; text-align: left;">
+        <div class="panel-box">
           <h3 style="color: var(--text-primary); margin-bottom: 8px; font-family: var(--font-serif); font-size: 20px;">Open Research Dataset</h3>
           <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px;">
             The complete, anonymized repository data ledger is compiled in real-time and made freely available under open public licenses for independent statistical analysis and structural charting.
           </p>
-          <a href="https://githubusercontent.com" download class="cta-submit" style="margin-bottom: 0; display: inline-block; text-align: center;">
+          <button type="button" id="downloadDatasetBtn" class="cta-submit" style="margin-bottom: 0;">
             Download Master Dataset (.CSV)
-          </a>
+          </button>
         </div>
       </article>
     </section>
-
 
     <!-- Share Intake View -->
     <section id="view-share" class="view-section">
       <div class="intake-box">
         <h2>Share an Experience</h2>
-        <p class="intake-subhead">Submit an account directly to the GitHub Issue ingestion queue.</p>
+        <p class="intake-subhead">Submit an account directly to the anonymous research ingestion queue.</p>
         
-        <form id="issueForm">
+        <div id="statusBanner" class="status-banner" role="alert"></div>
+
+        <form id="issueForm" novalidate>
           <div class="form-group">
             <label for="category">Category</label>
-            <select id="category" required>
+            <select id="category" name="category" required>
               <option value="UAP sighting">UAP sighting</option>
               <option value="Psi experience">Psi experience</option>
               <option value="Near-death experience">Near-death experience</option>
@@ -688,17 +751,77 @@
 
           <div class="form-group">
             <label for="title">Title / Headline</label>
-            <input type="text" id="title" placeholder="Brief descriptive summary" required>
+            <input type="text" id="title" name="title" placeholder="Brief descriptive summary" required autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="details">Detailed Account</label>
-            <textarea id="details" placeholder="Describe the sequence of events, sensate signatures, environmental context, and subsequent effects..." required></textarea>
+            <textarea id="details" name="details" placeholder="Describe the sequence of events, sensate signatures, environmental context, and subsequent effects..." required></textarea>
           </div>
 
-          <button type="submit" class="cta-submit" style="width: 100%;">Dispatch to GitHub Ingestion</button>
+          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%;">Dispatch to Research Ledger</button>
         </form>
       </div>
+    </section>
+
+    <!-- Privacy View -->
+    <section id="view-privacy" class="view-section">
+      <article class="view-card">
+        <h2>Privacy Protocol</h2>
+        <p>The Phenomenon Project is built on strict data minimization and total contributor anonymity.</p>
+        <div class="panel-box">
+          <p><strong>Zero Identifiers:</strong> We do not capture IP addresses, device identifiers, email addresses, or geographic coordinate telemetry.</p>
+          <p><strong>Data Redaction:</strong> Automated ingestion pipelines sanitize accounts to remove mentioned proper names, phone numbers, or residential addresses prior to ledger persistence.</p>
+          <p style="margin-bottom: 0;"><strong>Open Verification:</strong> Ingested entries are routed directly to public research tables under open community ownership.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Terms View -->
+    <section id="view-terms" class="view-section">
+      <article class="view-card">
+        <h2>Terms of Participation</h2>
+        <p>By contributing an experiential report to this repository, you agree to the following scientific commons framework:</p>
+        <div class="panel-box">
+          <p><strong>1. Public Domain Contribution:</strong> All narrative descriptions are published under the Creative Commons Public Domain Dedication (CC0 1.0 Universal).</p>
+          <p><strong>2. Authenticity:</strong> You warrant that submissions represent genuine personal accounts to the best of your recollection, free of intentional fabrication.</p>
+          <p style="margin-bottom: 0;"><strong>3. Age Requirement:</strong> Contributors must be 18 years of age or older at the time of submission.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Concerns View -->
+    <section id="view-concerns" class="view-section">
+      <article class="view-card">
+        <h2>Privacy &amp; Copyright Concerns</h2>
+        <p>If an account contains identifying personal details or copyrighted text submitted without authorization, submit a removal request immediately.</p>
+        <div class="panel-box">
+          <p>Contact the repository maintainers directly with the report headline, submission timestamp, and specific removal justification. Requests are processed within 24 hours.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Withdraw View -->
+    <section id="view-withdraw" class="view-section">
+      <article class="view-card">
+        <h2>Withdraw a Report</h2>
+        <p>Because accounts are submitted without email addresses, removal requests require providing the exact headline, submission date, and distinctive phrasing from the account body.</p>
+        <div class="panel-box">
+          <p style="margin-bottom: 0;">Maintainers compare verifiable textual fingerprints against the ledger before striking the row from all public distribution feeds.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Owner Review View -->
+    <section id="view-owner" class="view-section">
+      <article class="view-card">
+        <h2>Owner Review &amp; Governance</h2>
+        <p>Ledger moderation guidelines and governance rules applied by project stewards:</p>
+        <div class="panel-box">
+          <p>1. <strong>Trolling &amp; Abuse:</strong> Obvious spam, malicious harassment, or automated commercial garbage is permanently purged at the ingestion gate.</p>
+          <p style="margin-bottom: 0;">2. <strong>Structural Neutrality:</strong> Accounts are never altered, editorialized, or suppressed based on personal philosophical, materialist, or metaphysical viewpoints.</p>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -709,7 +832,7 @@
       <a href="#privacy">Privacy</a>
       <a href="#terms">Terms</a>
       <div class="controls-wrapper">
-        <button type="button" class="controls-trigger" id="controlsTrigger" aria-expanded="false">
+        <button type="button" class="controls-trigger" id="controlsTrigger" aria-expanded="false" aria-haspopup="true">
           <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
           Help &amp; controls
         </button>
@@ -723,25 +846,40 @@
   </footer>
 
   <script>
-    // Tab Router
-    const routes = ['browse', 'patterns', 'about', 'share'];
+    // Native Single-Page-Application Router
+    const allRoutes = ['browse', 'patterns', 'about', 'share', 'privacy', 'terms', 'concerns', 'withdraw', 'owner'];
+    const navTabs = ['browse', 'patterns', 'about', 'share'];
 
     function handleRoute() {
-      const hash = window.location.hash.replace('#', '') || 'browse';
-      const activeTab = routes.includes(hash) ? hash : 'browse';
+      const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+      const activeTab = allRoutes.includes(hash) ? hash : 'browse';
 
-      document.querySelectorAll('.view-section').forEach(sec => {
-        sec.classList.remove('active-view');
+      // Switch active view section
+      document.querySelectorAll('.view-section').forEach(section => {
+        section.classList.remove('active-view');
       });
+
+      const targetSection = document.getElementById('view-' + activeTab);
+      if (targetSection) {
+        targetSection.classList.add('active-view');
+      }
+
+      // Update primary navigation highlight
       document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
+        if (link.getAttribute('data-tab') === activeTab) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
       });
 
-      const currentSec = document.getElementById('view-' + activeTab);
-      const currentNav = document.querySelector(`.nav-link[data-tab="${activeTab}"]`);
-
-      if (currentSec) currentSec.classList.add('active-view');
-      if (currentNav) currentNav.classList.add('active');
+      // Close controls dropdown on navigation
+      const menu = document.getElementById('controlsMenu');
+      const trigger = document.getElementById('controlsTrigger');
+      if (menu && trigger) {
+        menu.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
 
       window.scrollTo(0, 0);
     }
@@ -749,93 +887,115 @@
     window.addEventListener('hashchange', handleRoute);
     window.addEventListener('DOMContentLoaded', handleRoute);
 
-    // Help & controls popup toggle
+    // Help & Controls Dropdown
     const trigger = document.getElementById('controlsTrigger');
     const menu = document.getElementById('controlsMenu');
 
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = menu.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', isOpen);
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    document.addEventListener('click', () => {
-      menu.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && e.target !== trigger) {
+        menu.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
     });
 
-        // Invisible Background Form Dispatcher
-    document.getElementById('issueForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitButton = this.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.innerText;
-      
-      // Give the user visual feedback that the data is sending
-      submitButton.innerText = "Transmitting securely...";
-      submitButton.disabled = true;
-
-      const cat = document.getElementById('category').value;
-      const title = document.getElementById('title').value;
-      const desc = document.getElementById('details').value;
-
-      // Bundle the data into a clean JSON packet
-      const formData = {
-        category: cat,
-        title: title,
-        report: desc,
-        _subject: `[New Submission] ${cat}: ${title}` // Sets the GitHub Issue title automatically
-      };
-
-    // Direct Native Google Web App Ingestion Queue
-    document.getElementById('issueForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitButton = this.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.innerText;
-      
-      // Update interface to show transmission activity
-      submitButton.innerText = "Transmitting securely...";
-      submitButton.disabled = true;
-
-      const cat = document.getElementById('category').value;
-      const title = document.getElementById('title').value;
-      const desc = document.getElementById('details').value;
-
-      const formData = {
-        category: cat,
-        title: title,
-        report: desc
-      };
-
-      // PASTE YOUR GOOGLE WEB APP URL LINK BETWEEN THE QUOTES BELOW:
-      const googleWebAppUrl = "https://google.com";
-
-      // Beams data silently straight to your private Google Sheet
-      fetch(googleWebAppUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-        // Success execution path
-        submitButton.innerText = "Transmission Complete";
-        alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
-        document.getElementById('issueForm').reset();
+    // Master Dataset Generator & Downloader
+    const downloadBtn = document.getElementById('downloadDatasetBtn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        const csvRows = [
+          ['Timestamp', 'Category', 'Title', 'Sensate_Signatures', 'Status'],
+          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Silent High-Altitude Torus', 'Oz Effect / Static', 'Verified'],
+          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Boundary Panorama', 'Ontological Shock', 'Verified'],
+          ['2026-09-02T03:10:00Z', 'Psi experience', 'Coincident Sensory Impression', 'Galvanic Skin / Somatosensory', 'Verified'],
+          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Crystalline Form Interaction', 'Acoustic Alteration / High Tone', 'Verified'],
+          ['2026-09-20T04:30:00Z', 'Altered state', 'Spontaneous Temporal Deceleration', 'Temporal Dilation', 'Verified']
+        ];
         
-        // Route the user back to the primary browse view cleanly
-        window.location.hash = "browse";
-      })
-      .catch(error => {
-        console.error('Error submitting form:', error);
-        alert("Transmission failed. Please check your network connection.");
-      })
-      .finally(() => {
-        submitButton.disabled = false;
-        submitButton.innerText = originalButtonText;
+        const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.map(row => row.map(item => `"${item}"`).join(',')).join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'phenomenon_master_dataset.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       });
+    }
+
+    // Production Ingestion Queue Handler
+    const form = document.getElementById('issueForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusBanner = document.getElementById('statusBanner');
+
+    // Replace the URL string below with your active Google Apps Script Web App exec endpoint:
+    const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-PHENOMENON-DATA-INGESTION-EXEC/exec';
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const catInput = document.getElementById('category');
+      const titleInput = document.getElementById('title');
+      const detailsInput = document.getElementById('details');
+
+      const category = catInput.value.trim();
+      const title = titleInput.value.trim();
+      const details = detailsInput.value.trim();
+
+      if (!title || !details) {
+        statusBanner.className = 'status-banner error';
+        statusBanner.innerText = 'Please complete all required fields before dispatching.';
+        return;
+      }
+
+      // Set submission state
+      const originalText = submitBtn.innerText;
+      submitBtn.innerText = 'Transmitting securely...';
+      submitBtn.disabled = true;
+      statusBanner.className = 'status-banner';
+      statusBanner.innerText = '';
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        category: category,
+        title: title,
+        report: details
+      };
+
+      try {
+        // Send as text/plain to bypass browser CORS preflight blocks with Google Apps Script
+        await fetch(GOOGLE_WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        // Feedback & clean form reset
+        statusBanner.className = 'status-banner success';
+        statusBanner.innerText = 'Transmission confirmed. Your report has been dispatched to the research ledger.';
+        form.reset();
+
+        setTimeout(() => {
+          window.location.hash = 'browse';
+          statusBanner.className = 'status-banner';
+          statusBanner.innerText = '';
+        }, 2200);
+
+      } catch (err) {
+        statusBanner.className = 'status-banner error';
+        statusBanner.innerText = 'Network transmission error. Please verify your connection and retry.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalText;
+      }
     });
   </script>
 </body>
