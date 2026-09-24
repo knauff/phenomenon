@@ -755,18 +755,62 @@
       trigger.setAttribute('aria-expanded', 'false');
     });
 
-    // GitHub Issue Form Dispatcher
+        // Invisible Background Form Dispatcher
     document.getElementById('issueForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerText;
+      
+      // Give the user visual feedback that the data is sending
+      submitButton.innerText = "Transmitting securely...";
+      submitButton.disabled = true;
+
       const cat = document.getElementById('category').value;
       const title = document.getElementById('title').value;
       const desc = document.getElementById('details').value;
 
-      const issueTitle = encodeURIComponent(`[${cat}]: ${title}`);
-      const issueBody = encodeURIComponent(`### Category\n${cat}\n\n### Report\n${desc}\n\n---\n*Filed anonymously via Phenomenon Project intake portal.*`);
-      const repoUrl = "https://github.com/knauff/phenomenon/issues/new";
+      // Bundle the data into a clean JSON packet
+      const formData = {
+        category: cat,
+        title: title,
+        report: desc,
+        _subject: `[New Submission] ${cat}: ${title}` // Sets the GitHub Issue title automatically
+      };
 
-      window.open(`${repoUrl}?title=${issueTitle}&body=${issueBody}&labels=experience-submission`, '_blank');
+      // YOUR LIVE ENDPOINT IS CONFIGURED HERE:
+      const formspreeEndpoint = "https://formspree.io/f/mnpnzblw";
+
+      // Beams data silently in the background
+      fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          submitButton.innerText = "Transmission Complete";
+          alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
+          document.getElementById('issueForm').reset();
+          
+          // Smoothly route them back to the main browse dashboard tab
+          window.location.hash = "browse";
+        } else {
+          throw new Error('Formspree returned an error status.');
+        }
+      })
+      .catch(error => {
+        console.error('Error submitting form:', error);
+        alert("Transmission failed. Please check your connection and try again.");
+      })
+      .finally(() => {
+        // Reset the button back to its original state
+        submitButton.disabled = false;
+        submitButton.innerText = originalButtonText;
+      });
     });
   </script>
 </body>
