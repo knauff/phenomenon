@@ -18,73 +18,100 @@ title: The Phenomenon Project | Experiences & patterns
       padding: 0;
     }
 
+    :root {
+      --bg: #071317;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --mint: #7ce3c3;
+      --mint-hover: #67d6b3;
+      --text-primary: #edf4f5;
+      --text-secondary: #8fa4ab;
+      --text-muted: #5a737b;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
     body {
-      background-color: #071216;
-      color: #9cb2ba;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow-x: hidden;
-      padding: 24px 48px;
+      padding: 0 40px;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.15s ease;
     }
 
     a:hover {
-      color: #ffffff;
+      color: var(--text-primary);
     }
 
-    /* Header Navigation */
-    header {
+    /* Top Utility Bar */
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
-      font-size: 14px;
+      padding: 24px 0 16px 0;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      color: #ffffff;
+      color: var(--text-primary);
       font-weight: 600;
       font-size: 16px;
       letter-spacing: -0.01em;
     }
 
-    .nav-links {
-      display: inline-flex;
+    .brand-icon {
+      width: 26px;
+      height: 26px;
+      stroke: var(--mint);
+    }
+
+    .auth-status {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Sub-Navigation Bar */
+    .nav-bar {
+      display: flex;
       align-items: center;
-      gap: 28px;
-    }
-
-    .nav-item {
+      gap: 32px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
       position: relative;
-      padding-bottom: 4px;
     }
 
-    .nav-item.active {
-      color: #ffffff;
+    .nav-link {
+      padding: 8px 0 14px 0;
+      position: relative;
+      color: var(--text-secondary);
     }
 
-    .nav-item.active::after {
+    .nav-link.active {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -6px;
+      bottom: -1px;
       width: 100%;
       height: 2px;
-      background-color: #5ce5be;
+      background-color: var(--mint);
     }
 
-    /* Hero Section */
+    /* Center Hero Stage */
     main {
       flex: 1;
       display: flex;
@@ -92,84 +119,91 @@ title: The Phenomenon Project | Experiences & patterns
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 56px 20px;
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .hero-icon {
-      width: 42px;
-      height: 42px;
+    .hero-badge {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      border: 1px solid #1c3c44;
+      border: 1px solid rgba(124, 227, 195, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 36px;
+      margin-bottom: 34px;
       background-color: rgba(14, 30, 35, 0.6);
-      box-shadow: 0 0 20px rgba(92, 229, 190, 0.05);
     }
 
-    .hero-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: #5ce5be;
+    .hero-badge svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--mint);
     }
 
     h1 {
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: clamp(34px, 5vw, 52px);
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 5.2vw, 54px);
       font-weight: 400;
-      line-height: 1.25;
-      color: #f1f7f6;
-      max-width: 900px;
+      line-height: 1.22;
+      color: var(--text-primary);
       margin-bottom: 24px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
     }
 
-    .subtitle {
+    .hero-subhead {
       font-size: 16px;
       line-height: 1.6;
-      max-width: 620px;
-      color: #8fa6af;
-      margin-bottom: 38px;
+      max-width: 660px;
+      color: var(--text-secondary);
+      margin-bottom: 34px;
     }
 
-    .tag-grid {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      column-gap: 56px;
-      row-gap: 16px;
-      margin-bottom: 44px;
-      font-size: 14px;
-      color: #8fa6af;
-      justify-content: center;
+    /* Category List with Centered Bullets */
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+      font-size: 14.5px;
+      color: var(--text-secondary);
     }
 
-    .tag-item {
-      display: inline-flex;
+    .cat-row {
+      display: flex;
       align-items: center;
-      white-space: nowrap;
+      justify-content: center;
+      gap: 20px;
     }
 
-    .cta-btn {
+    .bullet {
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    /* CTA Button */
+    .cta-submit {
       display: inline-block;
-      background-color: #7ee8c9;
-      color: #07171a;
+      background-color: var(--mint);
+      color: #071518;
       font-weight: 500;
-      font-size: 15px;
-      padding: 14px 28px;
-      border-radius: 6px;
-      margin-bottom: 18px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      font-size: 14.5px;
+      padding: 13px 26px;
+      border-radius: 7px;
+      margin-bottom: 16px;
+      transition: background-color 0.15s ease;
     }
 
-    .cta-btn:hover {
-      background-color: #6adbb9;
-      color: #051214;
+    .cta-submit:hover {
+      background-color: var(--mint-hover);
+      color: #040e10;
     }
 
-    .cta-caption {
+    .cta-note {
       font-size: 12.5px;
-      color: #607982;
+      color: var(--text-muted);
       letter-spacing: 0.01em;
     }
 
@@ -178,39 +212,85 @@ title: The Phenomenon Project | Experiences & patterns
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      padding: 24px 0;
       font-size: 13px;
-      color: #607982;
-      padding-top: 24px;
+      color: var(--text-muted);
     }
 
-    .footer-links {
+    .footer-right {
       display: inline-flex;
       align-items: center;
-      gap: 22px;
+      gap: 24px;
+      position: relative;
     }
 
-    .help-controls {
+    /* Dropdown Menu for Controls */
+    .controls-wrapper {
+      position: relative;
+    }
+
+    .controls-trigger {
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--text-muted);
+      padding: 0;
     }
 
-    .help-controls svg {
-      width: 9px;
-      height: 9px;
-      fill: #607982;
+    .controls-trigger:hover {
+      color: var(--text-primary);
     }
 
-    @media (max-width: 768px) {
+    .controls-trigger svg {
+      width: 8px;
+      height: 8px;
+      fill: currentColor;
+    }
+
+    .controls-menu {
+      display: none;
+      position: absolute;
+      bottom: 28px;
+      right: 0;
+      background-color: #0c1c21;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 0;
+      min-width: 220px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      z-index: 50;
+    }
+
+    .controls-menu.open {
+      display: block;
+    }
+
+    .controls-menu a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+    }
+
+    .controls-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 680px) {
       body {
-        padding: 16px 20px;
+        padding: 0 20px;
       }
-      .tag-grid {
-        grid-template-columns: 1fr;
-        row-gap: 12px;
+      .cat-row {
+        flex-direction: column;
+        gap: 8px;
       }
-      .nav-links {
+      .bullet {
         display: none;
       }
       footer {
@@ -223,26 +303,32 @@ title: The Phenomenon Project | Experiences & patterns
 </head>
 <body>
 
-  <header>
-    <a href="#" class="brand">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ce5be" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-      </svg>
-      The Phenomenon Project
-    </a>
-    <nav class="nav-links">
-      <a href="#browse" class="nav-item active">Browse</a>
-      <a href="#patterns" class="nav-item">Patterns</a>
-      <a href="#about" class="nav-item">About</a>
-      <a href="#share" class="nav-item">Share an experience</a>
-      <a href="#signin" class="nav-item">Signed in</a>
-    </nav>
-  </header>
+  <div>
+    <!-- Top Brand & Auth Bar -->
+    <div class="top-bar">
+      <a href="./" class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        The Phenomenon Project
+      </a>
+      <span class="auth-status">Signed in</span>
+    </div>
 
+    <!-- Sub-Navigation Bar -->
+    <nav class="nav-bar">
+      <a href="#browse" class="nav-link active">Browse</a>
+      <a href="#patterns" class="nav-link">Patterns</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="https://github.com/knauff/phenomenon/issues/new?title=%5BExperience+Report%5D%3A+&labels=experience-submission" class="nav-link" target="_blank" rel="noopener">Share an experience</a>
+    </nav>
+  </div>
+
+  <!-- Center Stage View -->
   <main>
-    <div class="hero-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <div class="hero-badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
       </svg>
@@ -250,35 +336,82 @@ title: The Phenomenon Project | Experiences & patterns
 
     <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
 
-    <p class="subtitle">
+    <p class="hero-subhead">
       The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
     </p>
 
-    <div class="tag-grid">
-      <span class="tag-item">UAP sightings</span>
-      <span class="tag-item">Psi experiences</span>
-      <span class="tag-item">Near-death experiences</span>
-      <span class="tag-item">Entity encounters</span>
-      <span class="tag-item">Altered states</span>
-      <span class="tag-item">Unexplained events</span>
+    <div class="categories">
+      <div class="cat-row">
+        <span>UAP sightings</span>
+        <span class="bullet">·</span>
+        <span>Psi experiences</span>
+        <span class="bullet">·</span>
+        <span>Near-death experiences</span>
+      </div>
+      <div class="cat-row">
+        <span>Entity encounters</span>
+        <span class="bullet">·</span>
+        <span>Altered states</span>
+        <span class="bullet">·</span>
+        <span>Unexplained events</span>
+      </div>
     </div>
 
-    <a href="#share" class="cta-btn">Share an experience</a>
+    <a href="https://github.com/knauff/phenomenon/issues/new?title=%5BExperience+Report%5D%3A+&labels=experience-submission" 
+       class="cta-submit" 
+       target="_blank" 
+       rel="noopener">
+      Share an experience
+    </a>
 
-    <p class="cta-caption">No name or email required · Ages 18+</p>
+    <p class="cta-note">No name or email required · Ages 18+</p>
   </main>
 
+  <!-- Footer -->
   <footer>
     <span>Curiosity with care.</span>
-    <div class="footer-links">
+    <div class="footer-right">
       <a href="#privacy">Privacy</a>
       <a href="#terms">Terms</a>
-      <a href="#controls" class="help-controls">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        Help & controls
-      </a>
+      <div class="controls-wrapper">
+        <button type="button" class="controls-trigger" id="controlsTrigger" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Help &amp; controls
+        </button>
+        <div class="controls-menu" id="controlsMenu">
+          <a href="#concerns">Privacy / copyright concerns</a>
+          <a href="#withdraw">Withdraw a report</a>
+          <a href="#owner">Owner review</a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <script>
+    // Help & controls popup toggle
+    const trigger = document.getElementById('controlsTrigger');
+    const menu = document.getElementById('controlsMenu');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+
+    document.addEventListener('click', () => {
+      menu.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Sub-nav tab switching highlight
+    const navLinks = document.querySelectorAll('.nav-bar .nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.getAttribute('target') === '_blank') return;
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
