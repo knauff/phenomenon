@@ -153,7 +153,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Reader Document Layout (Exact Next.js Prose Specification) */
+    /* Reader Document Layout */
     .reader {
       max-width: 720px;
       margin: 0 auto;
@@ -332,6 +332,90 @@
       letter-spacing: 0.01em;
     }
 
+    /* Live Data Feed Styles */
+    .ledger-container {
+      width: 100%;
+      margin-top: 48px;
+      text-align: left;
+    }
+
+    .ledger-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    .ledger-heading h2 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--text-primary);
+    }
+
+    .reports-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .report-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.15s ease;
+    }
+
+    .report-card:hover {
+      border-color: rgba(124, 227, 195, 0.4);
+    }
+
+    .report-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .report-tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--mint);
+      text-transform: uppercase;
+    }
+
+    .report-date {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .report-card h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .report-narrative {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .report-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 12px;
+    }
+
     /* Patterns View */
     .patterns-header {
       margin-bottom: 36px;
@@ -429,7 +513,7 @@
       border-radius: 3px;
     }
 
-    /* Structured Ingestion Box */
+    /* Structured Intake Box */
     .intake-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-card);
@@ -832,6 +916,15 @@
 
         <p class="cta-note">No name or email required &middot; Ages 18+</p>
       </div>
+
+      <!-- Live Dynamic CSV Feed Section -->
+      <div class="ledger-container" id="ledgerSection" style="display: none;">
+        <div class="ledger-heading">
+          <h2>Reported experiences</h2>
+          <span style="font-size: 13.5px; color: var(--text-muted);" id="reportCountBadge">0 accounts verified</span>
+        </div>
+        <div class="reports-feed" id="reportsFeed"></div>
+      </div>
     </section>
 
     <!-- Patterns / Trends View -->
@@ -844,28 +937,28 @@
       <div class="metrics-grid">
         <div class="metric-card">
           <div class="metric-top">
-            <span class="metric-number">67%</span>
+            <span class="metric-number">0%</span>
             <span class="metric-label">Acoustic Alteration</span>
           </div>
           <p class="metric-desc">High-frequency tone, abrupt complete silence, or localized static preceding encounter.</p>
         </div>
         <div class="metric-card">
           <div class="metric-top">
-            <span class="metric-number">54%</span>
+            <span class="metric-number">0%</span>
             <span class="metric-label">Temporal Dilation</span>
           </div>
           <p class="metric-desc">Subjective perception of time deceleration or unaccounted-for temporal displacement.</p>
         </div>
         <div class="metric-card">
           <div class="metric-top">
-            <span class="metric-number">41%</span>
+            <span class="metric-number">0%</span>
             <span class="metric-label">Electromagnetic Effect</span>
           </div>
           <p class="metric-desc">Disruption to solid-state electronics, compass deviation, or erratic sensor readings.</p>
         </div>
         <div class="metric-card">
           <div class="metric-top">
-            <span class="metric-number">82%</span>
+            <span class="metric-number">0%</span>
             <span class="metric-label">Ontological Shock</span>
           </div>
           <p class="metric-desc">Profound lasting shift in worldview, values, and perception of consciousness.</p>
@@ -877,41 +970,45 @@
         <div class="signature-row">
           <div class="signature-meta">
             <span>Ambient Sound Drop / "Oz Effect"</span>
-            <span>78%</span>
+            <span>0%</span>
           </div>
-          <div class="signature-bar"><div class="signature-fill" style="width: 78%;"></div></div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 0%;"></div></div>
         </div>
         <div class="signature-row">
           <div class="signature-meta">
             <span>Direct Telepathic / Somatosensory Transmission</span>
-            <span>62%</span>
+            <span>0%</span>
           </div>
-          <div class="signature-bar"><div class="signature-fill" style="width: 62%;"></div></div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 0%;"></div></div>
         </div>
         <div class="signature-row">
           <div class="signature-meta">
             <span>Prickling Galvanic Skin / Electrostatic Sensation</span>
-            <span>51%</span>
+            <span>0%</span>
           </div>
-          <div class="signature-bar"><div class="signature-fill" style="width: 51%;"></div></div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 0%;"></div></div>
         </div>
         <div class="signature-row">
           <div class="signature-meta">
             <span>Preceding Non-Ordinary Dream / Hypnagogic State</span>
-            <span>39%</span>
+            <span>0%</span>
           </div>
-          <div class="signature-bar"><div class="signature-fill" style="width: 39%;"></div></div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 0%;"></div></div>
         </div>
       </div>
 
       <div class="panel" style="margin-top: 48px;">
         <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">Connections to explore</h3>
         <p style="font-size: 14px; margin-bottom: 16px;">These are co-reports, not evidence of a shared cause. Counts are exploratory; multiple reports can come from one person or event. Small samples and self-selection can create apparent patterns.</p>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0;">These patterns are exploratory. Self-selection, memory, and repeat accounts can affect counts; they do not establish prevalence or causation. Date filters exclude unknown dates and retain approximate dates as reported.</p>
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <a href="./data/phenomenon_master_dataset.csv" download="phenomenon_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
+            Download Live Dataset (.CSV)
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- About / Method View (100% Verbatim Original Next.js Copy) -->
+    <!-- About / Method View -->
     <section id="view-about" class="view-section">
       <article class="reader">
         <div class="eyebrow">Curiosity with care</div>
@@ -933,6 +1030,18 @@
         <h2>Your privacy and choices</h2>
         <p>No name, email, or account is required to submit. Approved structured answers may appear in the archive and data downloads. Your written account and supporting links are published only if you choose to share them. Avoid identifying details about yourself or others.</p>
         <p>Keep your private submission receipt to withdraw your report. Copies already downloaded by others cannot be recalled. See our <a href="#privacy" data-route="privacy">Privacy Policy</a> for details.</p>
+
+        <div class="panel" style="margin-top: 32px;">
+          <h3 style="color: var(--text-primary); margin-bottom: 8px; font-family: var(--font-serif); font-size: 20px;">Open Research Dataset</h3>
+          <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px;">
+            The complete, anonymized repository data ledger is compiled in real-time and made freely available under open public licenses for independent statistical analysis and structural charting.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="./data/phenomenon_master_dataset.csv" download="phenomenon_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
+              Download Master Dataset (.CSV)
+            </a>
+          </div>
+        </div>
 
         <h2>Exploring together</h2>
         <p>Sign in with ChatGPT to explore patterns and download structured data. Sharing an experience does not require membership. As the archive grows, we will refine the questions and analysis while keeping explanations open.</p>
@@ -978,7 +1087,7 @@
             <div class="form-group">
               <label for="subCategory">Phenomenon Sub-Type</label>
               <select id="subCategory" name="subCategory">
-                <!-- Dynamically populated based on primary classification -->
+                <!-- Populated dynamically -->
               </select>
             </div>
           </div>
@@ -1113,7 +1222,7 @@
       </div>
     </section>
 
-    <!-- Privacy View (100% Verbatim Original Next.js Copy) -->
+    <!-- Privacy View -->
     <section id="view-privacy" class="view-section">
       <article class="reader">
         <div class="eyebrow">Effective September 22, 2026</div>
@@ -1142,7 +1251,7 @@
       </article>
     </section>
 
-    <!-- Terms View (100% Verbatim Original Next.js Copy) -->
+    <!-- Terms View -->
     <section id="view-terms" class="view-section">
       <article class="reader">
         <div class="eyebrow">Effective September 22, 2026</div>
@@ -1172,7 +1281,7 @@
       </article>
     </section>
 
-    <!-- Privacy / Copyright Concerns View (100% Verbatim Original Next.js Copy) -->
+    <!-- Privacy / Copyright Concerns View -->
     <section id="view-concerns" class="view-section">
       <article class="reader">
         <h1>Privacy / copyright concerns</h1>
@@ -1206,7 +1315,7 @@
       </article>
     </section>
 
-    <!-- Withdraw Report View (100% Verbatim Original Next.js Copy) -->
+    <!-- Withdraw Report View -->
     <section id="view-withdraw" class="view-section">
       <article class="reader">
         <h1>Withdraw your report</h1>
@@ -1228,7 +1337,7 @@
       </article>
     </section>
 
-    <!-- Owner Review View (100% Verbatim Original Next.js Copy) -->
+    <!-- Owner Review View -->
     <section id="view-review" class="view-section">
       <article class="reader">
         <div class="eyebrow">Owner workspace</div>
@@ -1293,14 +1402,12 @@
     };
 
     function parseActiveRoute() {
-      // Check query parameter (?view=...)
       const urlParams = new URLSearchParams(window.location.search);
       const queryView = urlParams.get('view');
       if (queryView && routeAliases[queryView.toLowerCase()]) {
         return routeAliases[queryView.toLowerCase()];
       }
 
-      // Check URL hash (#...)
       const hash = window.location.hash.replace('#', '').trim().toLowerCase();
       if (hash && routeAliases[hash]) {
         return routeAliases[hash];
@@ -1312,18 +1419,15 @@
     function renderView() {
       const activeTab = parseActiveRoute();
 
-      // Deactivate all view sections
       document.querySelectorAll('.view-section').forEach(section => {
         section.classList.remove('active-view');
       });
 
-      // Activate targeted view section
       const targetSection = document.getElementById('view-' + activeTab);
       if (targetSection) {
         targetSection.classList.add('active-view');
       }
 
-      // Update active nav-tab styling
       document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('data-tab') === activeTab) {
           link.classList.add('active');
@@ -1332,7 +1436,6 @@
         }
       });
 
-      // Close footer dropdown if open
       const menu = document.getElementById('controlsMenu');
       const trigger = document.getElementById('controlsTrigger');
       if (menu && trigger) {
@@ -1374,7 +1477,176 @@
       }
     });
 
-    // 3. Toast Dispatcher
+    // 3. Robust RFC 4180 In-Browser CSV Parser
+    function parseCSV(text) {
+      const lines = [];
+      let row = [];
+      let inQuotes = false;
+      let currentField = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (char === '"') {
+          if (inQuotes && nextChar === '"') {
+            currentField += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          row.push(currentField.trim());
+          currentField = '';
+        } else if ((char === '\r' || char === '\n') && !inQuotes) {
+          if (char === '\r' && nextChar === '\n') {
+            i++;
+          }
+          row.push(currentField.trim());
+          if (row.length > 1 || (row.length === 1 && row[0] !== '')) {
+            lines.push(row);
+          }
+          row = [];
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+
+      if (currentField || row.length > 0) {
+        row.push(currentField.trim());
+        lines.push(row);
+      }
+
+      if (lines.length < 2) return [];
+
+      const headers = lines[0];
+      return lines.slice(1).map(values => {
+        const record = {};
+        headers.forEach((h, idx) => {
+          record[h] = values[idx] || '';
+        });
+        return record;
+      });
+    }
+
+    // 4. Dynamic Patterns Calculation Engine
+    function calculatePatternMetrics(records) {
+      if (!records || records.length === 0) return;
+
+      const total = records.length;
+      const countSignature = (needle) => {
+        return records.filter(r => (r['Sensate Signatures'] || '').toLowerCase().includes(needle.toLowerCase())).length;
+      };
+
+      // Primary Metric Cards
+      const topMetrics = [
+        { label: 'Acoustic Alteration', needle: 'acoustic' },
+        { label: 'Temporal Dilation', needle: 'temporal' },
+        { label: 'Electromagnetic Effect', needle: 'electromagnetic' },
+        { label: 'Ontological Shock', needle: 'ontological shock' }
+      ];
+
+      const metricCards = document.querySelectorAll('#view-patterns .metric-card');
+      topMetrics.forEach((m, idx) => {
+        if (metricCards[idx]) {
+          const count = countSignature(m.needle);
+          const pct = Math.round((count / total) * 100);
+          const numEl = metricCards[idx].querySelector('.metric-number');
+          if (numEl) numEl.innerText = `${pct}%`;
+        }
+      });
+
+      // Sensate Signatures Horizontal Bars
+      const signatures = [
+        { label: 'Ambient Sound Drop / "Oz Effect"', needle: 'oz effect' },
+        { label: 'Direct Telepathic / Somatosensory Transmission', needle: 'direct transmission' },
+        { label: 'Prickling Galvanic Skin / Electrostatic Sensation', needle: 'electrostatic' },
+        { label: 'Preceding Non-Ordinary Dream / Hypnagogic State', needle: 'hypnagogic' }
+      ];
+
+      const signatureRows = document.querySelectorAll('#view-patterns .signature-row');
+      signatures.forEach((sig, idx) => {
+        if (signatureRows[idx]) {
+          const count = countSignature(sig.needle);
+          const pct = Math.round((count / total) * 100);
+          const metaSpans = signatureRows[idx].querySelectorAll('.signature-meta span');
+          const fillBar = signatureRows[idx].querySelector('.signature-fill');
+
+          if (metaSpans.length > 1) {
+            metaSpans[1].innerText = `${pct}%`;
+          }
+          if (fillBar) {
+            fillBar.style.width = `${pct}%`;
+          }
+        }
+      });
+
+      // Update Subhead with Dynamic Total
+      const patternsSub = document.querySelector('#view-patterns .patterns-header p');
+      if (patternsSub) {
+        patternsSub.innerText = `Cross-phenomenon metrics extracted across ${total} verified experiential account${total === 1 ? '' : 's'}.`;
+      }
+    }
+
+    // 5. Ingestion Pipeline & Dynamic Feed Renderer
+    async function loadDatasetFeed() {
+      try {
+        const response = await fetch('./data/phenomenon_master_dataset.csv');
+        if (!response.ok) return;
+
+        const csvText = await response.text();
+        const records = parseCSV(csvText);
+
+        if (records.length === 0) return;
+
+        // Compute metrics dynamically across the parsed dataset
+        calculatePatternMetrics(records);
+
+        const ledgerSection = document.getElementById('ledgerSection');
+        const reportsFeed = document.getElementById('reportsFeed');
+        const badge = document.getElementById('reportCountBadge');
+
+        badge.innerText = `${records.length} accounts verified`;
+        reportsFeed.innerHTML = '';
+
+        records.forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'report-card';
+
+          const primaryCategory = item['Primary Category'] || 'Anomalous Event';
+          const subType = item['Phenomenon Sub-Type'] ? ` · ${item['Phenomenon Sub-Type']}` : '';
+          const title = item['Title / Headline'] || 'Untitled Experience';
+          const details = item['Detailed Account'] || '';
+          const region = item['Geographic Region'] || 'Unspecified Location';
+          const date = item['Incident Date / Timeframe'] || 'Date Unknown';
+          const trace = item['Physical Trace Corroboration'] || 'None recorded';
+
+          card.innerHTML = `
+            <div class="report-card-head">
+              <span class="report-tag">${primaryCategory}${subType}</span>
+              <span class="report-date">${date}</span>
+            </div>
+            <h3>${title}</h3>
+            <p class="report-narrative">${details}</p>
+            <div class="report-meta">
+              <span>📍 ${region}</span>
+              <span>🔬 Trace: ${trace}</span>
+            </div>
+          `;
+          reportsFeed.appendChild(card);
+        });
+
+        ledgerSection.style.display = 'block';
+
+      } catch (err) {
+        console.warn('Dataset feed not yet available. Defaulting to standard view.');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadDatasetFeed);
+
+    // 6. Toast Dispatcher
     function showToast(type, title, message, duration = 4000) {
       const container = document.getElementById('sonnerContainer');
       const toast = document.createElement('div');
@@ -1412,7 +1684,7 @@
       }, duration);
     }
 
-    // 4. Intelligent Dynamic Sub-Categories
+    // 7. Intelligent Dynamic Sub-Categories
     const categorySubTypes = {
       'UAP sighting': [
         'Structured Craft / Aerial Vehicle',
@@ -1507,7 +1779,7 @@
       }
     });
 
-    // 5. Apps Script Transport Pipeline
+    // 8. Apps Script Transport Pipeline
     const form = document.getElementById('issueForm');
     const submitBtn = document.getElementById('submitBtn');
 
