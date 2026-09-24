@@ -787,40 +787,57 @@
         _subject: `[New Submission] ${cat}: ${title}` // Sets the GitHub Issue title automatically
       };
 
-      // YOUR LIVE ENDPOINT IS CONFIGURED HERE:
-      const formspreeEndpoint = "https://formspree.io/f/mnpnzblw";
+    // Direct Native Google Web App Ingestion Queue
+    document.getElementById('issueForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerText;
+      
+      // Update interface to show transmission activity
+      submitButton.innerText = "Transmitting securely...";
+      submitButton.disabled = true;
 
-      // Beams data silently in the background
-      fetch(formspreeEndpoint, {
+      const cat = document.getElementById('category').value;
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('details').value;
+
+      const formData = {
+        category: cat,
+        title: title,
+        report: desc
+      };
+
+      const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec";
+
+      // Beams data silently straight to your private Google Sheet
+      fetch(googleWebAppUrl, {
         method: 'POST',
+        mode: 'no-cors', // Bypasses browser cross-origin locks safely
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
       })
-      .then(response => {
-        if (response.ok) {
-          submitButton.innerText = "Transmission Complete";
-          alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
-          document.getElementById('issueForm').reset();
-          
-          // Smoothly route them back to the main browse dashboard tab
-          window.location.hash = "browse";
-        } else {
-          throw new Error('Formspree returned an error status.');
-        }
+      .then(() => {
+        // Success execution path
+        submitButton.innerText = "Transmission Complete";
+        alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
+        document.getElementById('issueForm').reset();
+        
+        // Route the user back to the primary metrics view cleanly
+        window.location.hash = "browse";
       })
       .catch(error => {
         console.error('Error submitting form:', error);
-        alert("Transmission failed. Please check your connection and try again.");
+        alert("Transmission failed. Please check your network connection.");
       })
       .finally(() => {
-        // Reset the button back to its original state
         submitButton.disabled = false;
         submitButton.innerText = originalButtonText;
       });
     });
+
   </script>
 </body>
 </html>
