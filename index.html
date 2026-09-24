@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Phenomenon Project | Experiences &amp; patterns</title>
   <meta name="description" content="Bringing together experiences of the Phenomenon, compiling useful data, and building a shared resource to explore patterns and deepen understanding.">
+  <link rel="shortcut icon" href="favicon.svg">
+  <link rel="icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -55,7 +57,7 @@
       color: var(--text-primary);
     }
 
-    /* Top Bar */
+    /* Top Utility Bar */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -123,7 +125,7 @@
       background-color: var(--mint);
     }
 
-    /* View Container */
+    /* Primary Container */
     main {
       flex: 1;
       display: flex;
@@ -151,7 +153,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Browse Hero View */
+    /* Browse / Archive View */
     .hero-content {
       text-align: center;
       display: flex;
@@ -177,7 +179,7 @@
       stroke: var(--mint);
     }
 
-    h1 {
+    h1, h2.hero-title {
       font-family: var(--font-serif);
       font-size: clamp(34px, 5.2vw, 54px);
       font-weight: 400;
@@ -248,7 +250,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* Patterns View */
+    /* Patterns / Trends View */
     .patterns-header {
       margin-bottom: 36px;
       text-align: center;
@@ -345,7 +347,7 @@
       border-radius: 3px;
     }
 
-    /* Content Panels */
+    /* Content Panels & Articles */
     .view-card {
       max-width: 740px;
       margin: 0 auto;
@@ -407,6 +409,16 @@
       border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 8px;
       margin: 28px 0 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .form-section-hint {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
     }
 
     .form-row-2 {
@@ -429,8 +441,12 @@
       margin-bottom: 8px;
     }
 
+    .form-group label .req {
+      color: var(--mint);
+      margin-left: 3px;
+    }
+
     .form-group input[type="text"],
-    .form-group input[type="date"],
     .form-group select,
     .form-group textarea {
       width: 100%;
@@ -456,7 +472,7 @@
     }
 
     .form-group textarea {
-      height: 120px;
+      height: 130px;
       resize: vertical;
       line-height: 1.55;
     }
@@ -468,21 +484,44 @@
       box-shadow: 0 0 0 1px var(--mint);
     }
 
+    .form-group.has-error input,
+    .form-group.has-error textarea {
+      border-color: var(--danger);
+    }
+
+    .input-counter {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 5px;
+    }
+
     .form-group-checkbox {
       flex-direction: row;
       align-items: flex-start;
       gap: 12px;
       margin-bottom: 12px;
-      padding: 8px 10px;
+      padding: 10px 12px;
       background: rgba(7, 21, 25, 0.6);
       border: 1px solid rgba(22, 54, 63, 0.6);
       border-radius: 6px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-group-checkbox:hover {
+      border-color: var(--border-card);
+      background: rgba(13, 32, 38, 0.8);
+    }
+
+    .form-group-checkbox.is-checked {
+      border-color: rgba(124, 227, 195, 0.4);
+      background: rgba(13, 32, 38, 0.95);
     }
 
     .form-group-checkbox input[type="checkbox"] {
       width: 17px;
       height: 17px;
-      margin-top: 3px;
+      margin-top: 2px;
       cursor: pointer;
       accent-color: var(--mint);
       flex-shrink: 0;
@@ -504,28 +543,72 @@
       margin-bottom: 20px;
     }
 
-    /* Status Banner */
-    .status-banner {
-      display: none;
-      padding: 14px 16px;
-      border-radius: 6px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      line-height: 1.5;
+    /* Floating Toast */
+    .sonner-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
     }
 
-    .status-banner.success {
-      display: block;
-      background-color: rgba(124, 227, 195, 0.12);
-      border: 1px solid var(--mint);
-      color: var(--mint);
+    .toast-card {
+      pointer-events: auto;
+      background: #0c1e24;
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 14px 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 320px;
+      max-width: 440px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .status-banner.error {
-      display: block;
-      background-color: rgba(226, 109, 109, 0.12);
-      border: 1px solid var(--danger);
-      color: var(--danger);
+    .toast-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .toast-indicator.success {
+      background-color: var(--mint);
+      box-shadow: 0 0 10px var(--mint);
+    }
+
+    .toast-indicator.error {
+      background-color: var(--danger);
+      box-shadow: 0 0 10px var(--danger);
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .toast-msg {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
     }
 
     /* Footer */
@@ -619,6 +702,15 @@
       .bullet {
         display: none;
       }
+      .sonner-container {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+      }
+      .toast-card {
+        min-width: 0;
+        width: 100%;
+      }
       footer {
         flex-direction: column;
         gap: 16px;
@@ -627,11 +719,11 @@
     }
   </style>
 </head>
-<body>
+<body class="antialiased">
 
   <header>
     <div class="top-bar">
-      <a href="#browse" class="brand">
+      <a href="#browse" class="brand" data-route="browse">
         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"></circle>
           <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
@@ -642,15 +734,15 @@
     </div>
 
     <nav class="nav-bar" aria-label="Main navigation">
-      <a href="#browse" class="nav-link active" data-tab="browse">Browse</a>
-      <a href="#patterns" class="nav-link" data-tab="patterns">Patterns</a>
-      <a href="#about" class="nav-link" data-tab="about">About</a>
-      <a href="#share" class="nav-link" data-tab="share">Share an experience</a>
+      <a href="#browse" class="nav-link active" data-tab="browse" data-route="browse">Browse</a>
+      <a href="#patterns" class="nav-link" data-tab="patterns" data-route="patterns">Patterns</a>
+      <a href="#about" class="nav-link" data-tab="about" data-route="about">About</a>
+      <a href="#share" class="nav-link" data-tab="share" data-route="share">Share an experience</a>
     </nav>
   </header>
 
   <main id="main-content">
-    <!-- Browse View -->
+    <!-- Browse / Archive View -->
     <section id="view-browse" class="view-section active-view">
       <div class="hero-content">
         <div class="hero-badge" aria-hidden="true">
@@ -660,7 +752,7 @@
           </svg>
         </div>
 
-        <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
+        <h1 class="hero-title">Extraordinary experiences.<br>A shared search for understanding.</h1>
 
         <p class="hero-subhead">
           The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
@@ -683,13 +775,13 @@
           </div>
         </div>
 
-        <a href="#share" class="cta-submit">Share an experience</a>
+        <a href="#share" class="cta-submit" data-route="share">Share an experience</a>
 
         <p class="cta-note">No name or email required &middot; Ages 18+</p>
       </div>
     </section>
 
-    <!-- Patterns View -->
+    <!-- Patterns / Trends View -->
     <section id="view-patterns" class="view-section">
       <div class="patterns-header">
         <h2>Emergent Correlations</h2>
@@ -760,7 +852,7 @@
       </div>
     </section>
 
-    <!-- About View -->
+    <!-- About / Method View -->
     <section id="view-about" class="view-section">
       <article class="view-card">
         <h2>About the Project</h2>
@@ -788,16 +880,17 @@
       <div class="intake-box">
         <h2>Share an Experience</h2>
         <p class="intake-subhead">Submit structured telemetry directly to the anonymous research database.</p>
-        
-        <div id="statusBanner" class="status-banner" role="alert"></div>
 
         <form id="issueForm" novalidate>
           
-          <div class="form-section-title">1. Classification &amp; Identifiers</div>
+          <div class="form-section-title">
+            <span>1. Classification &amp; Identifiers</span>
+            <span class="form-section-hint">Primary taxonomy</span>
+          </div>
           
           <div class="form-row-2">
             <div class="form-group">
-              <label for="category">Primary Classification</label>
+              <label for="category">Primary Classification<span class="req">*</span></label>
               <select id="category" name="category" required>
                 <option value="UAP sighting">UAP sighting</option>
                 <option value="Psi experience">Psi experience</option>
@@ -811,27 +904,24 @@
             <div class="form-group">
               <label for="subCategory">Phenomenon Sub-Type</label>
               <select id="subCategory" name="subCategory">
-                <option value="Luminous / Plasma Geometry">Luminous / Plasma Geometry</option>
-                <option value="Structured Craft / Aerial Vehicle">Structured Craft / Aerial Vehicle</option>
-                <option value="Telepathic / Direct Cognition">Telepathic / Direct Cognition</option>
-                <option value="Out-of-Body / Autoscopy">Out-of-Body / Autoscopy</option>
-                <option value="Entity / Non-Human Presence">Entity / Non-Human Presence</option>
-                <option value="Temporal Displacement / Missing Time">Temporal Displacement / Missing Time</option>
-                <option value="Spontaneous Synchronicity">Spontaneous Synchronicity</option>
+                <!-- Populated dynamically -->
               </select>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="title">Incident Title / Summary Headline</label>
+          <div class="form-group" id="group-title">
+            <label for="title">Incident Title / Summary Headline<span class="req">*</span></label>
             <input type="text" id="title" name="title" placeholder="Brief descriptive headline (e.g., Silent geometric craft hovering over tree line)" required autocomplete="off">
           </div>
 
-          <div class="form-section-title">2. Spatiotemporal &amp; Environmental Telemetry</div>
+          <div class="form-section-title">
+            <span>2. Spatiotemporal &amp; Environmental Telemetry</span>
+            <span class="form-section-hint">Contextual parameters</span>
+          </div>
 
           <div class="form-row-2">
-            <div class="form-group">
-              <label for="incidentDate">Date / Approximate Timeframe</label>
+            <div class="form-group" id="group-incidentDate">
+              <label for="incidentDate">Date / Approximate Timeframe<span class="req">*</span></label>
               <input type="text" id="incidentDate" name="incidentDate" placeholder="e.g. October 2023 or 2023-10-14" required>
             </div>
 
@@ -849,8 +939,8 @@
           </div>
 
           <div class="form-row-2">
-            <div class="form-group">
-              <label for="location">General Geographic Region</label>
+            <div class="form-group" id="group-location">
+              <label for="location">General Geographic Region<span class="req">*</span></label>
               <input type="text" id="location" name="location" placeholder="Country, State / Province (No street addresses)" required>
             </div>
 
@@ -876,7 +966,10 @@
             </select>
           </div>
 
-          <div class="form-section-title">3. Sensate Signatures &amp; Anomalies (Select all observed)</div>
+          <div class="form-section-title">
+            <span>3. Sensate Signatures &amp; Anomalies</span>
+            <span class="form-section-hint">Select all that occurred</span>
+          </div>
 
           <div class="signatures-grid">
             <div class="form-group form-group-checkbox">
@@ -920,11 +1013,15 @@
             </div>
           </div>
 
-          <div class="form-section-title">4. Narrative Telemetry</div>
+          <div class="form-section-title">
+            <span>4. Narrative Telemetry</span>
+            <span class="form-section-hint">First-person account</span>
+          </div>
 
-          <div class="form-group">
-            <label for="details">Detailed Chronological Account</label>
+          <div class="form-group" id="group-details">
+            <label for="details">Detailed Chronological Account<span class="req">*</span></label>
             <textarea id="details" name="details" placeholder="Describe the chronological sequence of events: initial onset, sensory signatures, visual geometry, behavior, duration, and departure..." required></textarea>
+            <div class="input-counter" id="detailsCounter">0 words &middot; 0 characters</div>
           </div>
 
           <div class="form-group">
@@ -932,12 +1029,12 @@
             <textarea id="aftermath" name="aftermath" placeholder="Describe subsequent cognitive shifts, persistent anomalies, worldview changes, or somatic effects following the experience..."></textarea>
           </div>
 
-          <div class="form-group form-group-checkbox" style="margin-top: 20px; background: transparent; border: none; padding: 0;">
+          <div class="form-group form-group-checkbox" id="group-anonConfirm" style="margin-top: 20px; background: transparent; border: none; padding: 0;">
             <input type="checkbox" id="anonConfirm" name="anonConfirm" required>
-            <label for="anonConfirm">I verify that no identifying personal names or private street addresses are included in this transmission, and I dedicate this anonymous report to open scientific research.</label>
+            <label for="anonConfirm">I verify that no identifying personal names or private street addresses are included in this transmission, and I dedicate this anonymous report to open scientific research under CC0 1.0 Universal.<span class="req">*</span></label>
           </div>
 
-          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%; margin-top: 18px;">Dispatch Report to Research Ledger</button>
+          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%; margin-top: 22px;">Dispatch Report to Research Ledger</button>
         </form>
       </div>
     </section>
@@ -991,7 +1088,7 @@
     </section>
 
     <!-- Owner Review View -->
-    <section id="view-owner" class="view-section">
+    <section id="view-review" class="view-section">
       <article class="view-card">
         <h2>Owner Review &amp; Governance</h2>
         <p>Ledger moderation guidelines and governance rules applied by project stewards:</p>
@@ -1003,43 +1100,80 @@
     </section>
   </main>
 
+  <!-- Floating Toast Feedback Container -->
+  <div class="sonner-container" id="sonnerContainer" aria-live="polite"></div>
+
   <!-- Footer -->
   <footer>
     <span>Curiosity with care.</span>
     <div class="footer-right">
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
+      <a href="#privacy" data-route="privacy">Privacy</a>
+      <a href="#terms" data-route="terms">Terms</a>
       <div class="controls-wrapper">
         <button type="button" class="controls-trigger" id="controlsTrigger" aria-expanded="false" aria-haspopup="true">
           <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
           Help &amp; controls
         </button>
         <div class="controls-menu" id="controlsMenu">
-          <a href="#concerns">Privacy / copyright concerns</a>
-          <a href="#withdraw">Withdraw a report</a>
-          <a href="#owner">Owner review</a>
+          <a href="#concerns" data-route="concerns">Privacy / copyright concerns</a>
+          <a href="#withdraw" data-route="withdraw">Withdraw a report</a>
+          <a href="#review" data-route="review">Owner review</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // SPA Hash Router
-    const allRoutes = ['browse', 'patterns', 'about', 'share', 'privacy', 'terms', 'concerns', 'withdraw', 'owner'];
+    // 1. Dual Hash & Search Query SPA Router
+    const routeAliases = {
+      'archive': 'browse',
+      'browse': 'browse',
+      'trends': 'patterns',
+      'patterns': 'patterns',
+      'method': 'about',
+      'about': 'about',
+      'submit': 'share',
+      'share': 'share',
+      'privacy': 'privacy',
+      'terms': 'terms',
+      'concerns': 'concerns',
+      'withdraw': 'withdraw',
+      'review': 'review',
+      'owner': 'review'
+    };
 
-    function handleRoute() {
+    function parseActiveRoute() {
+      // Check query parameter (?view=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryView = urlParams.get('view');
+      if (queryView && routeAliases[queryView.toLowerCase()]) {
+        return routeAliases[queryView.toLowerCase()];
+      }
+
+      // Check URL hash (#...)
       const hash = window.location.hash.replace('#', '').trim().toLowerCase();
-      const activeTab = allRoutes.includes(hash) ? hash : 'browse';
+      if (hash && routeAliases[hash]) {
+        return routeAliases[hash];
+      }
 
+      return 'browse';
+    }
+
+    function renderView() {
+      const activeTab = parseActiveRoute();
+
+      // Deactivate all view sections
       document.querySelectorAll('.view-section').forEach(section => {
         section.classList.remove('active-view');
       });
 
+      // Activate targeted view section
       const targetSection = document.getElementById('view-' + activeTab);
       if (targetSection) {
         targetSection.classList.add('active-view');
       }
 
+      // Update active nav-tab styling
       document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('data-tab') === activeTab) {
           link.classList.add('active');
@@ -1048,6 +1182,7 @@
         }
       });
 
+      // Close footer dropdown if open
       const menu = document.getElementById('controlsMenu');
       const trigger = document.getElementById('controlsTrigger');
       if (menu && trigger) {
@@ -1058,10 +1193,21 @@
       window.scrollTo(0, 0);
     }
 
-    window.addEventListener('hashchange', handleRoute);
-    window.addEventListener('DOMContentLoaded', handleRoute);
+    window.addEventListener('hashchange', renderView);
+    window.addEventListener('popstate', renderView);
+    window.addEventListener('DOMContentLoaded', renderView);
 
-    // Help & Controls Dropdown
+    // Global Link Interceptor for query/hash transitions
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('[data-route]');
+      if (link) {
+        e.preventDefault();
+        const route = link.getAttribute('data-route');
+        window.location.hash = route;
+      }
+    });
+
+    // 2. Help & Controls Dropdown
     const trigger = document.getElementById('controlsTrigger');
     const menu = document.getElementById('controlsMenu');
 
@@ -1078,17 +1224,17 @@
       }
     });
 
-    // Master Dataset Downloader
+    // 3. Master Dataset Downloader (.CSV)
     const downloadBtn = document.getElementById('downloadDatasetBtn');
     if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
         const csvRows = [
           ['Timestamp', 'Category', 'Sub-Type', 'Title', 'Sensate_Signatures', 'Setting', 'Status'],
-          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Structured Craft', 'Silent High-Altitude Torus', 'Oz Effect; Electromagnetic Effect', 'Rural Terrestrial', 'Logged'],
-          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Out-of-Body', 'Boundary Transition Panorama', 'Ontological Shock; Acoustic Alteration', 'Domestic Interior', 'Logged'],
-          ['2026-09-02T03:10:00Z', 'Psi experience', 'Telepathic Cognition', 'Coincident Remote Telemetry', 'Galvanic Skin; Direct Transmission', 'Suburban Residential', 'Logged'],
-          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Entity Interaction', 'Crystalline Presence Communication', 'Acoustic Alteration; Temporal Dilation', 'Domestic Interior', 'Logged'],
-          ['2026-09-20T04:30:00Z', 'Altered state', 'Temporal Displacement', 'Spontaneous Temporal Deceleration', 'Temporal Dilation; Ontological Shock', 'Wilderness', 'Logged']
+          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Structured Craft / Aerial Vehicle', 'Silent High-Altitude Torus', 'Oz Effect; Electromagnetic Effect', 'Rural Terrestrial', 'Logged'],
+          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Out-of-Body / Autoscopy', 'Boundary Transition Panorama', 'Ontological Shock; Acoustic Alteration', 'Domestic Interior', 'Logged'],
+          ['2026-09-02T03:10:00Z', 'Psi experience', 'Telepathic / Direct Cognition', 'Coincident Remote Telemetry', 'Galvanic Skin; Direct Transmission', 'Suburban Residential', 'Logged'],
+          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Non-Human Intelligence Presence', 'Crystalline Presence Communication', 'Acoustic Alteration; Temporal Dilation', 'Domestic Interior', 'Logged'],
+          ['2026-09-20T04:30:00Z', 'Altered state', 'Spontaneous Temporal Deceleration', 'Spontaneous Temporal Deceleration', 'Temporal Dilation; Ontological Shock', 'Wilderness', 'Logged']
         ];
         
         const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.map(row => row.map(item => `"${item}"`).join(',')).join('\n');
@@ -1102,57 +1248,203 @@
       });
     }
 
-    // Google Apps Script Pipeline Handler
+    // 4. Sonner-Style Toast Notification Dispatcher
+    function showToast(type, title, message, duration = 4000) {
+      const container = document.getElementById('sonnerContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast-card';
+      
+      const indicator = document.createElement('div');
+      indicator.className = `toast-indicator ${type}`;
+      
+      const content = document.createElement('div');
+      content.className = 'toast-content';
+      
+      const titleEl = document.createElement('div');
+      titleEl.className = 'toast-title';
+      titleEl.innerText = title;
+      
+      const msgEl = document.createElement('div');
+      msgEl.className = 'toast-msg';
+      msgEl.innerText = message;
+      
+      content.appendChild(titleEl);
+      content.appendChild(msgEl);
+      toast.appendChild(indicator);
+      toast.appendChild(content);
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          if (container.contains(toast)) container.removeChild(toast);
+        }, 300);
+      }, duration);
+    }
+
+    // 5. Intelligent Dynamic Form Logic
+    const categorySubTypes = {
+      'UAP sighting': [
+        'Structured Craft / Aerial Vehicle',
+        'Luminous / Plasma Geometry',
+        'High-Velocity Kinetic Maneuver',
+        'Formation / Swarm Dynamics',
+        'Transmedium / Submersible Transition'
+      ],
+      'Psi experience': [
+        'Telepathic / Direct Cognition',
+        'Remote Perception / Clairvoyance',
+        'Precognitive Dream / Foresight',
+        'Psychokinesis / Physical Anomaly',
+        'Coincident Telemetry / Synchronicity'
+      ],
+      'Near-death experience': [
+        'Out-of-Body / Autoscopy',
+        'Tunnel / Threshold Crossing',
+        'Encounter with Deceased / Guides',
+        'Panoramic Life Review',
+        'Boundary / Point of No Return'
+      ],
+      'Entity encounter': [
+        'Non-Human Intelligence Presence',
+        'Crystalline / Geometric Form',
+        'Shadow / Silhouette Manifestation',
+        'Insectoid / Archetypal Entity',
+        'Interdimensional / Interstitial Beings'
+      ],
+      'Altered state': [
+        'Spontaneous Temporal Deceleration',
+        'Ego Dissolution / Oceanic Unity',
+        'Mystical / Unitive State',
+        'Kundalini / Somatic Surge',
+        'Hypnagogic / Hypnopompic Phenomenon'
+      ],
+      'Unexplained event': [
+        'Apparition / Poltergeist Activity',
+        'Missing Time / Spatial Dislocation',
+        'Atmospheric Anomaly / Sky Phenomenon',
+        'Cryptid / Biometric Anomaly',
+        'Synchronistic Cascades'
+      ]
+    };
+
+    const categorySelect = document.getElementById('category');
+    const subCategorySelect = document.getElementById('subCategory');
+
+    function updateSubCategories(category) {
+      const options = categorySubTypes[category] || [];
+      subCategorySelect.innerHTML = '';
+      options.forEach(subType => {
+        const opt = document.createElement('option');
+        opt.value = subType;
+        opt.textContent = subType;
+        subCategorySelect.appendChild(opt);
+      });
+    }
+
+    updateSubCategories(categorySelect.value);
+
+    categorySelect.addEventListener('change', (e) => {
+      updateSubCategories(e.target.value);
+    });
+
+    // Checkbox styling toggle
+    document.querySelectorAll('.form-group-checkbox input[type="checkbox"]').forEach(box => {
+      box.addEventListener('change', function() {
+        const parent = this.closest('.form-group-checkbox');
+        if (parent) {
+          if (this.checked) {
+            parent.classList.add('is-checked');
+          } else {
+            parent.classList.remove('is-checked');
+          }
+        }
+      });
+    });
+
+    // Real-time Narrative Counter
+    const detailsArea = document.getElementById('details');
+    const detailsCounter = document.getElementById('detailsCounter');
+
+    detailsArea.addEventListener('input', function() {
+      const text = this.value.trim();
+      const charCount = this.value.length;
+      const wordCount = text ? text.split(/\s+/).length : 0;
+      detailsCounter.innerText = `${wordCount} words · ${charCount} characters`;
+      
+      if (this.value.trim().length > 0) {
+        document.getElementById('group-details').classList.remove('has-error');
+      }
+    });
+
+    // 6. Apps Script Transport Pipeline
     const form = document.getElementById('issueForm');
     const submitBtn = document.getElementById('submitBtn');
-    const statusBanner = document.getElementById('statusBanner');
 
-    // INSERT YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL HERE:
     const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec';
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const titleInput = document.getElementById('title');
-      const detailsInput = document.getElementById('details');
+      const incidentDateInput = document.getElementById('incidentDate');
+      const locationInput = document.getElementById('location');
       const anonConfirm = document.getElementById('anonConfirm');
 
-      if (!titleInput.value.trim() || !detailsInput.value.trim()) {
-        statusBanner.className = 'status-banner error';
-        statusBanner.innerText = 'Required narrative fields are missing. Please complete Headline and Detailed Account.';
+      let isValid = true;
+
+      const requiredInputs = [
+        { el: titleInput, group: 'group-title' },
+        { el: incidentDateInput, group: 'group-incidentDate' },
+        { el: locationInput, group: 'group-location' },
+        { el: detailsArea, group: 'group-details' }
+      ];
+
+      requiredInputs.forEach(item => {
+        const groupEl = document.getElementById(item.group);
+        if (!item.el.value.trim()) {
+          isValid = false;
+          if (groupEl) groupEl.classList.add('has-error');
+        } else {
+          if (groupEl) groupEl.classList.remove('has-error');
+        }
+      });
+
+      if (!isValid) {
+        showToast('error', 'Missing Required Fields', 'Please complete all required fields marked with a mint asterisk (*).');
         return;
       }
 
       if (!anonConfirm.checked) {
-        statusBanner.className = 'status-banner error';
-        statusBanner.innerText = 'You must confirm that no identifying personal names or addresses are included.';
+        showToast('error', 'Verification Required', 'You must verify that no personal names or addresses are included prior to transmission.');
         return;
       }
 
-      // Collect sensate signatures
       const checkedBoxes = Array.from(document.querySelectorAll('input[name="signatures"]:checked'));
       const signaturesList = checkedBoxes.map(cb => cb.value).join('; ');
 
       const payload = {
         timestamp: new Date().toISOString(),
-        category: document.getElementById('category').value,
-        subCategory: document.getElementById('subCategory').value,
+        category: categorySelect.value,
+        subCategory: subCategorySelect.value,
         title: titleInput.value.trim(),
-        incidentDate: document.getElementById('incidentDate').value.trim(),
+        incidentDate: incidentDateInput.value.trim(),
         setting: document.getElementById('setting').value,
-        location: document.getElementById('location').value.trim(),
+        location: locationInput.value.trim(),
         witnessCount: document.getElementById('witnessCount').value,
         physicalTrace: document.getElementById('physicalTrace').value,
         signatures: signaturesList || 'None specified',
-        details: detailsInput.value.trim(),
+        details: detailsArea.value.trim(),
         aftermath: document.getElementById('aftermath').value.trim()
       };
 
       const originalBtnText = submitBtn.innerText;
       submitBtn.innerText = 'Transmitting securely...';
       submitBtn.disabled = true;
-      statusBanner.className = 'status-banner';
-      statusBanner.innerText = '';
 
       try {
         await fetch(GOOGLE_WEB_APP_URL, {
@@ -1164,19 +1456,18 @@
           body: JSON.stringify(payload)
         });
 
-        statusBanner.className = 'status-banner success';
-        statusBanner.innerText = 'Transmission confirmed. Your report has been dispatched to the research ledger.';
+        showToast('success', 'Transmission Confirmed', 'Your experience report has been securely appended to the research ledger.');
         form.reset();
+        updateSubCategories(categorySelect.value);
+        detailsCounter.innerText = '0 words · 0 characters';
+        document.querySelectorAll('.form-group-checkbox').forEach(el => el.classList.remove('is-checked'));
 
         setTimeout(() => {
           window.location.hash = 'browse';
-          statusBanner.className = 'status-banner';
-          statusBanner.innerText = '';
-        }, 2400);
+        }, 2200);
 
       } catch (err) {
-        statusBanner.className = 'status-banner error';
-        statusBanner.innerText = 'Transmission failure. Please check network connection and verify endpoint URL.';
+        showToast('error', 'Transmission Failed', 'Network connection interrupted. Please verify connectivity and retry.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = originalBtnText;
