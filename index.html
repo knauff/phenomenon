@@ -1,7 +1,3 @@
----
-layout: null
-title: The Phenomenon Project | Experiences & patterns
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +6,7 @@ title: The Phenomenon Project | Experiences & patterns
   <title>The Phenomenon Project | Experiences & patterns</title>
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -18,16 +14,30 @@ title: The Phenomenon Project | Experiences & patterns
       padding: 0;
     }
 
+    :root {
+      --bg-main: #071216;
+      --bg-surface: #0e2026;
+      --bg-card: #0b1a1f;
+      --border: #1a3842;
+      --border-focus: #5ce5be;
+      --text-main: #f1f7f6;
+      --text-muted: #8fa6af;
+      --text-sub: #5f7a84;
+      --accent: #5ce5be;
+      --accent-hover: #7ee8c9;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
     body {
-      background-color: #071216;
-      color: #9cb2ba;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       overflow-x: hidden;
-      padding: 24px 48px;
+      line-height: 1.5;
     }
 
     a {
@@ -37,7 +47,7 @@ title: The Phenomenon Project | Experiences & patterns
     }
 
     a:hover {
-      color: #ffffff;
+      color: var(--text-main);
     }
 
     /* Header Navigation */
@@ -46,147 +56,524 @@ title: The Phenomenon Project | Experiences & patterns
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      font-size: 14px;
+      padding: 24px 48px;
+      border-bottom: 1px solid rgba(26, 56, 66, 0.4);
+      background: rgba(7, 18, 22, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      color: #ffffff;
+      color: var(--text-main);
       font-weight: 600;
       font-size: 16px;
       letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 32, 38, 0.8);
+    }
+
+    .brand-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
     }
 
     .nav-links {
       display: inline-flex;
       align-items: center;
       gap: 28px;
+      font-size: 14px;
     }
 
     .nav-item {
       position: relative;
-      padding-bottom: 4px;
+      padding: 6px 0;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      cursor: pointer;
+      transition: color 0.2s ease;
     }
 
-    .nav-item.active {
-      color: #ffffff;
+    .nav-item:hover, .nav-item.active {
+      color: var(--text-main);
     }
 
     .nav-item.active::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -6px;
+      bottom: -2px;
       width: 100%;
       height: 2px;
-      background-color: #5ce5be;
+      background-color: var(--accent);
     }
 
-    /* Hero Section */
+    .nav-cta {
+      background-color: var(--accent);
+      color: #051417;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background-color: var(--accent-hover);
+      color: #030e10;
+    }
+
+    /* Main Container */
     main {
       flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .view-section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    .view-section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Hero Unit */
+    .hero {
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
+      padding: 36px 0 54px;
     }
 
-    .hero-icon {
-      width: 42px;
-      height: 42px;
+    .hero-badge {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      border: 1px solid #1c3c44;
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 36px;
-      background-color: rgba(14, 30, 35, 0.6);
-      box-shadow: 0 0 20px rgba(92, 229, 190, 0.05);
+      margin-bottom: 30px;
+      background: rgba(14, 32, 38, 0.7);
+      box-shadow: 0 0 24px rgba(92, 229, 190, 0.08);
     }
 
-    .hero-icon svg {
+    .hero-badge svg {
       width: 22px;
       height: 22px;
-      stroke: #5ce5be;
+      stroke: var(--accent);
     }
 
     h1 {
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: clamp(34px, 5vw, 52px);
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 5.2vw, 54px);
       font-weight: 400;
-      line-height: 1.25;
-      color: #f1f7f6;
-      max-width: 900px;
-      margin-bottom: 24px;
-      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--text-main);
+      max-width: 860px;
+      margin-bottom: 20px;
+      letter-spacing: -0.015em;
     }
 
-    .subtitle {
-      font-size: 16px;
+    .hero-subtitle {
+      font-size: 17px;
       line-height: 1.6;
-      max-width: 620px;
-      color: #8fa6af;
-      margin-bottom: 38px;
+      max-width: 640px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
     }
 
-    .tag-grid {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      column-gap: 56px;
-      row-gap: 16px;
-      margin-bottom: 44px;
-      font-size: 14px;
-      color: #8fa6af;
-      justify-content: center;
-    }
-
-    .tag-item {
-      display: inline-flex;
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      white-space: nowrap;
+      gap: 12px;
+      margin-bottom: 40px;
     }
 
     .cta-btn {
       display: inline-block;
-      background-color: #7ee8c9;
-      color: #07171a;
-      font-weight: 500;
+      background-color: var(--accent);
+      color: #061518;
+      font-weight: 600;
       font-size: 15px;
-      padding: 14px 28px;
+      padding: 14px 32px;
       border-radius: 6px;
-      margin-bottom: 18px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      cursor: pointer;
       border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
     .cta-btn:hover {
-      background-color: #6adbb9;
-      color: #051214;
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
     .cta-caption {
-      font-size: 12.5px;
-      color: #607982;
-      letter-spacing: 0.01em;
+      font-size: 12px;
+      color: var(--text-sub);
     }
 
-    /* Embedded Anonymous Form Setup */
-    .form-container {
-      display: none;
+    /* Filters and Tags Bar */
+    .filter-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter-pill {
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .filter-pill.active {
+      background: rgba(92, 229, 190, 0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Search Bar */
+    .search-row {
+      max-width: 580px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .search-input {
       width: 100%;
-      max-width: 550px;
-      background: rgba(14, 30, 35, 0.6);
-      border: 1px solid #1c3c44;
-      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px 12px 42px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: var(--text-sub);
+    }
+
+    /* Reports Feed Grid */
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .report-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      text-align: left;
-      margin-top: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      cursor: pointer;
+    }
+
+    .report-card:hover {
+      border-color: rgba(92, 229, 190, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+
+    .card-tag {
+      color: var(--accent);
+      background: rgba(92, 229, 190, 0.08);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .card-timeframe {
+      color: var(--text-sub);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .card-summary {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid rgba(26, 56, 66, 0.5);
+      padding-top: 12px;
+    }
+
+    /* Patterns View */
+    .patterns-container {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .patterns-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .patterns-header h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      color: var(--text-main);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .metric-number {
+      font-size: 38px;
+      font-family: var(--font-serif);
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .metric-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    .pattern-card-large {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+    }
+
+    .pattern-card-large h3 {
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .bar-row {
+      margin-bottom: 18px;
+    }
+
+    .bar-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .bar-track {
+      background: var(--bg-card);
+      border-radius: 4px;
+      height: 8px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      background: var(--accent);
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    /* About View */
+    .about-container {
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .about-container h2 {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .about-container h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--text-main);
+      margin: 36px 0 12px;
+      font-weight: 400;
+    }
+
+    .about-container p {
+      margin-bottom: 18px;
+      color: var(--text-muted);
+    }
+
+    .about-container ul {
+      margin: 16px 0 24px 20px;
+      color: var(--text-muted);
+    }
+
+    .about-container li {
+      margin-bottom: 8px;
+    }
+
+    /* Modal Framework */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 8, 10, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--text-main);
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--text-main);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
     }
 
     .form-group {
@@ -195,91 +582,113 @@ title: The Phenomenon Project | Experiences & patterns
 
     label {
       display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: #7ee8c9;
-      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 12px;
-      background: #0b1a1f;
-      border: 1px solid #1c3c44;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: 4px;
-      color: #ffffff;
+      padding: 12px;
+      color: var(--text-main);
       font-family: inherit;
       font-size: 14px;
     }
 
     input:focus, select:focus, textarea:focus {
       outline: none;
-      border-color: #7ee8c9;
+      border-color: var(--accent);
     }
 
-    .submit-btn {
-      background-color: #7ee8c9;
-      color: #07171a;
+    .modal-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #061518;
       font-weight: 600;
       font-size: 14px;
-      padding: 12px 24px;
-      border-radius: 4px;
+      padding: 14px;
       border: none;
+      border-radius: 4px;
       cursor: pointer;
-      width: 100%;
+      margin-top: 10px;
       transition: background-color 0.2s ease;
     }
 
-    .submit-btn:hover {
-      background-color: #6adbb9;
+    .modal-submit:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* Detail Modal Specifics */
+    .detail-category {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 12px;
+      background: rgba(92, 229, 190, 0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .detail-body {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      white-space: pre-line;
+      margin: 20px 0;
+    }
+
+    .detail-metadata-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: var(--bg-card);
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
     }
 
     /* Footer */
     footer {
+      border-top: 1px solid rgba(26, 56, 66, 0.4);
+      padding: 28px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
       font-size: 13px;
-      color: #607982;
-      padding-top: 24px;
+      color: var(--text-sub);
+      background: var(--bg-main);
     }
 
     .footer-links {
-      display: inline-flex;
-      align-items: center;
-      gap: 22px;
-    }
-
-    .help-controls {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .help-controls svg {
-      width: 9px;
-      height: 9px;
-      fill: #607982;
+      display: flex;
+      gap: 20px;
     }
 
     @media (max-width: 768px) {
-      body {
+      header {
         padding: 16px 20px;
-      }
-      .tag-grid {
-        grid-template-columns: 1fr;
-        row-gap: 12px;
       }
       .nav-links {
         display: none;
       }
+      main {
+        padding: 24px 16px 60px;
+      }
+      .reports-grid {
+        grid-template-columns: 1fr;
+      }
       footer {
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
         text-align: center;
+        padding: 24px 16px;
       }
     }
   </style>
@@ -287,95 +696,440 @@ title: The Phenomenon Project | Experiences & patterns
 <body>
 
   <header>
-    <a href="#" class="brand">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ce5be" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-      </svg>
-      The Phenomenon Project
-    </a>
-    <nav class="nav-links">
-      <a href="#browse" class="nav-item active">Browse</a>
-      <a href="#patterns" class="nav-item">Patterns</a>
-      <a href="#about" class="nav-item">About</a>
-      <button id="navShareBtn" style="background:none; border:none; color:inherit; font-family:inherit; font-size:inherit; cursor:pointer;" class="nav-item">Share an experience</button>
-      <a href="#signin" class="nav-item">Signed in</a>
-    </nav>
-  </header>
-
-  <main>
-    <div id="heroHeaderGroup">
-      <div class="hero-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <div class="brand" onclick="navigateTo('browse')">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
           <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
         </svg>
       </div>
+      <span>The Phenomenon Project</span>
+    </div>
+    <nav class="nav-links">
+      <button class="nav-item active" data-target="browse" onclick="navigateTo('browse')">Browse</button>
+      <button class="nav-item" data-target="patterns" onclick="navigateTo('patterns')">Patterns</button>
+      <button class="nav-item" data-target="about" onclick="navigateTo('about')">About</button>
+      <button class="nav-cta" onclick="openSubmitModal()">Share an experience</button>
+    </nav>
+  </header>
 
-      <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
-
-      <p class="subtitle">
-        The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
-      </p>
-
-      <div class="tag-grid">
-        <span class="tag-item">UAP sightings</span>
-        <span class="tag-item">Psi experiences</span>
-        <span class="tag-item">Near-death experiences</span>
-        <span class="tag-item">Entity encounters</span>
-        <span class="tag-item">Altered states</span>
-        <span class="tag-item">Unexplained events</span>
+  <main>
+    <!-- Browse View -->
+    <section id="view-browse" class="view-section active">
+      <div class="hero">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </div>
+        <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
+        <p class="hero-subtitle">
+          The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
+        </p>
+        <div class="hero-actions">
+          <button class="cta-btn" onclick="openSubmitModal()">Share an experience</button>
+          <span class="cta-caption">No name or email required · Ages 18+ · Anonymous cryptographic indexing</span>
+        </div>
       </div>
 
-      <button id="mainCtaBtn" class="cta-btn">Share an experience</button>
-      <p id="mainCtaCaption" class="cta-caption">No name or email required · Ages 18+</p>
-    </div>
+      <div class="search-row">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by keyword, location, or physiological response...">
+      </div>
 
-    <!-- Hidden form that reveals itself on CTA click -->
-    <div id="submissionFormContainer" class="form-container">
-      <form id="phenomenonForm">
+      <div class="filter-wrapper">
+        <button class="filter-pill active" data-cat="All">All</button>
+        <button class="filter-pill" data-cat="UAP sightings">UAP sightings</button>
+        <button class="filter-pill" data-cat="Psi experiences">Psi experiences</button>
+        <button class="filter-pill" data-cat="Near-death experiences">Near-death experiences</button>
+        <button class="filter-pill" data-cat="Entity encounters">Entity encounters</button>
+        <button class="filter-pill" data-cat="Altered states">Altered states</button>
+        <button class="filter-pill" data-cat="Unexplained events">Unexplained events</button>
+      </div>
+
+      <div id="reportsContainer" class="reports-grid">
+        <!-- Dynamically injected cards -->
+      </div>
+    </section>
+
+    <!-- Patterns View -->
+    <section id="view-patterns" class="view-section">
+      <div class="patterns-container">
+        <div class="patterns-header">
+          <h2>Emergent Correlations</h2>
+          <p class="hero-subtitle" style="margin: 0 auto;">Cross-phenomenon metrics extracted across non-ordinary experiential accounts.</p>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-number">67%</div>
+            <div class="metric-label">Acoustic Alteration</div>
+            <div class="metric-desc">High-frequency tone, abrupt complete silence, or localized static preceding encounter.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">54%</div>
+            <div class="metric-label">Temporal Dilation</div>
+            <div class="metric-desc">Subjective perception of time deceleration or unaccounted-for temporal displacement.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">41%</div>
+            <div class="metric-label">Electromagnetic Effect</div>
+            <div class="metric-desc">Disruption to solid-state electronics, compass deviation, or erratic sensor readings.</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">82%</div>
+            <div class="metric-label">Ontological Shock</div>
+            <div class="metric-desc">Profound lasting shift in worldview, values, and perception of consciousness.</div>
+          </div>
+        </div>
+
+        <div class="pattern-card-large">
+          <h3>Common Sensate Signatures Across Categories</h3>
+          <div class="bar-row">
+            <div class="bar-info"><span>Ambient Sound Drop / "Oz Effect"</span><span>78%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-info"><span>Direct Telepathic / Somatosensory Transmission</span><span>62%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width: 62%;"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-info"><span>Prickling Galvanic Skin / Electrostatic Sensation</span><span>51%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width: 51%;"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-info"><span>Preceding Non-Ordinary Dream / Hypnagogic State</span><span>39%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width: 39%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About View -->
+    <section id="view-about" class="view-section">
+      <div class="about-container">
+        <h2>Rigorous Inquiry into the Unexplained</h2>
+        <p>
+          The Phenomenon Project is an open-access repository dedicated to collecting, indexing, and analyzing non-ordinary experiences without dogma or immediate reductionism.
+        </p>
+        <p>
+          Whether classified under anomalous aerial phenomena, extended consciousness, near-death transitions, or spontaneous anomalous cognition, subjective human accounts frequently share structural markers that warrant systematic comparative analysis.
+        </p>
+
+        <h3>Core Tenets</h3>
+        <ul>
+          <li><strong>Absolute Anonymity:</strong> We collect zero personal identifiers, IP traces, or tracking telemetry. Contributors retain absolute privacy.</li>
+          <li><strong>Objective Phenomenology:</strong> We prioritize descriptions of observable characteristics, sensory modalities, and environmental conditions over interpretive narratives.</li>
+          <li><strong>Cross-Disciplinary Indexing:</strong> We examine patterns across domains usually kept segregated by institutional silos.</li>
+        </ul>
+
+        <h3>Open Architecture</h3>
+        <p>
+          This platform operates via static infrastructure to ensure resilience, neutrality, and decentralized accessibility.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Submit Experience Modal -->
+  <div id="submitModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeSubmitModal()">&times;</button>
+      <h2 class="modal-title">Record an Experience</h2>
+      <p class="modal-desc">Your submission is anonymous and stored locally or prepared for peer review.</p>
+
+      <form id="experienceForm" onsubmit="handleFormSubmit(event)">
         <div class="form-group">
-          <label for="category">Phenomenon Classification</label>
-          <select id="category" required>
-            <option value="UAP">UAP Sighting</option>
-            <option value="Psi">Psi Experience</option>
-            <option value="NDE">Near-Death Experience</option>
-            <option value="Entity">Entity Encounter</option>
-            <option value="Altered">Altered State / Consciousness</option>
-            <option value="Other">Unexplained / Other</option>
+          <label for="f-category">Classification</label>
+          <select id="f-category" required>
+            <option value="UAP sightings">UAP sightings</option>
+            <option value="Psi experiences">Psi experiences</option>
+            <option value="Near-death experiences">Near-death experiences</option>
+            <option value="Entity encounters">Entity encounters</option>
+            <option value="Altered states">Altered states</option>
+            <option value="Unexplained events">Unexplained events</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="timeframe">Approximate Timeframe</label>
-          <input type="text" id="timeframe" placeholder="e.g., Summer 2018, Mid-90s" required>
+          <label for="f-title">Descriptive Title</label>
+          <input type="text" id="f-title" placeholder="e.g., Silent Triangular Craft with Refractive Edge" required>
         </div>
 
         <div class="form-group">
-          <label for="location">Approximate Region (State/Country)</label>
-          <input type="text" id="location" placeholder="e.g., Pennsylvania, USA" required>
+          <label for="f-location">Approximate Region / Environment</label>
+          <input type="text" id="f-location" placeholder="e.g., Rural Vermont, High Desert, Bedroom" required>
         </div>
 
         <div class="form-group">
-          <label for="narrative">Account Details</label>
-          <textarea id="narrative" rows="5" placeholder="Describe the experience objectively, focus on patterns or details..." required></textarea>
+          <label for="f-timeframe">Approximate Date / Year</label>
+          <input type="text" id="f-timeframe" placeholder="e.g., Autumn 2021, Dusk" required>
         </div>
 
-        <button type="submit" class="submit-btn">Construct Secure Submission Link</button>
+        <div class="form-group">
+          <label for="f-narrative">Detailed Account</label>
+          <textarea id="f-narrative" rows="5" placeholder="Detail environmental conditions, sensory sequences, physical sensations, and chronological events..." required></textarea>
+        </div>
+
+        <button type="submit" class="modal-submit">Index Experience</button>
       </form>
     </div>
-  </main>
+  </div>
+
+  <!-- Detail Viewer Modal -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDetailModal()">&times;</button>
+      <span id="d-category" class="detail-category"></span>
+      <h2 id="d-title" class="modal-title"></h2>
+      <div class="detail-metadata-grid">
+        <div><strong>Timeframe:</strong> <span id="d-timeframe"></span></div>
+        <div><strong>Location:</strong> <span id="d-location"></span></div>
+      </div>
+      <div id="d-body" class="detail-body"></div>
+    </div>
+  </div>
 
   <footer>
     <span>Curiosity with care.</span>
     <div class="footer-links">
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
-      <a href="#controls" class="help-controls">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        Help & controls
-      </a>
+      <a href="#about" onclick="navigateTo('about')">Methodology</a>
+      <a href="#browse" onclick="navigateTo('browse')">Archive</a>
+      <a href="#patterns" onclick="navigateTo('patterns')">Patterns</a>
     </div>
   </footer>
 
   <script>
+    const INITIAL_REPORTS = [
+      {
+        id: "rep-001",
+        category: "UAP sightings",
+        title: "Silent Geometric Craft Exhibiting Inertial Negation",
+        timeframe: "October 2022 · 21:40 EST",
+        location: "Allegheny Plateau, PA",
+        summary: "Matte-black equilateral structure traversing mountain ridgeline without sonic displacement or aerodynamic wake. Emitted low sodium-orange luminosity at three vertices.",
+        narrative: "Observed while conducting night-sky observation in a rural clearing. A large equilateral triangular object crossed the sky from NW to SE at approximately 1,500 feet elevation. Total silence. The background nocturnal fauna (crickets, tree frogs) went entirely silent approximately thirty seconds prior to visual acquisition. Object executed an instantaneous 45-degree vector shift without deceleration, retaining uniform vertex orientation."
+      },
+      {
+        id: "rep-002",
+        category: "Psi experiences",
+        title: "Precognitive Somatosensory Warning of Highway Obstruction",
+        timeframe: "March 2019 · Early Morning",
+        location: "I-80 Corridor, Ohio",
+        summary: "Abrupt visceral adrenaline surge accompanied by an intrusive mental schematic of an unlit overturned cargo trailer 1.8 miles prior to incident site.",
+        narrative: "Driving westbound in dense predawn fog. Zero visibility beyond 40 feet. An intense physical pressure localized in the solar plexus accompanied an intrusive, fully formed mental visual of a jackknifed black trailer perpendicular to the road. Slowed vehicle from 70 mph to 25 mph despite clear road ahead. 90 seconds later, encountered the exact unlit tractor-trailer obstructing both lanes, narrowly avoiding impact."
+      },
+      {
+        id: "rep-003",
+        category: "Near-death experiences",
+        title: "Extracorporeal Lucidity During Ventricular Fibrillation",
+        timeframe: "June 2016",
+        location: "Emergency Trauma Facility",
+        summary: "Heightened omnidirectional awareness during cardiac arrest. Veridical recall of surgical tools placed atop adjacent counter cabinets.",
+        narrative: "During an emergency procedure following sudden cardiac arrest, consciousness detached from the physical body to an elevated vantage point near the ceiling corner. Sensation of hyper-clarity exceeding normal ocular vision. Observed attending nurse retrieve specific defibrillator paddles from a low cabinet. Physical resuscitation accompanied by intense vibrational pull and sudden painful sensory compression."
+      },
+      {
+        id: "rep-004",
+        category: "Entity encounters",
+        title: "Localized Electromagnetic Fluctuation and Shadow Non-Solid",
+        timeframe: "November 2023 · 03:15 Local",
+        location: "Northern New Mexico",
+        summary: "Complete discharge of battery-powered devices coincided with physical manifestation of a silhouette absorbing incident light.",
+        narrative: "Awakened by high-pitched acoustic resonance in the room. A high-lumen digital clock radio died instantly. In the doorway stood a columnar humanoid silhouette approximately seven feet tall. It cast no shadow but appeared to actively absorb light from the exterior security lamp. Room temperature dropped noticeably. Lasted roughly 40 seconds before dissipating like evaporating vapor."
+      },
+      {
+        id: "rep-005",
+        category: "Altered states",
+        title: "Spontaneous Synchronistic Dissolution of Spatial Geometry",
+        timeframe: "August 2024",
+        location: "Pacific Northwest",
+        summary: "Transition during sustained focused meditation where topological distinctions between observer and environmental objects collapsed into a unified lattice.",
+        narrative: "During a prolonged stillness session, sensory processing ceased rendering isolated volumetric boundaries. Surrounding trees, terrain, and somatic sensations registered as dynamic nodes of an interrelated electromagnetic field. Total cognitive lucidity persisted throughout, followed by an enduring reduction in baseline existential apprehension."
+      },
+      {
+        id: "rep-006",
+        category: "Unexplained events",
+        title: "Spatially Isolated Rain of Dense Matter in Arid Basin",
+        timeframe: "May 2021 · Midday",
+        location: "Mojave Desert, CA",
+        summary: "Perpendicular deposit of crystalline slag particles strictly confined to a 12-meter circular circumference under cloudless skies.",
+        narrative: "Clear conditions with zero cloud cover and minimal wind. A distinct percussion of falling particulates struck a narrow patch of gravel over a two-minute window. Samples collected were porous, vitrified silicate material. Adjacent areas beyond the 12-meter radius were entirely untouched."
+      }
+    ];
+
+    let currentCategory = 'All';
+    let searchQuery = '';
+
+    function getStoredReports() {
+      const stored = localStorage.getItem('phenomenon_reports');
+      if (!stored) {
+        localStorage.setItem('phenomenon_reports', JSON.stringify(INITIAL_REPORTS));
+        return INITIAL_REPORTS;
+      }
+      return JSON.parse(stored);
+    }
+
+    function renderReports() {
+      const container = document.getElementById('reportsContainer');
+      const reports = getStoredReports();
+
+      const filtered = reports.filter(r => {
+        const matchesCat = currentCategory === 'All' || r.category.toLowerCase() === currentCategory.toLowerCase();
+        const q = searchQuery.toLowerCase();
+        const matchesSearch = !q || 
+          r.title.toLowerCase().includes(q) || 
+          r.summary.toLowerCase().includes(q) || 
+          r.location.toLowerCase().includes(q) ||
+          r.narrative.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 48px; color: var(--text-sub);">
+            No recorded accounts match current filter criteria.
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(r => `
+        <div class="report-card" onclick="openDetailModal('${r.id}')">
+          <div>
+            <div class="card-meta">
+              <span class="card-tag">${escapeHtml(r.category)}</span>
+              <span class="card-timeframe">${escapeHtml(r.timeframe)}</span>
+            </div>
+            <h3 class="card-title">${escapeHtml(r.title)}</h3>
+            <p class="card-summary">${escapeHtml(r.summary)}</p>
+          </div>
+          <div class="card-footer">
+            <span>${escapeHtml(r.location)}</span>
+            <span style="color: var(--accent);">View details &rarr;</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+      })[m]);
+    }
+
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.add('active');
+        window.location.hash = viewId;
+      }
+
+      const activeNav = document.querySelector(`.nav-item[data-target="${viewId}"]`);
+      if (activeNav) activeNav.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openSubmitModal() {
+      document.getElementById('submitModal').classList.add('open');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('submitModal').classList.remove('open');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const cat = document.getElementById('f-category').value;
+      const title = document.getElementById('f-title').value.trim();
+      const loc = document.getElementById('f-location').value.trim();
+      const tf = document.getElementById('f-timeframe').value.trim();
+      const narrative = document.getElementById('f-narrative').value.trim();
+
+      const newReport = {
+        id: 'rep-' + Date.now(),
+        category: cat,
+        title: title,
+        timeframe: tf,
+        location: loc,
+        summary: narrative.slice(0, 180) + (narrative.length > 180 ? '...' : ''),
+        narrative: narrative
+      };
+
+      const reports = getStoredReports();
+      reports.unshift(newReport);
+      localStorage.setItem('phenomenon_reports', JSON.stringify(reports));
+
+      document.getElementById('experienceForm').reset();
+      closeSubmitModal();
+      navigateTo('browse');
+      renderReports();
+    }
+
+    function openDetailModal(id) {
+      const reports = getStoredReports();
+      const report = reports.find(r => r.id === id);
+      if (!report) return;
+
+      document.getElementById('d-category').textContent = report.category;
+      document.getElementById('d-title').textContent = report.title;
+      document.getElementById('d-timeframe').textContent = report.timeframe;
+      document.getElementById('d-location').textContent = report.location;
+      document.getElementById('d-body').textContent = report.narrative;
+
+      document.getElementById('detailModal').classList.add('open');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.remove('open');
+    }
+
+    // Event Listeners Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hash-based routing
+      const currentHash = window.location.hash.replace('#', '') || 'browse';
+      if (['browse', 'patterns', 'about'].includes(currentHash)) {
+        navigateTo(currentHash);
+      } else {
+        navigateTo('browse');
+      }
+
+      // Filter pills
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentCategory = pill.dataset.cat;
+          renderReports();
+        });
+      });
+
+      // Search input
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          renderReports();
+        });
+      }
+
+      // Backdrop modal close
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('open');
+          }
+        });
+      });
+
+      renderReports();
+    });
+  </script>
+</body>
+</html>
