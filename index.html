@@ -810,22 +810,21 @@
 
       const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec";
 
-      // Beams data silently straight to your private Google Sheet
+      // Direct Native Google Web App Ingestion Queue
       fetch(googleWebAppUrl, {
         method: 'POST',
-        mode: 'no-cors', // Bypasses browser cross-origin locks safely
         headers: {
-          'Content-Type': 'application/json'
+          // Using text/plain completely bypasses browser CORS locks while keeping your data packet intact
+          'Content-Type': 'text/plain'
         },
         body: JSON.stringify(formData)
       })
-      .then(() => {
-        // Success execution path
+      .then(response => {
         submitButton.innerText = "Transmission Complete";
         alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
         document.getElementById('issueForm').reset();
         
-        // Route the user back to the primary metrics view cleanly
+        // Route the user back to the primary browse view cleanly
         window.location.hash = "browse";
       })
       .catch(error => {
@@ -836,7 +835,7 @@
         submitButton.disabled = false;
         submitButton.innerText = originalButtonText;
       });
-    });
+
 
   </script>
 </body>
