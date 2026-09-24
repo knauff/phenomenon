@@ -1,0 +1,54 @@
+name: Compile Anonymous Submissions
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  append_data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Parse Issue and Update CSV Database
+        shell: bash
+        run: |
+          # 1. Create the database spreadsheet if it doesn't exist
+          if [ ! -f "database.csv" ]; then
+            echo "Timestamp,Title,Category,Description" > database.csv
+          fi
+
+          # 2. Extract safe text blocks from the incoming issue
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          
+          # Clean quotes and strip dangerous escape characters to prevent CSV injection
+          TITLE=$(echo "${{ github.event.issue.title }}" | sed 's/"/""/g')
+          
+          # Parse the body text out into a single clean data block
+          BODY=$(echo "${{ github.event.issue.body }}" | sed 's/"/""/g' | tr '\n' ' ' | tr '\r' ' ')
+
+          # 3. Extract the category if it follows your form's markup
+          CATEGORY="Unassigned"
+          if [[ "$BODY" =~ "### Category "([^#]*) ]]; then
+            CATEGORY=$(echo "${BASH_REMATCH[1]}" | xargs)
+          fi
+
+          # 4. Safely append the cleaned row to your master CSV database
+          echo "\"$TIMESTAMP\",\"$TITLE\",\"$CATEGORY\",\"$BODY\"" >> database.csv
+
+      - name: Commit and Push Updated Spreadsheet
+        run: |
+          git config --global user.name "Phenomenon Project Bot"
+          git config --global user.email "bot@phenomenon.project"
+          git add database.csv
+          git commit -m "Automated Data Sync: Logging submission #${{ github.event.issue.number }}"
+          git push
+
+      - name: Securely Close Public Text Issue
+        run: |
+          gh issue close ${{ github.event.issue.number }} --reason "completed"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
