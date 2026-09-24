@@ -1,7 +1,3 @@
----
-layout: null
-title: The Phenomenon Project | Experiences & patterns
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +16,9 @@ title: The Phenomenon Project | Experiences & patterns
 
     :root {
       --bg: #071317;
+      --card-bg: #0d2026;
       --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-card: #16363f;
       --mint: #7ce3c3;
       --mint-hover: #67d6b3;
       --text-primary: #edf4f5;
@@ -39,7 +37,7 @@ title: The Phenomenon Project | Experiences & patterns
       flex-direction: column;
       justify-content: space-between;
       overflow-x: hidden;
-      padding: 0 40px;
+      padding: 0 44px;
     }
 
     a {
@@ -57,7 +55,7 @@ title: The Phenomenon Project | Experiences & patterns
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0 16px 0;
+      padding: 26px 0 16px 0;
     }
 
     .brand {
@@ -68,6 +66,7 @@ title: The Phenomenon Project | Experiences & patterns
       font-weight: 600;
       font-size: 16px;
       letter-spacing: -0.01em;
+      cursor: pointer;
     }
 
     .brand-icon {
@@ -77,11 +76,11 @@ title: The Phenomenon Project | Experiences & patterns
     }
 
     .auth-status {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-secondary);
     }
 
-    /* Sub-Navigation Bar */
+    /* Navigation Bar */
     .nav-bar {
       display: flex;
       align-items: center;
@@ -95,6 +94,13 @@ title: The Phenomenon Project | Experiences & patterns
       padding: 8px 0 14px 0;
       position: relative;
       color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
     }
 
     .nav-link.active {
@@ -111,30 +117,52 @@ title: The Phenomenon Project | Experiences & patterns
       background-color: var(--mint);
     }
 
-    /* Center Hero Stage */
+    /* View Container */
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 56px 20px;
+      width: 100%;
       max-width: 980px;
       margin: 0 auto;
+      padding: 48px 20px;
+    }
+
+    .view-section {
+      display: none;
       width: 100%;
+      animation: fadeIn 0.18s ease forwards;
+    }
+
+    .view-section.active-view {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero / Browse View */
+    .hero-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero-badge {
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      border: 1px solid rgba(124, 227, 195, 0.25);
+      border: 1px solid rgba(124, 227, 195, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 34px;
-      background-color: rgba(14, 30, 35, 0.6);
+      background-color: rgba(14, 30, 35, 0.7);
     }
 
     .hero-badge svg {
@@ -158,10 +186,9 @@ title: The Phenomenon Project | Experiences & patterns
       line-height: 1.6;
       max-width: 660px;
       color: var(--text-secondary);
-      margin-bottom: 34px;
+      margin-bottom: 36px;
     }
 
-    /* Category List with Centered Bullets */
     .categories {
       display: flex;
       flex-direction: column;
@@ -175,7 +202,7 @@ title: The Phenomenon Project | Experiences & patterns
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 18px;
     }
 
     .bullet {
@@ -183,17 +210,19 @@ title: The Phenomenon Project | Experiences & patterns
       user-select: none;
     }
 
-    /* CTA Button */
     .cta-submit {
       display: inline-block;
       background-color: var(--mint);
       color: #071518;
       font-weight: 500;
       font-size: 14.5px;
-      padding: 13px 26px;
+      padding: 13px 28px;
       border-radius: 7px;
       margin-bottom: 16px;
+      cursor: pointer;
+      border: none;
       transition: background-color 0.15s ease;
+      text-decoration: none;
     }
 
     .cta-submit:hover {
@@ -205,6 +234,184 @@ title: The Phenomenon Project | Experiences & patterns
       font-size: 12.5px;
       color: var(--text-muted);
       letter-spacing: 0.01em;
+    }
+
+    /* Patterns View */
+    .patterns-header {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .patterns-header h2 {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .metric-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .metric-top {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .metric-number {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      color: var(--mint);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .metric-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .patterns-subheading {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .signature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .signature-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .signature-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: var(--text-primary);
+    }
+
+    .signature-bar {
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .signature-fill {
+      height: 100%;
+      background-color: var(--mint);
+      border-radius: 3px;
+    }
+
+    /* About View */
+    .about-article {
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .about-article h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .about-article p {
+      margin-bottom: 18px;
+    }
+
+    /* Share Modal View */
+    .intake-box {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 36px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .intake-box h2 {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .intake-subhead {
+      font-size: 14px;
+      margin-bottom: 24px;
+      color: var(--text-secondary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background-color: #071519;
+      border: 1px solid var(--border-card);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--mint);
     }
 
     /* Footer */
@@ -224,7 +431,6 @@ title: The Phenomenon Project | Experiences & patterns
       position: relative;
     }
 
-    /* Dropdown Menu for Controls */
     .controls-wrapper {
       position: relative;
     }
@@ -282,9 +488,12 @@ title: The Phenomenon Project | Experiences & patterns
       color: var(--text-primary);
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 768px) {
       body {
         padding: 0 20px;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr;
       }
       .cat-row {
         flex-direction: column;
@@ -303,10 +512,10 @@ title: The Phenomenon Project | Experiences & patterns
 </head>
 <body>
 
-  <div>
-    <!-- Top Brand & Auth Bar -->
+  <header>
+    <!-- Top Header -->
     <div class="top-bar">
-      <a href="./" class="brand">
+      <a href="#browse" class="brand">
         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
           <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
@@ -316,55 +525,172 @@ title: The Phenomenon Project | Experiences & patterns
       <span class="auth-status">Signed in</span>
     </div>
 
-    <!-- Sub-Navigation Bar -->
+    <!-- Navigation Tabs -->
     <nav class="nav-bar">
-      <a href="#browse" class="nav-link active">Browse</a>
-      <a href="#patterns" class="nav-link">Patterns</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="https://github.com/knauff/phenomenon/issues/new?title=%5BExperience+Report%5D%3A+&labels=experience-submission" class="nav-link" target="_blank" rel="noopener">Share an experience</a>
+      <a href="#browse" class="nav-link active" data-tab="browse">Browse</a>
+      <a href="#patterns" class="nav-link" data-tab="patterns">Patterns</a>
+      <a href="#about" class="nav-link" data-tab="about">About</a>
+      <a href="#share" class="nav-link" data-tab="share">Share an experience</a>
     </nav>
-  </div>
+  </header>
 
-  <!-- Center Stage View -->
   <main>
-    <div class="hero-badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-      </svg>
-    </div>
+    <!-- Browse View -->
+    <section id="view-browse" class="view-section active-view">
+      <div class="hero-content">
+        <div class="hero-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </div>
 
-    <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
+        <h1>Extraordinary experiences.<br>A shared search for understanding.</h1>
 
-    <p class="hero-subhead">
-      The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
-    </p>
+        <p class="hero-subhead">
+          The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
+        </p>
 
-    <div class="categories">
-      <div class="cat-row">
-        <span>UAP sightings</span>
-        <span class="bullet">·</span>
-        <span>Psi experiences</span>
-        <span class="bullet">·</span>
-        <span>Near-death experiences</span>
+        <div class="categories">
+          <div class="cat-row">
+            <span>UAP sightings</span>
+            <span class="bullet">·</span>
+            <span>Psi experiences</span>
+            <span class="bullet">·</span>
+            <span>Near-death experiences</span>
+          </div>
+          <div class="cat-row">
+            <span>Entity encounters</span>
+            <span class="bullet">·</span>
+            <span>Altered states</span>
+            <span class="bullet">·</span>
+            <span>Unexplained events</span>
+          </div>
+        </div>
+
+        <a href="#share" class="cta-submit">Share an experience</a>
+
+        <p class="cta-note">No name or email required · Ages 18+</p>
       </div>
-      <div class="cat-row">
-        <span>Entity encounters</span>
-        <span class="bullet">·</span>
-        <span>Altered states</span>
-        <span class="bullet">·</span>
-        <span>Unexplained events</span>
+    </section>
+
+    <!-- Patterns View -->
+    <section id="view-patterns" class="view-section">
+      <div class="patterns-header">
+        <h2>Emergent Correlations</h2>
+        <p>Cross-phenomenon metrics extracted across non-ordinary experiential accounts.</p>
       </div>
-    </div>
 
-    <a href="https://github.com/knauff/phenomenon/issues/new?title=%5BExperience+Report%5D%3A+&labels=experience-submission" 
-       class="cta-submit" 
-       target="_blank" 
-       rel="noopener">
-      Share an experience
-    </a>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-top">
+            <span class="metric-number">67%</span>
+            <span class="metric-label">Acoustic Alteration</span>
+          </div>
+          <p class="metric-desc">High-frequency tone, abrupt complete silence, or localized static preceding encounter.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-top">
+            <span class="metric-number">54%</span>
+            <span class="metric-label">Temporal Dilation</span>
+          </div>
+          <p class="metric-desc">Subjective perception of time deceleration or unaccounted-for temporal displacement.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-top">
+            <span class="metric-number">41%</span>
+            <span class="metric-label">Electromagnetic Effect</span>
+          </div>
+          <p class="metric-desc">Disruption to solid-state electronics, compass deviation, or erratic sensor readings.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-top">
+            <span class="metric-number">82%</span>
+            <span class="metric-label">Ontological Shock</span>
+          </div>
+          <p class="metric-desc">Profound lasting shift in worldview, values, and perception of consciousness.</p>
+        </div>
+      </div>
 
-    <p class="cta-note">No name or email required · Ages 18+</p>
+      <h3 class="patterns-subheading">Common Sensate Signatures Across Categories</h3>
+      <div class="signature-list">
+        <div class="signature-row">
+          <div class="signature-meta">
+            <span>Ambient Sound Drop / "Oz Effect"</span>
+            <span>78%</span>
+          </div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 78%;"></div></div>
+        </div>
+        <div class="signature-row">
+          <div class="signature-meta">
+            <span>Direct Telepathic / Somatosensory Transmission</span>
+            <span>62%</span>
+          </div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 62%;"></div></div>
+        </div>
+        <div class="signature-row">
+          <div class="signature-meta">
+            <span>Prickling Galvanic Skin / Electrostatic Sensation</span>
+            <span>51%</span>
+          </div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 51%;"></div></div>
+        </div>
+        <div class="signature-row">
+          <div class="signature-meta">
+            <span>Preceding Non-Ordinary Dream / Hypnagogic State</span>
+            <span>39%</span>
+          </div>
+          <div class="signature-bar"><div class="signature-fill" style="width: 39%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About View -->
+    <section id="view-about" class="view-section">
+      <article class="about-article">
+        <h2>About the Project</h2>
+        <p>
+          The Phenomenon Project collects, normalizes, and analyzes non-ordinary human experiences. By taking firsthand accounts seriously without dogmatic commitment, we identify cross-domain structural patterns.
+        </p>
+        <p>
+          Reports are cataloged directly into our decentralized archive. Submissions are processed without personal trackers or identity retention, allowing researchers to evaluate data points objectively.
+        </p>
+      </article>
+    </section>
+
+    <!-- Share Intake View -->
+    <section id="view-share" class="view-section">
+      <div class="intake-box">
+        <h2>Share an Experience</h2>
+        <p class="intake-subhead">Submit an account directly to the GitHub Issue ingestion queue.</p>
+        
+        <form id="issueForm">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="UAP sighting">UAP sighting</option>
+              <option value="Psi experience">Psi experience</option>
+              <option value="Near-death experience">Near-death experience</option>
+              <option value="Entity encounter">Entity encounter</option>
+              <option value="Altered state">Altered state</option>
+              <option value="Unexplained event">Unexplained event</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title / Headline</label>
+            <input type="text" id="title" placeholder="Brief descriptive summary" required>
+          </div>
+
+          <div class="form-group">
+            <label for="details">Detailed Account</label>
+            <textarea id="details" placeholder="Describe the sequence of events, sensate signatures, environmental context, and subsequent effects..." required></textarea>
+          </div>
+
+          <button type="submit" class="cta-submit" style="width: 100%;">Dispatch to GitHub Ingestion</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -388,6 +714,32 @@ title: The Phenomenon Project | Experiences & patterns
   </footer>
 
   <script>
+    // Tab Router
+    const routes = ['browse', 'patterns', 'about', 'share'];
+
+    function handleRoute() {
+      const hash = window.location.hash.replace('#', '') || 'browse';
+      const activeTab = routes.includes(hash) ? hash : 'browse';
+
+      document.querySelectorAll('.view-section').forEach(sec => {
+        sec.classList.remove('active-view');
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      const currentSec = document.getElementById('view-' + activeTab);
+      const currentNav = document.querySelector(`.nav-link[data-tab="${activeTab}"]`);
+
+      if (currentSec) currentSec.classList.add('active-view');
+      if (currentNav) currentNav.classList.add('active');
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+    window.addEventListener('DOMContentLoaded', handleRoute);
+
     // Help & controls popup toggle
     const trigger = document.getElementById('controlsTrigger');
     const menu = document.getElementById('controlsMenu');
@@ -403,14 +755,18 @@ title: The Phenomenon Project | Experiences & patterns
       trigger.setAttribute('aria-expanded', 'false');
     });
 
-    // Sub-nav tab switching highlight
-    const navLinks = document.querySelectorAll('.nav-bar .nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (this.getAttribute('target') === '_blank') return;
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
+    // GitHub Issue Form Dispatcher
+    document.getElementById('issueForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const cat = document.getElementById('category').value;
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('details').value;
+
+      const issueTitle = encodeURIComponent(`[${cat}]: ${title}`);
+      const issueBody = encodeURIComponent(`### Category\n${cat}\n\n### Report\n${desc}\n\n---\n*Filed anonymously via Phenomenon Project intake portal.*`);
+      const repoUrl = "https://github.com/knauff/phenomenon/issues/new";
+
+      window.open(`${repoUrl}?title=${issueTitle}&body=${issueBody}&labels=experience-submission`, '_blank');
     });
   </script>
 </body>
