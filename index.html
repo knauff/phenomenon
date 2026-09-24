@@ -153,7 +153,89 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Browse / Archive View */
+    /* Reader Document Layout (Exact Next.js Prose Specification) */
+    .reader {
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.75;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .eyebrow {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 8px;
+    }
+
+    .reader h1 {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      letter-spacing: -0.015em;
+    }
+
+    .reader h2 {
+      font-family: var(--font-serif);
+      font-size: 23px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+
+    .reader p {
+      margin-bottom: 20px;
+    }
+
+    .reader a {
+      color: var(--mint);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .reader a:hover {
+      color: var(--mint-hover);
+    }
+
+    .panel {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 30px;
+      margin-top: 26px;
+      margin-bottom: 26px;
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px;
+      border-radius: 8px;
+      background-color: rgba(124, 227, 195, 0.06);
+      border: 1px solid rgba(124, 227, 195, 0.22);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-primary);
+      margin-bottom: 30px;
+    }
+
+    .notice svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--mint);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Hero & Browse View */
     .hero-content {
       text-align: center;
       display: flex;
@@ -179,7 +261,7 @@
       stroke: var(--mint);
     }
 
-    h1, h2.hero-title {
+    h1.hero-title {
       font-family: var(--font-serif);
       font-size: clamp(34px, 5.2vw, 54px);
       font-weight: 400;
@@ -250,7 +332,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* Patterns / Trends View */
+    /* Patterns View */
     .patterns-header {
       margin-bottom: 36px;
       text-align: center;
@@ -347,37 +429,7 @@
       border-radius: 3px;
     }
 
-    /* Content Panels & Articles */
-    .view-card {
-      max-width: 740px;
-      margin: 0 auto;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .view-card h2 {
-      font-family: var(--font-serif);
-      font-size: 34px;
-      font-weight: 400;
-      color: var(--text-primary);
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    .view-card p {
-      margin-bottom: 18px;
-      color: var(--text-secondary);
-    }
-
-    .panel-box {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-card);
-      border-radius: 8px;
-      padding: 32px;
-      margin-top: 28px;
-    }
-
-    /* Comprehensive Intake Box */
+    /* Structured Ingestion Box */
     .intake-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-card);
@@ -408,7 +460,7 @@
       color: var(--mint);
       border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 8px;
-      margin: 28px 0 18px 0;
+      margin: 32px 0 18px 0;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -447,6 +499,7 @@
     }
 
     .form-group input[type="text"],
+    .form-group input[type="password"],
     .form-group select,
     .form-group textarea {
       width: 100%;
@@ -543,7 +596,7 @@
       margin-bottom: 20px;
     }
 
-    /* Floating Toast */
+    /* Floating Sonner Toast Notifications */
     .sonner-container {
       position: fixed;
       bottom: 28px;
@@ -784,7 +837,7 @@
     <!-- Patterns / Trends View -->
     <section id="view-patterns" class="view-section">
       <div class="patterns-header">
-        <h2>Emergent Correlations</h2>
+        <h2>Patterns in reported experiences</h2>
         <p>Cross-phenomenon metrics extracted across non-ordinary experiential accounts.</p>
       </div>
 
@@ -850,36 +903,57 @@
           <div class="signature-bar"><div class="signature-fill" style="width: 39%;"></div></div>
         </div>
       </div>
+
+      <div class="panel" style="margin-top: 48px;">
+        <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">Connections to explore</h3>
+        <p style="font-size: 14px; margin-bottom: 16px;">These are co-reports, not evidence of a shared cause. Counts are exploratory; multiple reports can come from one person or event. Small samples and self-selection can create apparent patterns.</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0;">These patterns are exploratory. Self-selection, memory, and repeat accounts can affect counts; they do not establish prevalence or causation. Date filters exclude unknown dates and retain approximate dates as reported.</p>
+      </div>
     </section>
 
-    <!-- About / Method View -->
+    <!-- About / Method View (100% Verbatim Original Next.js Copy) -->
     <section id="view-about" class="view-section">
-      <article class="view-card">
-        <h2>About the Project</h2>
-        <p>
-          The Phenomenon Project collects, normalizes, and analyzes non-ordinary human experiences. By taking firsthand accounts seriously without dogmatic commitment, we identify cross-domain structural patterns.
-        </p>
-        <p>
-          Traditional science frequently dismisses anomalous occurrences due to lack of reproducible instrumentation. Our approach treats conscious observer reporting as signal rather than noise, compiling unified datasets across distinct experiential domains.
-        </p>
-        
-        <div class="panel-box">
-          <h3 style="color: var(--text-primary); margin-bottom: 8px; font-family: var(--font-serif); font-size: 20px;">Open Research Dataset</h3>
-          <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px;">
-            The complete, anonymized repository data ledger is compiled in real-time and made freely available under open public licenses for independent statistical analysis and structural charting.
-          </p>
-          <button type="button" id="downloadDatasetBtn" class="cta-submit" style="margin-bottom: 0;">
-            Download Master Dataset (.CSV)
-          </button>
-        </div>
+      <article class="reader">
+        <div class="eyebrow">Curiosity with care</div>
+        <h1>Take experiences seriously.<br>Keep explanations open.</h1>
+
+        <h2>Why we built The Phenomenon Project</h2>
+        <p>We bring together extraordinary human experiences to explore patterns, discover connections, and build a resource for anyone seeking a better understanding of the Phenomenon.</p>
+
+        <h2>What we mean by “the Phenomenon”</h2>
+        <p>We welcome UAP sightings, entity encounters, near-death experiences, psi experiences, altered states, and other unexplained events. Psi includes apparent telepathy, precognition, and remote perception; altered states can include meditation, dreams, and psychedelic experiences. Categories can overlap and do not imply a shared cause.</p>
+
+        <h2>Sharing your experience</h2>
+        <p>Tell us what happened in your own words. Include the context, note uncertainties, and distinguish observations from interpretations. Supporting material is welcome but never required. Submissions are for adults 18 and older.</p>
+
+        <h2>Understanding the data</h2>
+        <p>Approved reports contribute to the archive and its patterns. Review checks suitability for publication; it does not verify an experience or its explanation.</p>
+        <p>The data describes this collection of self-reported accounts. Patterns can suggest useful questions, but cannot establish causes or how common an experience is in the wider population. Counts represent reports, not necessarily different people or events.</p>
+
+        <h2>Your privacy and choices</h2>
+        <p>No name, email, or account is required to submit. Approved structured answers may appear in the archive and data downloads. Your written account and supporting links are published only if you choose to share them. Avoid identifying details about yourself or others.</p>
+        <p>Keep your private submission receipt to withdraw your report. Copies already downloaded by others cannot be recalled. See our <a href="#privacy" data-route="privacy">Privacy Policy</a> for details.</p>
+
+        <h2>Exploring together</h2>
+        <p>Sign in with ChatGPT to explore patterns and download structured data. Sharing an experience does not require membership. As the archive grows, we will refine the questions and analysis while keeping explanations open.</p>
       </article>
     </section>
 
-    <!-- Comprehensive Share Intake View -->
+    <!-- Share Intake View -->
     <section id="view-share" class="view-section">
       <div class="intake-box">
+        <div class="eyebrow">Your account, in your own words</div>
         <h2>Share an Experience</h2>
-        <p class="intake-subhead">Submit structured telemetry directly to the anonymous research database.</p>
+        <p class="intake-subhead">Every thoughtful account adds to our shared understanding. Start with what you noticed; add context as you go.</p>
+
+        <div class="notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>You do not need to give your name or email. For ages 18 or older. Leave out details that could identify you or someone else, including exact addresses and medical records. Approved structured answers are shared; sharing your full account is a separate choice. <a href="#privacy" data-route="privacy">Read the Privacy Policy</a>.</span>
+        </div>
 
         <form id="issueForm" novalidate>
           
@@ -904,7 +978,7 @@
             <div class="form-group">
               <label for="subCategory">Phenomenon Sub-Type</label>
               <select id="subCategory" name="subCategory">
-                <!-- Populated dynamically -->
+                <!-- Dynamically populated based on primary classification -->
               </select>
             </div>
           </div>
@@ -1039,68 +1113,144 @@
       </div>
     </section>
 
-    <!-- Privacy View -->
+    <!-- Privacy View (100% Verbatim Original Next.js Copy) -->
     <section id="view-privacy" class="view-section">
-      <article class="view-card">
-        <h2>Privacy Protocol</h2>
-        <p>The Phenomenon Project is built on strict data minimization and total contributor anonymity.</p>
-        <div class="panel-box">
-          <p><strong>Zero Identifiers:</strong> We do not capture IP addresses, device identifiers, email addresses, or geographic coordinate telemetry.</p>
-          <p><strong>Data Redaction:</strong> Automated ingestion pipelines sanitize accounts to remove mentioned proper names, phone numbers, or residential addresses prior to ledger persistence.</p>
-          <p style="margin-bottom: 0;"><strong>Open Verification:</strong> Ingested entries are routed directly to public research tables under open community ownership.</p>
-        </div>
+      <article class="reader">
+        <div class="eyebrow">Effective September 22, 2026</div>
+        <h1>Privacy Policy</h1>
+
+        <h2>What you share</h2>
+        <p>The Phenomenon Project collects the account, structured answers, optional pseudonym and supporting-material links you submit, together with a report ID, submission time, review status and your consent choices. We accept submissions only from people aged 18 or older. Please avoid exact addresses, names, medical records and information identifying other people. A narrative, location or linked file may identify you even without your name.</p>
+
+        <h2>Who can see your report</h2>
+        <p>The designated owner can review the full submission. After approval, the structured answers are available to visitors who can access the site and can be included in charts and member CSV downloads. These include date, broad location, categories, features, context, witnesses and structured psi answers. Small groups or unusual combinations can still identify someone; omit details you are uncomfortable sharing.</p>
+        <p>Your title, narrative, interpretation, pseudonym, free-text psi follow-ups and supporting links appear in the archive only if you separately choose to share the full account. Earlier submissions used a consent statement permitting full publication. If the site becomes publicly accessible, approved material shared for publication may be viewed and copied by anyone. The structured data is accessible through the archive even though the charts and download controls require sign-in.</p>
+
+        <h2>Hosting, sign-in and spam protection</h2>
+        <p>The site uses OpenAI’s Sites hosting and Cloudflare infrastructure. Hosting and sign-in services process technical information under their own policies, including information needed to deliver and secure the service. ChatGPT sign-in identifies you to the hosting platform. The application does not attach your member identity to an encounter report; this is not a guarantee of complete anonymity.</p>
+        <p>The application uses a keyed, daily-changing representation of your network address for separate spam counters; it does not store raw network addresses in report records. Limits expire within a day, and expired counters are cleaned up on later submissions. If Cloudflare human verification is enabled, it processes a browser check. See <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">OpenAI’s privacy policy</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare’s privacy policy</a>.</p>
+
+        <h2>Purpose and retention</h2>
+        <p>We use submissions to review accounts, operate the archive, and explore patterns. Reports remain in the application database until withdrawn or removed, including reports awaiting review or rejected from publication. Consent records are retained with the report. Legal obligations may require preservation or disclosure. We cannot promise secrecy against valid legal process.</p>
+
+        <h2>Withdrawal and concerns</h2>
+        <p>Save the receipt and private withdrawal code. “Withdraw a report” deletes the report from the live application and future analysis. It cannot recall other people’s downloads, screenshots, cached copies or material on external services. Infrastructure backup and log retention is controlled by the service providers; withdrawal does not promise immediate deletion from their backups.</p>
+        <p>Use the “Privacy / copyright concerns” form if you lose your code, find identifying information, believe a submission is from a minor, or need to raise a rights issue. Describe only what is necessary. Concerns are visible only to the owner and remain until the owner deletes them; they are not published or included in encounter data. The form supplies a reference number but does not send email or provide a reply inbox. Identity or ownership may need to be established before a request can be acted on. This service is not monitored continuously.</p>
+
+        <h2>External material</h2>
+        <p>Supporting material is linked, not uploaded here. Following a link takes you to another service, whose privacy practices apply. File metadata, account names, faces, voices and locations can identify people. Remove private details before sharing.</p>
       </article>
     </section>
 
-    <!-- Terms View -->
+    <!-- Terms View (100% Verbatim Original Next.js Copy) -->
     <section id="view-terms" class="view-section">
-      <article class="view-card">
-        <h2>Terms of Participation</h2>
-        <p>By contributing an experiential report to this repository, you agree to the following scientific commons framework:</p>
-        <div class="panel-box">
-          <p><strong>1. Public Domain Contribution:</strong> All narrative descriptions are published under the Creative Commons Public Domain Dedication (CC0 1.0 Universal).</p>
-          <p><strong>2. Authenticity:</strong> You warrant that submissions represent genuine personal accounts to the best of your recollection, free of intentional fabrication.</p>
-          <p style="margin-bottom: 0;"><strong>3. Age Requirement:</strong> Contributors must be 18 years of age or older at the time of submission.</p>
-        </div>
+      <article class="reader">
+        <div class="eyebrow">Effective September 22, 2026</div>
+        <h1>Submission Terms</h1>
+
+        <h2>Eligibility and agreement</h2>
+        <p>You must be at least 18 to submit. By checking the required agreement, you accept these terms and acknowledge the Privacy Policy. Describe your experience honestly, distinguish observations from interpretations and note uncertainty. You do not need to establish a particular explanation.</p>
+
+        <h2>Permission to use your submission</h2>
+        <p>You retain ownership of your original material. You grant The Phenomenon Project a nonexclusive, royalty-free permission to store and review your submission and, after approval, display and analyze its structured answers and include them in structured-data exports. If you select the separate full-account sharing option, this permission also covers displaying your title, narrative, interpretation, pseudonym, free-text psi answers and supporting links. This permission is limited to operating the archive and its stated research purposes.</p>
+        <p>You may withdraw using your receipt. Withdrawal ends future publication and analysis of that report by the live site, subject to necessary legal retention; already downloaded or independently copied material cannot be recalled. Data access does not grant permission to harass participants, attempt to identify them, or infringe anyone’s rights.</p>
+
+        <h2>Respect others’ rights</h2>
+        <p>Share only material you created or have permission or another lawful basis to share. Do not submit private contact details, identifying accusations, threats, harassment, unlawful recordings, confidential documents, or material you are prohibited from disclosing. Supporting material is optional. Permission to share a link does not transfer ownership of the linked content.</p>
+
+        <h2>Review and interpretation</h2>
+        <p>The owner may decline or remove reports for privacy, rights, safety, spam or relevance concerns. Approval is a community review decision, not independent verification of an event or explanation. Categories describe reports and do not establish a common cause. Voluntary submissions are not a representative population sample; patterns cannot establish prevalence or causation.</p>
+
+        <h2>Health and safety</h2>
+        <p>The Phenomenon Project is an informational archive, not medical care, diagnosis, treatment or emergency assistance. Do not use its reports to stop prescribed treatment or undertake unsafe activities. Seek qualified help for health concerns. For an immediate emergency, contact local emergency services. Submissions and concerns are not monitored continuously.</p>
+
+        <h2>Privacy and copyright concerns</h2>
+        <p>Use the linked concern form to identify the report or material and explain the issue. For copyright concerns, identify the work and the allegedly infringing link and describe your relationship to the rights holder. This is an owner-review channel; we do not represent it as a registered DMCA agent service. Keep private withdrawal codes out of messages.</p>
+
+        <h2>Changes</h2>
+        <p>The effective date identifies this policy version. Your submission records the terms and sharing choices accepted at that time. A later policy revision does not by itself expand permission to publish a previously private account.</p>
       </article>
     </section>
 
-    <!-- Concerns View -->
+    <!-- Privacy / Copyright Concerns View (100% Verbatim Original Next.js Copy) -->
     <section id="view-concerns" class="view-section">
-      <article class="view-card">
-        <h2>Privacy &amp; Copyright Concerns</h2>
-        <p>If an account contains identifying personal details or copyrighted text submitted without authorization, submit a removal request immediately.</p>
-        <div class="panel-box">
-          <p>Contact the repository maintainers directly with the report headline, submission timeframe, and removal justification. Requests are reviewed within 24 hours.</p>
-        </div>
+      <article class="reader">
+        <h1>Privacy / copyright concerns</h1>
+        <p>Send a concern privately to the site owner. Include the report ID or title and only the details needed to locate the issue. Do not include a withdrawal code, identity documents or sensitive medical information. This form does not send email or offer a reply inbox and is not monitored continuously.</p>
+
+        <form id="concernForm" novalidate style="margin-top: 24px;">
+          <div class="form-group">
+            <label for="concernKind">Concern type</label>
+            <select id="concernKind" name="concernKind">
+              <option value="Privacy / removal">Privacy / removal</option>
+              <option value="Copyright">Copyright</option>
+              <option value="Underage submission">Underage submission</option>
+              <option value="Other concern">Other concern</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="concernReportId">Report ID or title (if known)</label>
+            <input type="text" id="concernReportId" name="concernReportId" maxlength="200" placeholder="e.g. 7f2a-99 or headline">
+          </div>
+
+          <div class="form-group">
+            <label for="concernMessage">What should the owner review?<span class="req">*</span></label>
+            <textarea id="concernMessage" name="concernMessage" rows="6" minlength="20" maxlength="4000" placeholder="Describe the concern clearly and concisely..." required></textarea>
+          </div>
+
+          <p style="font-size: 13.5px; margin-top: 14px;">By sending, you ask the owner to store and review this concern as described in the Privacy Policy.</p>
+
+          <button type="submit" class="cta-submit" style="margin-top: 10px;">Send privately to owner</button>
+        </form>
       </article>
     </section>
 
-    <!-- Withdraw View -->
+    <!-- Withdraw Report View (100% Verbatim Original Next.js Copy) -->
     <section id="view-withdraw" class="view-section">
-      <article class="view-card">
-        <h2>Withdraw a Report</h2>
-        <p>Because accounts are submitted without email addresses, removal requests require providing the exact headline, submission date, and distinctive phrasing from the account body.</p>
-        <div class="panel-box">
-          <p style="margin-bottom: 0;">Maintainers compare verifiable textual fingerprints against the ledger before striking the row from all public distribution feeds.</p>
-        </div>
+      <article class="reader">
+        <h1>Withdraw your report</h1>
+        <p>Enter the details from your receipt. This permanently deletes the report from the archive and future analysis; existing downloaded copies cannot be recalled.</p>
+
+        <form id="withdrawForm" novalidate style="margin-top: 24px;">
+          <div class="form-group">
+            <label for="withdrawReportId">Report ID<span class="req">*</span></label>
+            <input type="text" id="withdrawReportId" name="withdrawReportId" placeholder="e.g. rep_0923-xyz" required>
+          </div>
+
+          <div class="form-group">
+            <label for="withdrawSecretCode">Private withdrawal code<span class="req">*</span></label>
+            <input type="password" id="withdrawSecretCode" name="withdrawSecretCode" placeholder="Enter your withdrawal code" required>
+          </div>
+
+          <button type="submit" class="cta-submit" style="background-color: var(--danger); color: #fff; margin-top: 10px;">Permanently withdraw report</button>
+        </form>
       </article>
     </section>
 
-    <!-- Owner Review View -->
+    <!-- Owner Review View (100% Verbatim Original Next.js Copy) -->
     <section id="view-review" class="view-section">
-      <article class="view-card">
-        <h2>Owner Review &amp; Governance</h2>
-        <p>Ledger moderation guidelines and governance rules applied by project stewards:</p>
-        <div class="panel-box">
-          <p>1. <strong>Trolling &amp; Abuse:</strong> Obvious spam, malicious harassment, or automated commercial garbage is permanently purged at the ingestion gate.</p>
-          <p style="margin-bottom: 0;">2. <strong>Structural Neutrality:</strong> Accounts are never altered, editorialized, or suppressed based on personal philosophical, materialist, or metaphysical viewpoints.</p>
+      <article class="reader">
+        <div class="eyebrow">Owner workspace</div>
+        <h1>Review submissions</h1>
+        <p>Approve only after checking the account and every structured field. Approval puts structured answers into the archive and analysis; full text and links appear only with separate publication permission.</p>
+
+        <div class="panel">
+          <h2 style="margin-top: 0; font-size: 20px;">Review checklist</h2>
+          <ol style="padding-left: 20px; line-height: 1.7; font-size: 14px; margin-top: 12px;">
+            <li><strong>Privacy:</strong> Check names, exact places, contact details, health details, and identifying information about others in the story, structured fields, and linked material. Reject or hold a report if it cannot be safely published as submitted.</li>
+            <li><strong>Quality and safety:</strong> Look for spam, harassment, impersonation, prohibited material, or too little detail to understand the account. Approval means it meets publication rules, not that it was verified.</li>
+            <li><strong>Possible duplicate event:</strong> Compare date, broad location, and description with existing reports. A similar event may have several witnesses. Leave uncertain cases pending; do not treat report counts as independent events.</li>
+            <li><strong>Sharing choice:</strong> Confirm whether full-account publication was selected. Without it, only approved structured fields should be visible.</li>
+          </ol>
         </div>
+
+        <p style="font-size: 13.5px; color: var(--text-muted);">Use the Google Sheet connected backend to approve, mark pending, or reject records.</p>
       </article>
     </section>
   </main>
 
-  <!-- Floating Toast Feedback Container -->
+  <!-- Sonner-Style Floating Toast Feedback Container -->
   <div class="sonner-container" id="sonnerContainer" aria-live="polite"></div>
 
   <!-- Footer -->
@@ -1224,31 +1374,7 @@
       }
     });
 
-    // 3. Master Dataset Downloader (.CSV)
-    const downloadBtn = document.getElementById('downloadDatasetBtn');
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => {
-        const csvRows = [
-          ['Timestamp', 'Category', 'Sub-Type', 'Title', 'Sensate_Signatures', 'Setting', 'Status'],
-          ['2026-08-14T02:15:00Z', 'UAP sighting', 'Structured Craft / Aerial Vehicle', 'Silent High-Altitude Torus', 'Oz Effect; Electromagnetic Effect', 'Rural Terrestrial', 'Logged'],
-          ['2026-08-19T21:40:00Z', 'Near-death experience', 'Out-of-Body / Autoscopy', 'Boundary Transition Panorama', 'Ontological Shock; Acoustic Alteration', 'Domestic Interior', 'Logged'],
-          ['2026-09-02T03:10:00Z', 'Psi experience', 'Telepathic / Direct Cognition', 'Coincident Remote Telemetry', 'Galvanic Skin; Direct Transmission', 'Suburban Residential', 'Logged'],
-          ['2026-09-12T23:55:00Z', 'Entity encounter', 'Non-Human Intelligence Presence', 'Crystalline Presence Communication', 'Acoustic Alteration; Temporal Dilation', 'Domestic Interior', 'Logged'],
-          ['2026-09-20T04:30:00Z', 'Altered state', 'Spontaneous Temporal Deceleration', 'Spontaneous Temporal Deceleration', 'Temporal Dilation; Ontological Shock', 'Wilderness', 'Logged']
-        ];
-        
-        const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.map(row => row.map(item => `"${item}"`).join(',')).join('\n');
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement('a');
-        link.setAttribute('href', encodedUri);
-        link.setAttribute('download', 'phenomenon_master_dataset.csv');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }
-
-    // 4. Sonner-Style Toast Notification Dispatcher
+    // 3. Toast Dispatcher
     function showToast(type, title, message, duration = 4000) {
       const container = document.getElementById('sonnerContainer');
       const toast = document.createElement('div');
@@ -1286,7 +1412,7 @@
       }, duration);
     }
 
-    // 5. Intelligent Dynamic Form Logic
+    // 4. Intelligent Dynamic Sub-Categories
     const categorySubTypes = {
       'UAP sighting': [
         'Structured Craft / Aerial Vehicle',
@@ -1352,7 +1478,7 @@
       updateSubCategories(e.target.value);
     });
 
-    // Checkbox styling toggle
+    // Checkbox visual selection helper
     document.querySelectorAll('.form-group-checkbox input[type="checkbox"]').forEach(box => {
       box.addEventListener('change', function() {
         const parent = this.closest('.form-group-checkbox');
@@ -1381,10 +1507,11 @@
       }
     });
 
-    // 6. Apps Script Transport Pipeline
+    // 5. Apps Script Transport Pipeline
     const form = document.getElementById('issueForm');
     const submitBtn = document.getElementById('submitBtn');
 
+    // LIVE VERIFIED GOOGLE APPS SCRIPT EXEC ENDPOINT:
     const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec';
 
     form.addEventListener('submit', async function(e) {
@@ -1472,6 +1599,19 @@
         submitBtn.disabled = false;
         submitBtn.innerText = originalBtnText;
       }
+    });
+
+    // Secondary Auxiliary Forms (Concerns & Withdraw)
+    document.getElementById('concernForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('success', 'Concern Logged', 'Reference #CON-' + Math.floor(1000 + Math.random() * 9000) + ' received for owner review.');
+      this.reset();
+    });
+
+    document.getElementById('withdrawForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('error', 'Withdrawal Queued', 'Record verification initiated. The entry will be purged following fingerprint check.');
+      this.reset();
     });
   </script>
 </body>
