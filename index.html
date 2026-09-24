@@ -808,18 +808,19 @@
         report: desc
       };
 
-      const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec";
+      // PASTE YOUR GOOGLE WEB APP URL LINK BETWEEN THE QUOTES BELOW:
+      const googleWebAppUrl = "https://google.com";
 
-      // Direct Native Google Web App Ingestion Queue
+      // Beams data silently straight to your private Google Sheet
       fetch(googleWebAppUrl, {
         method: 'POST',
         headers: {
-          // Using text/plain completely bypasses browser CORS locks while keeping your data packet intact
           'Content-Type': 'text/plain'
         },
         body: JSON.stringify(formData)
       })
       .then(response => {
+        // Success execution path
         submitButton.innerText = "Transmission Complete";
         alert("Your experience report has been processed anonymously. Thank you for contributing to open research.");
         document.getElementById('issueForm').reset();
@@ -835,8 +836,7 @@
         submitButton.disabled = false;
         submitButton.innerText = originalButtonText;
       });
-
-
+    });
   </script>
 </body>
 </html>
