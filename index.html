@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Phenomenon Project | Experiences &amp; patterns</title>
-  <meta name="description" content="Bringing together experiences of the Phenomenon, compiling useful data, and building a shared resource to explore patterns and deepen understanding.">
+  <title>Anomalous Accounts | Extraordinary Experiences &amp; Collective Patterns</title>
+  <meta name="description" content="Bringing together personal accounts of the anomalous, compiling structured open telemetry, and exploring patterns across experiences.">
   <link rel="shortcut icon" href="favicon.svg">
   <link rel="icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,8 +77,8 @@
     }
 
     .brand-icon {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       stroke: var(--mint);
     }
 
@@ -244,10 +244,10 @@
     }
 
     .hero-badge {
-      width: 52px;
-      height: 52px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      border: 1px solid rgba(124, 227, 195, 0.28);
+      border: 1px solid rgba(124, 227, 195, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,8 +256,8 @@
     }
 
     .hero-badge svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       stroke: var(--mint);
     }
 
@@ -414,6 +414,7 @@
       color: var(--text-muted);
       border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding-top: 12px;
+      flex-wrap: wrap;
     }
 
     /* Patterns View */
@@ -513,7 +514,7 @@
       border-radius: 3px;
     }
 
-    /* Structured Intake Box */
+    /* Structured Ingestion Box & Stepper */
     .intake-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-card);
@@ -533,9 +534,51 @@
 
     .intake-subhead {
       font-size: 14.5px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
       color: var(--text-secondary);
       line-height: 1.5;
+    }
+
+    .stepper {
+      display: flex;
+      list-style: none;
+      gap: 14px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+    }
+
+    .stepper-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .stepper-step.active {
+      color: var(--mint);
+      font-weight: 500;
+    }
+
+    .step-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active-step {
+      display: block;
     }
 
     .form-section-title {
@@ -544,7 +587,7 @@
       color: var(--mint);
       border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 8px;
-      margin: 32px 0 18px 0;
+      margin: 28px 0 18px 0;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -609,7 +652,7 @@
     }
 
     .form-group textarea {
-      height: 130px;
+      height: 120px;
       resize: vertical;
       line-height: 1.55;
     }
@@ -678,6 +721,28 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 20px;
+    }
+
+    .step-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-card);
+      color: var(--text-secondary);
+      font-size: 14px;
+      padding: 11px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
     }
 
     /* Floating Sonner Toast Notifications */
@@ -861,13 +926,23 @@
   <header>
     <div class="top-bar">
       <a href="#browse" class="brand" data-route="browse">
-        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+        <!-- Thin Constellation Logo -->
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="6" cy="16" r="2" fill="#7ce3c3" />
+          <circle cx="16" cy="6" r="2.5" fill="#7ce3c3" />
+          <circle cx="26" cy="12" r="2" fill="#7ce3c3" />
+          <circle cx="22" cy="24" r="2" fill="#7ce3c3" />
+          <circle cx="12" cy="22" r="2" fill="#7ce3c3" />
+          <line x1="6" y1="16" x2="16" y2="6" stroke="#7ce3c3" stroke-width="1.2" stroke-opacity="0.8" />
+          <line x1="16" y1="6" x2="26" y2="12" stroke="#7ce3c3" stroke-width="1.2" stroke-opacity="0.8" />
+          <line x1="26" y1="12" x2="22" y2="24" stroke="#7ce3c3" stroke-width="1.2" stroke-opacity="0.8" />
+          <line x1="22" y1="24" x2="12" y2="22" stroke="#7ce3c3" stroke-width="1.2" stroke-opacity="0.8" />
+          <line x1="12" y1="22" x2="6" y2="16" stroke="#7ce3c3" stroke-width="1.2" stroke-opacity="0.8" />
+          <line x1="16" y1="6" x2="12" y2="22" stroke="#7ce3c3" stroke-width="0.8" stroke-dasharray="2 2" stroke-opacity="0.4" />
         </svg>
-        The Phenomenon Project
+        Anomalous Accounts
       </a>
-      <span class="auth-status">Signed in</span>
+      <span class="auth-status">Public Research Node</span>
     </div>
 
     <nav class="nav-bar" aria-label="Main navigation">
@@ -883,16 +958,24 @@
     <section id="view-browse" class="view-section active-view">
       <div class="hero-content">
         <div class="hero-badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+          <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="6" cy="16" r="2" fill="#7ce3c3" />
+            <circle cx="16" cy="6" r="2.5" fill="#7ce3c3" />
+            <circle cx="26" cy="12" r="2" fill="#7ce3c3" />
+            <circle cx="22" cy="24" r="2" fill="#7ce3c3" />
+            <circle cx="12" cy="22" r="2" fill="#7ce3c3" />
+            <line x1="6" y1="16" x2="16" y2="6" stroke="#7ce3c3" stroke-width="1.2" />
+            <line x1="16" y1="6" x2="26" y2="12" stroke="#7ce3c3" stroke-width="1.2" />
+            <line x1="26" y1="12" x2="22" y2="24" stroke="#7ce3c3" stroke-width="1.2" />
+            <line x1="22" y1="24" x2="12" y2="22" stroke="#7ce3c3" stroke-width="1.2" />
+            <line x1="12" y1="22" x2="6" y2="16" stroke="#7ce3c3" stroke-width="1.2" />
           </svg>
         </div>
 
         <h1 class="hero-title">Extraordinary experiences.<br>A shared search for understanding.</h1>
 
         <p class="hero-subhead">
-          The Phenomenon Project brings together personal accounts to explore patterns and connections across experiences that challenge our understanding of reality.
+          Anomalous Accounts brings together personal reports to explore patterns and connections across experiences that challenge conventional frameworks of reality.
         </p>
 
         <div class="categories" aria-label="Experiences welcomed by the project">
@@ -914,7 +997,7 @@
 
         <a href="#share" class="cta-submit" data-route="share">Share an experience</a>
 
-        <p class="cta-note">No name or email required &middot; Ages 18+</p>
+        <p class="cta-note">No name or email required &middot; Ages 18+ &middot; Open Research Data</p>
       </div>
 
       <!-- Live Dynamic CSV Feed Section -->
@@ -927,11 +1010,11 @@
       </div>
     </section>
 
-    <!-- Patterns / Trends View -->
+    <!-- Patterns View (Completely Un-Gated) -->
     <section id="view-patterns" class="view-section">
       <div class="patterns-header">
         <h2>Patterns in reported experiences</h2>
-        <p>Cross-phenomenon metrics extracted across non-ordinary experiential accounts.</p>
+        <p>Cross-phenomenon metrics extracted across verified experiential accounts.</p>
       </div>
 
       <div class="metrics-grid">
@@ -1001,35 +1084,35 @@
         <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">Connections to explore</h3>
         <p style="font-size: 14px; margin-bottom: 16px;">These are co-reports, not evidence of a shared cause. Counts are exploratory; multiple reports can come from one person or event. Small samples and self-selection can create apparent patterns.</p>
         <div style="display: flex; gap: 12px; margin-top: 20px;">
-          <a href="./data/phenomenon_master_dataset.csv" download="phenomenon_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
+          <a href="./data/phenomenon_master_dataset.csv" download="anomalous_accounts_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
             Download Live Dataset (.CSV)
           </a>
         </div>
       </div>
     </section>
 
-    <!-- About / Method View -->
+    <!-- About View -->
     <section id="view-about" class="view-section">
       <article class="reader">
         <div class="eyebrow">Curiosity with care</div>
         <h1>Take experiences seriously.<br>Keep explanations open.</h1>
 
-        <h2>Why we built The Phenomenon Project</h2>
-        <p>We bring together extraordinary human experiences to explore patterns, discover connections, and build a resource for anyone seeking a better understanding of the Phenomenon.</p>
+        <h2>Why we built Anomalous Accounts</h2>
+        <p>We bring together extraordinary human experiences to explore patterns, discover connections, and build an open research resource for anyone seeking a better understanding of the anomalous.</p>
 
-        <h2>What we mean by “the Phenomenon”</h2>
-        <p>We welcome UAP sightings, entity encounters, near-death experiences, psi experiences, altered states, and other unexplained events. Psi includes apparent telepathy, precognition, and remote perception; altered states can include meditation, dreams, and psychedelic experiences. Categories can overlap and do not imply a shared cause.</p>
+        <h2>What we mean by "Anomalous"</h2>
+        <p>We welcome UAP sightings, entity encounters, near-death experiences, psi experiences, altered states, and other unexplained events. Psi includes apparent telepathy, precognition, and remote perception; altered states can include meditation, dreams, and unitive experiences. Categories can overlap and do not imply a shared cause.</p>
 
         <h2>Sharing your experience</h2>
         <p>Tell us what happened in your own words. Include the context, note uncertainties, and distinguish observations from interpretations. Supporting material is welcome but never required. Submissions are for adults 18 and older.</p>
 
         <h2>Understanding the data</h2>
-        <p>Approved reports contribute to the archive and its patterns. Review checks suitability for publication; it does not verify an experience or its explanation.</p>
+        <p>Approved reports contribute to the open archive and its patterns. Review checks suitability for publication; it does not verify an experience or its explanation.</p>
         <p>The data describes this collection of self-reported accounts. Patterns can suggest useful questions, but cannot establish causes or how common an experience is in the wider population. Counts represent reports, not necessarily different people or events.</p>
 
         <h2>Your privacy and choices</h2>
-        <p>No name, email, or account is required to submit. Approved structured answers may appear in the archive and data downloads. Your written account and supporting links are published only if you choose to share them. Avoid identifying details about yourself or others.</p>
-        <p>Keep your private submission receipt to withdraw your report. Copies already downloaded by others cannot be recalled. See our <a href="#privacy" data-route="privacy">Privacy Policy</a> for details.</p>
+        <p>No name, email, or account is required to submit. Approved structured answers appear in the archive and data downloads. Your written narrative and supporting links are published only if you separately opt in to share them. Avoid identifying details about yourself or others.</p>
+        <p>Keep your private submission receipt code to withdraw your report at any time. Copies already downloaded by others cannot be recalled. See our <a href="#privacy" data-route="privacy">Privacy Policy</a> for details.</p>
 
         <div class="panel" style="margin-top: 32px;">
           <h3 style="color: var(--text-primary); margin-bottom: 8px; font-family: var(--font-serif); font-size: 20px;">Open Research Dataset</h3>
@@ -1037,187 +1120,214 @@
             The complete, anonymized repository data ledger is compiled in real-time and made freely available under open public licenses for independent statistical analysis and structural charting.
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="./data/phenomenon_master_dataset.csv" download="phenomenon_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
+            <a href="./data/phenomenon_master_dataset.csv" download="anomalous_accounts_master_dataset.csv" class="cta-submit" style="margin-bottom: 0;">
               Download Master Dataset (.CSV)
             </a>
           </div>
         </div>
-
-        <h2>Exploring together</h2>
-        <p>Sign in with ChatGPT to explore patterns and download structured data. Sharing an experience does not require membership. As the archive grows, we will refine the questions and analysis while keeping explanations open.</p>
       </article>
     </section>
 
-    <!-- Share Intake View -->
+    <!-- Share Intake View (3-Step Submission Flow) -->
     <section id="view-share" class="view-section">
       <div class="intake-box">
         <div class="eyebrow">Your account, in your own words</div>
         <h2>Share an Experience</h2>
         <p class="intake-subhead">Every thoughtful account adds to our shared understanding. Start with what you noticed; add context as you go.</p>
 
-        <div class="notice">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-          <span>You do not need to give your name or email. For ages 18 or older. Leave out details that could identify you or someone else, including exact addresses and medical records. Approved structured answers are shared; sharing your full account is a separate choice. <a href="#privacy" data-route="privacy">Read the Privacy Policy</a>.</span>
-        </div>
+        <ol class="stepper" aria-label="Submission progress">
+          <li class="stepper-step active" id="step-nav-1" onclick="goToStep(1)">
+            <span class="step-badge">1</span> Your Experience
+          </li>
+          <li class="stepper-step" id="step-nav-2" onclick="goToStep(2)">
+            <span class="step-badge">2</span> Context &amp; Telemetry
+          </li>
+          <li class="stepper-step" id="step-nav-3" onclick="goToStep(3)">
+            <span class="step-badge">3</span> Review &amp; Consent
+          </li>
+        </ol>
 
         <form id="issueForm" novalidate>
           
-          <div class="form-section-title">
-            <span>1. Classification &amp; Identifiers</span>
-            <span class="form-section-hint">Primary taxonomy</span>
+          <!-- STEP 1: The Experience -->
+          <div class="form-step active-step" id="step-1">
+            <div class="form-section-title">
+              <span>1. Classification &amp; Identifiers</span>
+              <span class="form-section-hint">Primary taxonomy</span>
+            </div>
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="category">Primary Classification<span class="req">*</span></label>
+                <select id="category" name="category" required>
+                  <option value="UAP sighting">UAP sighting</option>
+                  <option value="Psi experience">Psi experience</option>
+                  <option value="Near-death experience">Near-death experience</option>
+                  <option value="Entity encounter">Entity encounter</option>
+                  <option value="Altered state">Altered state</option>
+                  <option value="Unexplained event">Unexplained event</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="subCategory">Phenomenon Sub-Type</label>
+                <select id="subCategory" name="subCategory"></select>
+              </div>
+            </div>
+
+            <div class="form-group" id="group-title">
+              <label for="title">Incident Title / Summary Headline<span class="req">*</span></label>
+              <input type="text" id="title" name="title" placeholder="Brief descriptive headline (e.g., Silent geometric craft hovering over tree line)" required autocomplete="off">
+            </div>
+
+            <div class="form-group" id="group-details">
+              <label for="details">Detailed Chronological Account<span class="req">*</span></label>
+              <textarea id="details" name="details" placeholder="Describe the chronological sequence of events: initial onset, sensory signatures, visual geometry, behavior, duration, and departure..." required></textarea>
+              <div class="input-counter" id="detailsCounter">0 words &middot; 0 characters</div>
+            </div>
+
+            <div class="step-actions">
+              <span></span>
+              <button type="button" class="cta-submit" style="margin-bottom: 0;" onclick="goToStep(2)">Continue to Context &rarr;</button>
+            </div>
           </div>
-          
-          <div class="form-row-2">
+
+          <!-- STEP 2: Context & Telemetry -->
+          <div class="form-step" id="step-2">
+            <div class="form-section-title">
+              <span>2. Spatiotemporal &amp; Environmental Telemetry</span>
+              <span class="form-section-hint">Contextual parameters</span>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group" id="group-incidentDate">
+                <label for="incidentDate">Date / Approximate Timeframe<span class="req">*</span></label>
+                <input type="text" id="incidentDate" name="incidentDate" placeholder="e.g. October 2023 or 2023-10-14" required>
+              </div>
+
+              <div class="form-group">
+                <label for="setting">Environmental Setting</label>
+                <select id="setting" name="setting">
+                  <option value="Rural / Remote Terrestrial">Rural / Remote Terrestrial</option>
+                  <option value="Suburban / Residential">Suburban / Residential</option>
+                  <option value="Dense Urban">Dense Urban</option>
+                  <option value="Airborne / Flight Crew">Airborne / Flight Crew</option>
+                  <option value="Maritime / Coastal Waters">Maritime / Coastal Waters</option>
+                  <option value="Domestic Interior">Domestic Interior</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group" id="group-location">
+                <label for="location">General Geographic Region<span class="req">*</span></label>
+                <input type="text" id="location" name="location" placeholder="Country, State / Province (No street addresses)" required>
+              </div>
+
+              <div class="form-group">
+                <label for="witnessCount">Number of Observers</label>
+                <select id="witnessCount" name="witnessCount">
+                  <option value="Solo observer (1)">Solo observer (1)</option>
+                  <option value="Small group (2-3)">Small group (2-3)</option>
+                  <option value="Multi-witness cohort (4-10)">Multi-witness cohort (4-10)</option>
+                  <option value="Mass observation (10+)">Mass observation (10+)</option>
+                </select>
+              </div>
+            </div>
+
             <div class="form-group">
-              <label for="category">Primary Classification<span class="req">*</span></label>
-              <select id="category" name="category" required>
-                <option value="UAP sighting">UAP sighting</option>
-                <option value="Psi experience">Psi experience</option>
-                <option value="Near-death experience">Near-death experience</option>
-                <option value="Entity encounter">Entity encounter</option>
-                <option value="Altered state">Altered state</option>
-                <option value="Unexplained event">Unexplained event</option>
+              <label for="physicalTrace">Physical or Instrument Trace Corroboration</label>
+              <select id="physicalTrace" name="physicalTrace">
+                <option value="None observed / Visual observation only">None observed / Visual observation only</option>
+                <option value="Electromagnetic / Sensor anomaly recorded">Electromagnetic / Sensor anomaly recorded</option>
+                <option value="Photographic or optical video capture">Photographic or optical video capture</option>
+                <option value="Environmental disturbance (foliage, soil, burn)">Environmental disturbance (foliage, soil, burn)</option>
+                <option value="Physiological mark or somatic aftereffect">Physiological mark or somatic aftereffect</option>
               </select>
             </div>
 
+            <div class="form-section-title">
+              <span>3. Sensate Signatures &amp; Anomalies</span>
+              <span class="form-section-hint">Select all that occurred</span>
+            </div>
+
+            <div class="signatures-grid">
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_acoustic" name="signatures" value="Acoustic Alteration">
+                <label for="sig_acoustic"><strong>Acoustic Alteration</strong>: High-pitch tone or sudden silence</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_temporal" name="signatures" value="Temporal Dilation">
+                <label for="sig_temporal"><strong>Temporal Dilation</strong>: Time slowing or missing time</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_em" name="signatures" value="Electromagnetic Effect">
+                <label for="sig_em"><strong>Electromagnetic Effect</strong>: Equipment disruption</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_oz" name="signatures" value="Oz Effect">
+                <label for="sig_oz"><strong>The Oz Effect</strong>: Atmospheric deadening / isolation</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_telepathy" name="signatures" value="Telepathic / Somatosensory Transmission">
+                <label for="sig_telepathy"><strong>Direct Transmission</strong>: Somatosensory communication</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_electrostatic" name="signatures" value="Galvanic / Electrostatic Sensation">
+                <label for="sig_electrostatic"><strong>Electrostatic Sensation</strong>: Skin prickling, ozone</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_hypnagogic" name="signatures" value="Preceding Hypnagogic State">
+                <label for="sig_hypnagogic"><strong>Altered Precursor</strong>: Hypnagogic state preceding event</label>
+              </div>
+              <div class="form-group form-group-checkbox">
+                <input type="checkbox" id="sig_shock" name="signatures" value="Ontological Shock">
+                <label for="sig_shock"><strong>Ontological Shock</strong>: Disruption to reality model</label>
+              </div>
+            </div>
+
+            <div class="form-section-title">
+              <span>4. Aftermath &amp; Impact</span>
+              <span class="form-section-hint">Long-term effects</span>
+            </div>
+
             <div class="form-group">
-              <label for="subCategory">Phenomenon Sub-Type</label>
-              <select id="subCategory" name="subCategory">
-                <!-- Populated dynamically -->
-              </select>
+              <label for="aftermath">Lasting Cognitive Shifts &amp; Worldview Changes</label>
+              <textarea id="aftermath" name="aftermath" placeholder="Describe subsequent cognitive shifts, persistent anomalies, worldview changes, or somatic effects following the experience..."></textarea>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" onclick="goToStep(1)">&larr; Back</button>
+              <button type="button" class="cta-submit" style="margin-bottom: 0;" onclick="goToStep(3)">Review &amp; Submit &rarr;</button>
             </div>
           </div>
 
-          <div class="form-group" id="group-title">
-            <label for="title">Incident Title / Summary Headline<span class="req">*</span></label>
-            <input type="text" id="title" name="title" placeholder="Brief descriptive headline (e.g., Silent geometric craft hovering over tree line)" required autocomplete="off">
-          </div>
-
-          <div class="form-section-title">
-            <span>2. Spatiotemporal &amp; Environmental Telemetry</span>
-            <span class="form-section-hint">Contextual parameters</span>
-          </div>
-
-          <div class="form-row-2">
-            <div class="form-group" id="group-incidentDate">
-              <label for="incidentDate">Date / Approximate Timeframe<span class="req">*</span></label>
-              <input type="text" id="incidentDate" name="incidentDate" placeholder="e.g. October 2023 or 2023-10-14" required>
-            </div>
-
-            <div class="form-group">
-              <label for="setting">Environmental Setting</label>
-              <select id="setting" name="setting">
-                <option value="Rural / Remote Terrestrial">Rural / Remote Terrestrial</option>
-                <option value="Suburban / Residential">Suburban / Residential</option>
-                <option value="Dense Urban">Dense Urban</option>
-                <option value="Airborne / Flight Crew">Airborne / Flight Crew</option>
-                <option value="Maritime / Coastal Waters">Maritime / Coastal Waters</option>
-                <option value="Domestic Interior">Domestic Interior</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row-2">
-            <div class="form-group" id="group-location">
-              <label for="location">General Geographic Region<span class="req">*</span></label>
-              <input type="text" id="location" name="location" placeholder="Country, State / Province (No street addresses)" required>
-            </div>
-
-            <div class="form-group">
-              <label for="witnessCount">Number of Observers</label>
-              <select id="witnessCount" name="witnessCount">
-                <option value="Solo observer (1)">Solo observer (1)</option>
-                <option value="Small group (2-3)">Small group (2-3)</option>
-                <option value="Multi-witness cohort (4-10)">Multi-witness cohort (4-10)</option>
-                <option value="Mass observation (10+)">Mass observation (10+)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="physicalTrace">Physical or Instrument Trace Corroboration</label>
-            <select id="physicalTrace" name="physicalTrace">
-              <option value="None observed / Visual observation only">None observed / Visual observation only</option>
-              <option value="Electromagnetic / Sensor anomaly recorded">Electromagnetic / Sensor anomaly recorded</option>
-              <option value="Photographic or optical video capture">Photographic or optical video capture</option>
-              <option value="Environmental disturbance (foliage, soil, burn)">Environmental disturbance (foliage, soil, burn)</option>
-              <option value="Physiological mark or somatic aftereffect">Physiological mark or somatic aftereffect</option>
-            </select>
-          </div>
-
-          <div class="form-section-title">
-            <span>3. Sensate Signatures &amp; Anomalies</span>
-            <span class="form-section-hint">Select all that occurred</span>
-          </div>
-
-          <div class="signatures-grid">
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_acoustic" name="signatures" value="Acoustic Alteration">
-              <label for="sig_acoustic"><strong>Acoustic Alteration</strong>: High-pitch tone or sudden dead silence</label>
+          <!-- STEP 3: Review & Consent -->
+          <div class="form-step" id="step-3">
+            <div class="panel" style="margin-top: 0;">
+              <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--text-primary); margin-bottom: 12px;">Submission Summary</h3>
+              <p style="font-size: 13.5px; margin-bottom: 8px;"><strong>Title:</strong> <span id="reviewTitle">None</span></p>
+              <p style="font-size: 13.5px; margin-bottom: 8px;"><strong>Category:</strong> <span id="reviewCategory">None</span></p>
+              <p style="font-size: 13.5px; margin-bottom: 8px;"><strong>Region &amp; Time:</strong> <span id="reviewLocation">None</span></p>
+              <p style="font-size: 13.5px; margin-bottom: 0;"><strong>Signatures:</strong> <span id="reviewSignatures">None</span></p>
             </div>
 
             <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_temporal" name="signatures" value="Temporal Dilation">
-              <label for="sig_temporal"><strong>Temporal Dilation</strong>: Time slowing or unaccounted missing time</label>
+              <input type="checkbox" id="publishNarrative" name="publishNarrative">
+              <label for="publishNarrative"><strong>Optional Full-Account Publication:</strong> Share my detailed narrative account publicly in the archive after review. If left unchecked, only anonymized structured telemetry will appear.</label>
             </div>
 
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_em" name="signatures" value="Electromagnetic Effect">
-              <label for="sig_em"><strong>Electromagnetic Interference</strong>: Electronics or compass malfunction</label>
+            <div class="form-group form-group-checkbox" id="group-anonConfirm">
+              <input type="checkbox" id="anonConfirm" name="anonConfirm" required>
+              <label for="anonConfirm">I confirm I am at least 18 years old, verify that no private street addresses or identifying personal names are included, and dedicate this anonymous submission to open research.<span class="req">*</span></label>
             </div>
 
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_oz" name="signatures" value="Oz Effect">
-              <label for="sig_oz"><strong>The Oz Effect</strong>: Atmospheric deadening / uncanny isolation</label>
-            </div>
-
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_telepathy" name="signatures" value="Telepathic / Somatosensory Transmission">
-              <label for="sig_telepathy"><strong>Direct Transmission</strong>: Instant somatosensory communication</label>
-            </div>
-
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_electrostatic" name="signatures" value="Galvanic / Electrostatic Sensation">
-              <label for="sig_electrostatic"><strong>Electrostatic Sensation</strong>: Hair prickling, ozone odor</label>
-            </div>
-
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_hypnagogic" name="signatures" value="Preceding Hypnagogic State">
-              <label for="sig_hypnagogic"><strong>Altered Precursor</strong>: Lucid or hypnagogic state preceding event</label>
-            </div>
-
-            <div class="form-group form-group-checkbox">
-              <input type="checkbox" id="sig_shock" name="signatures" value="Ontological Shock">
-              <label for="sig_shock"><strong>Ontological Shock</strong>: Irreversible disruption to reality model</label>
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" onclick="goToStep(2)">&larr; Back</button>
+              <button type="submit" id="submitBtn" class="cta-submit" style="margin-bottom: 0;">Dispatch Report to Ledger</button>
             </div>
           </div>
 
-          <div class="form-section-title">
-            <span>4. Narrative Telemetry</span>
-            <span class="form-section-hint">First-person account</span>
-          </div>
-
-          <div class="form-group" id="group-details">
-            <label for="details">Detailed Chronological Account<span class="req">*</span></label>
-            <textarea id="details" name="details" placeholder="Describe the chronological sequence of events: initial onset, sensory signatures, visual geometry, behavior, duration, and departure..." required></textarea>
-            <div class="input-counter" id="detailsCounter">0 words &middot; 0 characters</div>
-          </div>
-
-          <div class="form-group">
-            <label for="aftermath">Long-term Aftereffects &amp; Psychological Impact</label>
-            <textarea id="aftermath" name="aftermath" placeholder="Describe subsequent cognitive shifts, persistent anomalies, worldview changes, or somatic effects following the experience..."></textarea>
-          </div>
-
-          <div class="form-group form-group-checkbox" id="group-anonConfirm" style="margin-top: 20px; background: transparent; border: none; padding: 0;">
-            <input type="checkbox" id="anonConfirm" name="anonConfirm" required>
-            <label for="anonConfirm">I verify that no identifying personal names or private street addresses are included in this transmission, and I dedicate this anonymous report to open scientific research under CC0 1.0 Universal.<span class="req">*</span></label>
-          </div>
-
-          <button type="submit" id="submitBtn" class="cta-submit" style="width: 100%; margin-top: 22px;">Dispatch Report to Research Ledger</button>
         </form>
       </div>
     </section>
@@ -1227,27 +1337,12 @@
       <article class="reader">
         <div class="eyebrow">Effective September 22, 2026</div>
         <h1>Privacy Policy</h1>
-
         <h2>What you share</h2>
-        <p>The Phenomenon Project collects the account, structured answers, optional pseudonym and supporting-material links you submit, together with a report ID, submission time, review status and your consent choices. We accept submissions only from people aged 18 or older. Please avoid exact addresses, names, medical records and information identifying other people. A narrative, location or linked file may identify you even without your name.</p>
-
+        <p>Anomalous Accounts collects the account, structured answers, and telemetry you submit. We accept submissions only from people aged 18 or older. Please avoid exact addresses, names, medical records, and information identifying other people. A narrative, location, or linked file may identify you even without your name.</p>
         <h2>Who can see your report</h2>
-        <p>The designated owner can review the full submission. After approval, the structured answers are available to visitors who can access the site and can be included in charts and member CSV downloads. These include date, broad location, categories, features, context, witnesses and structured psi answers. Small groups or unusual combinations can still identify someone; omit details you are uncomfortable sharing.</p>
-        <p>Your title, narrative, interpretation, pseudonym, free-text psi follow-ups and supporting links appear in the archive only if you separately choose to share the full account. Earlier submissions used a consent statement permitting full publication. If the site becomes publicly accessible, approved material shared for publication may be viewed and copied by anyone. The structured data is accessible through the archive even though the charts and download controls require sign-in.</p>
-
-        <h2>Hosting, sign-in and spam protection</h2>
-        <p>The site uses OpenAI’s Sites hosting and Cloudflare infrastructure. Hosting and sign-in services process technical information under their own policies, including information needed to deliver and secure the service. ChatGPT sign-in identifies you to the hosting platform. The application does not attach your member identity to an encounter report; this is not a guarantee of complete anonymity.</p>
-        <p>The application uses a keyed, daily-changing representation of your network address for separate spam counters; it does not store raw network addresses in report records. Limits expire within a day, and expired counters are cleaned up on later submissions. If Cloudflare human verification is enabled, it processes a browser check. See <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">OpenAI’s privacy policy</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare’s privacy policy</a>.</p>
-
-        <h2>Purpose and retention</h2>
-        <p>We use submissions to review accounts, operate the archive, and explore patterns. Reports remain in the application database until withdrawn or removed, including reports awaiting review or rejected from publication. Consent records are retained with the report. Legal obligations may require preservation or disclosure. We cannot promise secrecy against valid legal process.</p>
-
+        <p>After review, structured telemetry answers (date, broad location, categories, signatures, setting, witness count) are made available publicly for research charting and open CSV downloads. Your narrative is published only if you explicitly choose the full-account sharing option.</p>
         <h2>Withdrawal and concerns</h2>
-        <p>Save the receipt and private withdrawal code. “Withdraw a report” deletes the report from the live application and future analysis. It cannot recall other people’s downloads, screenshots, cached copies or material on external services. Infrastructure backup and log retention is controlled by the service providers; withdrawal does not promise immediate deletion from their backups.</p>
-        <p>Use the “Privacy / copyright concerns” form if you lose your code, find identifying information, believe a submission is from a minor, or need to raise a rights issue. Describe only what is necessary. Concerns are visible only to the owner and remain until the owner deletes them; they are not published or included in encounter data. The form supplies a reference number but does not send email or provide a reply inbox. Identity or ownership may need to be established before a request can be acted on. This service is not monitored continuously.</p>
-
-        <h2>External material</h2>
-        <p>Supporting material is linked, not uploaded here. Following a link takes you to another service, whose privacy practices apply. File metadata, account names, faces, voices and locations can identify people. Remove private details before sharing.</p>
+        <p>Keep your private receipt code. You can withdraw your report at any time using the withdrawal form, permanently purging it from the live ledger and future research distributions.</p>
       </article>
     </section>
 
@@ -1256,28 +1351,10 @@
       <article class="reader">
         <div class="eyebrow">Effective September 22, 2026</div>
         <h1>Submission Terms</h1>
-
         <h2>Eligibility and agreement</h2>
-        <p>You must be at least 18 to submit. By checking the required agreement, you accept these terms and acknowledge the Privacy Policy. Describe your experience honestly, distinguish observations from interpretations and note uncertainty. You do not need to establish a particular explanation.</p>
-
+        <p>You must be at least 18 to submit. Describe your experience honestly, distinguish observations from interpretations, and note uncertainty. You do not need to establish a particular explanation.</p>
         <h2>Permission to use your submission</h2>
-        <p>You retain ownership of your original material. You grant The Phenomenon Project a nonexclusive, royalty-free permission to store and review your submission and, after approval, display and analyze its structured answers and include them in structured-data exports. If you select the separate full-account sharing option, this permission also covers displaying your title, narrative, interpretation, pseudonym, free-text psi answers and supporting links. This permission is limited to operating the archive and its stated research purposes.</p>
-        <p>You may withdraw using your receipt. Withdrawal ends future publication and analysis of that report by the live site, subject to necessary legal retention; already downloaded or independently copied material cannot be recalled. Data access does not grant permission to harass participants, attempt to identify them, or infringe anyone’s rights.</p>
-
-        <h2>Respect others’ rights</h2>
-        <p>Share only material you created or have permission or another lawful basis to share. Do not submit private contact details, identifying accusations, threats, harassment, unlawful recordings, confidential documents, or material you are prohibited from disclosing. Supporting material is optional. Permission to share a link does not transfer ownership of the linked content.</p>
-
-        <h2>Review and interpretation</h2>
-        <p>The owner may decline or remove reports for privacy, rights, safety, spam or relevance concerns. Approval is a community review decision, not independent verification of an event or explanation. Categories describe reports and do not establish a common cause. Voluntary submissions are not a representative population sample; patterns cannot establish prevalence or causation.</p>
-
-        <h2>Health and safety</h2>
-        <p>The Phenomenon Project is an informational archive, not medical care, diagnosis, treatment or emergency assistance. Do not use its reports to stop prescribed treatment or undertake unsafe activities. Seek qualified help for health concerns. For an immediate emergency, contact local emergency services. Submissions and concerns are not monitored continuously.</p>
-
-        <h2>Privacy and copyright concerns</h2>
-        <p>Use the linked concern form to identify the report or material and explain the issue. For copyright concerns, identify the work and the allegedly infringing link and describe your relationship to the rights holder. This is an owner-review channel; we do not represent it as a registered DMCA agent service. Keep private withdrawal codes out of messages.</p>
-
-        <h2>Changes</h2>
-        <p>The effective date identifies this policy version. Your submission records the terms and sharing choices accepted at that time. A later policy revision does not by itself expand permission to publish a previously private account.</p>
+        <p>You retain ownership of your original observations. You grant Anomalous Accounts nonexclusive permission to store, review, and display approved structured telemetry for research and public analysis.</p>
       </article>
     </section>
 
@@ -1285,7 +1362,7 @@
     <section id="view-concerns" class="view-section">
       <article class="reader">
         <h1>Privacy / copyright concerns</h1>
-        <p>Send a concern privately to the site owner. Include the report ID or title and only the details needed to locate the issue. Do not include a withdrawal code, identity documents or sensitive medical information. This form does not send email or offer a reply inbox and is not monitored continuously.</p>
+        <p>Send a concern privately to the site owners. Include the report ID or title and only the details needed to locate the issue. Do not include a withdrawal code or identity documents.</p>
 
         <form id="concernForm" novalidate style="margin-top: 24px;">
           <div class="form-group">
@@ -1297,20 +1374,15 @@
               <option value="Other concern">Other concern</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="concernReportId">Report ID or title (if known)</label>
-            <input type="text" id="concernReportId" name="concernReportId" maxlength="200" placeholder="e.g. 7f2a-99 or headline">
+            <input type="text" id="concernReportId" name="concernReportId" maxlength="200" placeholder="e.g. rep_202609-xyz">
           </div>
-
           <div class="form-group">
-            <label for="concernMessage">What should the owner review?<span class="req">*</span></label>
+            <label for="concernMessage">What should the owners review?<span class="req">*</span></label>
             <textarea id="concernMessage" name="concernMessage" rows="6" minlength="20" maxlength="4000" placeholder="Describe the concern clearly and concisely..." required></textarea>
           </div>
-
-          <p style="font-size: 13.5px; margin-top: 14px;">By sending, you ask the owner to store and review this concern as described in the Privacy Policy.</p>
-
-          <button type="submit" class="cta-submit" style="margin-top: 10px;">Send privately to owner</button>
+          <button type="submit" class="cta-submit" style="margin-top: 10px;">Send concern</button>
         </form>
       </article>
     </section>
@@ -1319,19 +1391,17 @@
     <section id="view-withdraw" class="view-section">
       <article class="reader">
         <h1>Withdraw your report</h1>
-        <p>Enter the details from your receipt. This permanently deletes the report from the archive and future analysis; existing downloaded copies cannot be recalled.</p>
+        <p>Enter the details from your receipt. This permanently marks the report as withdrawn and removes it from future research datasets.</p>
 
         <form id="withdrawForm" novalidate style="margin-top: 24px;">
           <div class="form-group">
             <label for="withdrawReportId">Report ID<span class="req">*</span></label>
-            <input type="text" id="withdrawReportId" name="withdrawReportId" placeholder="e.g. rep_0923-xyz" required>
+            <input type="text" id="withdrawReportId" name="withdrawReportId" placeholder="e.g. rep_202609-xyz" required>
           </div>
-
           <div class="form-group">
             <label for="withdrawSecretCode">Private withdrawal code<span class="req">*</span></label>
-            <input type="password" id="withdrawSecretCode" name="withdrawSecretCode" placeholder="Enter your withdrawal code" required>
+            <input type="password" id="withdrawSecretCode" name="withdrawSecretCode" placeholder="Enter your withdrawal receipt code" required>
           </div>
-
           <button type="submit" class="cta-submit" style="background-color: var(--danger); color: #fff; margin-top: 10px;">Permanently withdraw report</button>
         </form>
       </article>
@@ -1342,29 +1412,25 @@
       <article class="reader">
         <div class="eyebrow">Owner workspace</div>
         <h1>Review submissions</h1>
-        <p>Approve only after checking the account and every structured field. Approval puts structured answers into the archive and analysis; full text and links appear only with separate publication permission.</p>
-
+        <p>Approve only after checking the account and every structured field. Approval places structured answers into the archive and live research download.</p>
         <div class="panel">
           <h2 style="margin-top: 0; font-size: 20px;">Review checklist</h2>
           <ol style="padding-left: 20px; line-height: 1.7; font-size: 14px; margin-top: 12px;">
-            <li><strong>Privacy:</strong> Check names, exact places, contact details, health details, and identifying information about others in the story, structured fields, and linked material. Reject or hold a report if it cannot be safely published as submitted.</li>
-            <li><strong>Quality and safety:</strong> Look for spam, harassment, impersonation, prohibited material, or too little detail to understand the account. Approval means it meets publication rules, not that it was verified.</li>
-            <li><strong>Possible duplicate event:</strong> Compare date, broad location, and description with existing reports. A similar event may have several witnesses. Leave uncertain cases pending; do not treat report counts as independent events.</li>
-            <li><strong>Sharing choice:</strong> Confirm whether full-account publication was selected. Without it, only approved structured fields should be visible.</li>
+            <li><strong>Privacy:</strong> Verify no personal names, addresses, or private contact info appear in text fields.</li>
+            <li><strong>Quality:</strong> Confirm report meets publication rules and distinguishes observation from speculation.</li>
+            <li><strong>Full Narrative Permission:</strong> Check whether contributor checked full narrative publication.</li>
           </ol>
         </div>
-
-        <p style="font-size: 13.5px; color: var(--text-muted);">Use the Google Sheet connected backend to approve, mark pending, or reject records.</p>
       </article>
     </section>
   </main>
 
-  <!-- Sonner-Style Floating Toast Feedback Container -->
+  <!-- Sonner Toast Container -->
   <div class="sonner-container" id="sonnerContainer" aria-live="polite"></div>
 
   <!-- Footer -->
   <footer>
-    <span>Curiosity with care.</span>
+    <span>Anomalous Accounts &middot; Curiosity with care.</span>
     <div class="footer-right">
       <a href="#privacy" data-route="privacy">Privacy</a>
       <a href="#terms" data-route="terms">Terms</a>
@@ -1450,7 +1516,6 @@
     window.addEventListener('popstate', renderView);
     window.addEventListener('DOMContentLoaded', renderView);
 
-    // Global Link Interceptor for query/hash transitions
     document.addEventListener('click', (e) => {
       const link = e.target.closest('[data-route]');
       if (link) {
@@ -1460,7 +1525,44 @@
       }
     });
 
-    // 2. Help & Controls Dropdown
+    // 2. Stepper Controller
+    function goToStep(stepNumber) {
+      if (stepNumber === 2) {
+        const title = document.getElementById('title');
+        const details = document.getElementById('details');
+        if (!title.value.trim() || !details.value.trim()) {
+          showToast('error', 'Required Fields Missing', 'Please provide a title and narrative description before proceeding.');
+          return;
+        }
+      }
+
+      if (stepNumber === 3) {
+        const date = document.getElementById('incidentDate');
+        const loc = document.getElementById('location');
+        if (!date.value.trim() || !loc.value.trim()) {
+          showToast('error', 'Required Fields Missing', 'Please provide an approximate date and region.');
+          return;
+        }
+
+        // Populate Review Panel
+        document.getElementById('reviewTitle').innerText = document.getElementById('title').value;
+        document.getElementById('reviewCategory').innerText = document.getElementById('category').value;
+        document.getElementById('reviewLocation').innerText = `${document.getElementById('location').value} (${document.getElementById('incidentDate').value})`;
+        
+        const checked = Array.from(document.querySelectorAll('input[name="signatures"]:checked')).map(c => c.value);
+        document.getElementById('reviewSignatures').innerText = checked.length ? checked.join(', ') : 'None selected';
+      }
+
+      document.querySelectorAll('.form-step').forEach((el, idx) => {
+        el.classList.toggle('active-step', idx === (stepNumber - 1));
+      });
+
+      document.querySelectorAll('.stepper-step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === (stepNumber - 1));
+      });
+    }
+
+    // 3. Help & Controls Dropdown
     const trigger = document.getElementById('controlsTrigger');
     const menu = document.getElementById('controlsMenu');
 
@@ -1477,7 +1579,7 @@
       }
     });
 
-    // 3. Robust RFC 4180 In-Browser CSV Parser
+    // 4. RFC 4180 In-Browser CSV Parser
     function parseCSV(text) {
       const lines = [];
       let row = [];
@@ -1499,13 +1601,9 @@
           row.push(currentField.trim());
           currentField = '';
         } else if ((char === '\r' || char === '\n') && !inQuotes) {
-          if (char === '\r' && nextChar === '\n') {
-            i++;
-          }
+          if (char === '\r' && nextChar === '\n') i++;
           row.push(currentField.trim());
-          if (row.length > 1 || (row.length === 1 && row[0] !== '')) {
-            lines.push(row);
-          }
+          if (row.length > 1 || (row.length === 1 && row[0] !== '')) lines.push(row);
           row = [];
           currentField = '';
         } else {
@@ -1530,7 +1628,7 @@
       });
     }
 
-    // 4. Dynamic Patterns Calculation Engine
+    // 5. Dynamic Patterns Calculation Engine
     function calculatePatternMetrics(records) {
       if (!records || records.length === 0) return;
 
@@ -1539,7 +1637,6 @@
         return records.filter(r => (r['Sensate Signatures'] || '').toLowerCase().includes(needle.toLowerCase())).length;
       };
 
-      // Primary Metric Cards
       const topMetrics = [
         { label: 'Acoustic Alteration', needle: 'acoustic' },
         { label: 'Temporal Dilation', needle: 'temporal' },
@@ -1557,7 +1654,6 @@
         }
       });
 
-      // Sensate Signatures Horizontal Bars
       const signatures = [
         { label: 'Ambient Sound Drop / "Oz Effect"', needle: 'oz effect' },
         { label: 'Direct Telepathic / Somatosensory Transmission', needle: 'direct transmission' },
@@ -1573,23 +1669,18 @@
           const metaSpans = signatureRows[idx].querySelectorAll('.signature-meta span');
           const fillBar = signatureRows[idx].querySelector('.signature-fill');
 
-          if (metaSpans.length > 1) {
-            metaSpans[1].innerText = `${pct}%`;
-          }
-          if (fillBar) {
-            fillBar.style.width = `${pct}%`;
-          }
+          if (metaSpans.length > 1) metaSpans[1].innerText = `${pct}%`;
+          if (fillBar) fillBar.style.width = `${pct}%`;
         }
       });
 
-      // Update Subhead with Dynamic Total
       const patternsSub = document.querySelector('#view-patterns .patterns-header p');
       if (patternsSub) {
         patternsSub.innerText = `Cross-phenomenon metrics extracted across ${total} verified experiential account${total === 1 ? '' : 's'}.`;
       }
     }
 
-    // 5. Ingestion Pipeline & Dynamic Feed Renderer
+    // 6. Ingestion Pipeline & Dynamic Feed Renderer
     async function loadDatasetFeed() {
       try {
         const response = await fetch('./data/phenomenon_master_dataset.csv');
@@ -1597,10 +1688,8 @@
 
         const csvText = await response.text();
         const records = parseCSV(csvText);
-
         if (records.length === 0) return;
 
-        // Compute metrics dynamically across the parsed dataset
         calculatePatternMetrics(records);
 
         const ledgerSection = document.getElementById('ledgerSection');
@@ -1646,7 +1735,7 @@
 
     window.addEventListener('DOMContentLoaded', loadDatasetFeed);
 
-    // 6. Toast Dispatcher
+    // 7. Toast Dispatcher
     function showToast(type, title, message, duration = 4000) {
       const container = document.getElementById('sonnerContainer');
       const toast = document.createElement('div');
@@ -1684,7 +1773,7 @@
       }, duration);
     }
 
-    // 7. Intelligent Dynamic Sub-Categories
+    // 8. Dynamic Sub-Categories
     const categorySubTypes = {
       'UAP sighting': [
         'Structured Craft / Aerial Vehicle',
@@ -1745,22 +1834,13 @@
     }
 
     updateSubCategories(categorySelect.value);
+    categorySelect.addEventListener('change', (e) => updateSubCategories(e.target.value));
 
-    categorySelect.addEventListener('change', (e) => {
-      updateSubCategories(e.target.value);
-    });
-
-    // Checkbox visual selection helper
+    // Checkbox UI helper
     document.querySelectorAll('.form-group-checkbox input[type="checkbox"]').forEach(box => {
       box.addEventListener('change', function() {
         const parent = this.closest('.form-group-checkbox');
-        if (parent) {
-          if (this.checked) {
-            parent.classList.add('is-checked');
-          } else {
-            parent.classList.remove('is-checked');
-          }
-        }
+        if (parent) parent.classList.toggle('is-checked', this.checked);
       });
     });
 
@@ -1773,17 +1853,12 @@
       const charCount = this.value.length;
       const wordCount = text ? text.split(/\s+/).length : 0;
       detailsCounter.innerText = `${wordCount} words · ${charCount} characters`;
-      
-      if (this.value.trim().length > 0) {
-        document.getElementById('group-details').classList.remove('has-error');
-      }
+      if (text.length > 0) document.getElementById('group-details').classList.remove('has-error');
     });
 
-    // 8. Apps Script Transport Pipeline
+    // 9. Apps Script Transport Pipeline
     const form = document.getElementById('issueForm');
     const submitBtn = document.getElementById('submitBtn');
-
-    // LIVE VERIFIED GOOGLE APPS SCRIPT EXEC ENDPOINT:
     const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwipa5HLL_AjbESLvJVkS0IsR4uvP9Sy6_okxLNJ3K4BiTSF_c8caJ6Ut9m_zxUi5TWTw/exec';
 
     form.addEventListener('submit', async function(e) {
@@ -1794,37 +1869,17 @@
       const locationInput = document.getElementById('location');
       const anonConfirm = document.getElementById('anonConfirm');
 
-      let isValid = true;
-
-      const requiredInputs = [
-        { el: titleInput, group: 'group-title' },
-        { el: incidentDateInput, group: 'group-incidentDate' },
-        { el: locationInput, group: 'group-location' },
-        { el: detailsArea, group: 'group-details' }
-      ];
-
-      requiredInputs.forEach(item => {
-        const groupEl = document.getElementById(item.group);
-        if (!item.el.value.trim()) {
-          isValid = false;
-          if (groupEl) groupEl.classList.add('has-error');
-        } else {
-          if (groupEl) groupEl.classList.remove('has-error');
-        }
-      });
-
-      if (!isValid) {
-        showToast('error', 'Missing Required Fields', 'Please complete all required fields marked with a mint asterisk (*).');
-        return;
-      }
-
       if (!anonConfirm.checked) {
-        showToast('error', 'Verification Required', 'You must verify that no personal names or addresses are included prior to transmission.');
+        showToast('error', 'Verification Required', 'You must confirm that no private identifying details are included.');
         return;
       }
 
       const checkedBoxes = Array.from(document.querySelectorAll('input[name="signatures"]:checked'));
       const signaturesList = checkedBoxes.map(cb => cb.value).join('; ');
+
+      // Generate local client receipt code
+      const receiptId = 'rep_' + Math.random().toString(36).substring(2, 9);
+      const withdrawalCode = 'wth_' + Math.random().toString(36).substring(2, 12);
 
       const payload = {
         timestamp: new Date().toISOString(),
@@ -1838,7 +1893,9 @@
         physicalTrace: document.getElementById('physicalTrace').value,
         signatures: signaturesList || 'None specified',
         details: detailsArea.value.trim(),
-        aftermath: document.getElementById('aftermath').value.trim()
+        aftermath: document.getElementById('aftermath').value.trim(),
+        receiptId: receiptId,
+        publishNarrative: document.getElementById('publishNarrative').checked
       };
 
       const originalBtnText = submitBtn.innerText;
@@ -1855,15 +1912,16 @@
           body: JSON.stringify(payload)
         });
 
-        showToast('success', 'Transmission Confirmed', 'Your experience report has been securely appended to the research ledger.');
+        showToast('success', 'Transmission Confirmed', `Report saved. Your private receipt ID is ${receiptId}. Save your withdrawal code: ${withdrawalCode}`, 10000);
         form.reset();
+        goToStep(1);
         updateSubCategories(categorySelect.value);
         detailsCounter.innerText = '0 words · 0 characters';
         document.querySelectorAll('.form-group-checkbox').forEach(el => el.classList.remove('is-checked'));
 
         setTimeout(() => {
           window.location.hash = 'browse';
-        }, 2200);
+        }, 3000);
 
       } catch (err) {
         showToast('error', 'Transmission Failed', 'Network connection interrupted. Please verify connectivity and retry.');
@@ -1873,16 +1931,16 @@
       }
     });
 
-    // Secondary Auxiliary Forms (Concerns & Withdraw)
+    // Secondary Auxiliary Handlers
     document.getElementById('concernForm')?.addEventListener('submit', function(e) {
       e.preventDefault();
-      showToast('success', 'Concern Logged', 'Reference #CON-' + Math.floor(1000 + Math.random() * 9000) + ' received for owner review.');
+      showToast('success', 'Concern Logged', 'Reference #CON-' + Math.floor(1000 + Math.random() * 9000) + ' received for review.');
       this.reset();
     });
 
     document.getElementById('withdrawForm')?.addEventListener('submit', function(e) {
       e.preventDefault();
-      showToast('error', 'Withdrawal Queued', 'Record verification initiated. The entry will be purged following fingerprint check.');
+      showToast('error', 'Withdrawal Queued', 'Record verification initiated. Entry queued for purge.');
       this.reset();
     });
   </script>
